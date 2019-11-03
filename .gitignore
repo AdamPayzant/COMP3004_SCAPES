@@ -1,0 +1,12 @@
+# VSCODE settings
+./.vscode
+
+# Compiled cc files
+*.o
+
+# Executables
+*.exe
+*.out
+*.app
+
+SCAPES
