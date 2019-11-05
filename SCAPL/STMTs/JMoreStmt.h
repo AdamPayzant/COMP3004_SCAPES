@@ -9,7 +9,7 @@ class JMoreStmt: public Statement {
     public:
         JMoreStmt(Program *);
         ~JMoreStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

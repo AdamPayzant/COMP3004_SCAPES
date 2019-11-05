@@ -8,7 +8,7 @@
 
 class Identifier {
     public:
-        Identifier();
+        Identifier(std::string &);
         ~Identifier();
 
         // Getters and setters

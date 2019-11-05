@@ -9,7 +9,7 @@ class JumpStmt: public Statement {
     public:
         JumpStmt(Program *);
         ~JumpStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

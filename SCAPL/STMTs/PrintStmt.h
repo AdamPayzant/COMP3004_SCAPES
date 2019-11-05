@@ -9,7 +9,7 @@ class PrintStmt: public Statement {
     public:
         PrintStmt(Program *);
         ~PrintStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

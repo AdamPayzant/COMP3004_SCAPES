@@ -23,7 +23,7 @@ void Program::compile() {
     for(std::string line ; getline(file, line); ) {
         if(line[0] != '#') {
             // I'd rather change this to a map of lambas, but scoping, so now we just get a map and switch statments
-            int type = stats[line.substr(3)];
+            int type = stats[line.substr(0,3)];
             switch (type) {
                 case 0:
                     stmts->push_back(new DeclIntStmt(this));

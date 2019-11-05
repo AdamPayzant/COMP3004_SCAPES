@@ -9,7 +9,7 @@ class ReadStmt: public Statement {
     public:
         ReadStmt(Program *);
         ~ReadStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

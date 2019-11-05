@@ -7,6 +7,8 @@
 
 class Variable: public Identifier {
     public:
+        void setVal(int &);
+        void getVal(int &);
     private:
         int value;
 };

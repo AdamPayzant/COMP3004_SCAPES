@@ -9,7 +9,7 @@
 
 class Statement {
     public:
-        virtual void compile(std::string) = 0;
+        virtual void compile(std::string &) = 0;
         virtual void run() = 0;
     protected:
         // Master program
