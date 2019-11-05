@@ -4,6 +4,8 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Identifier.h"
+#include "../Variable.h"
 
 class DeclIntStmt: public Statement {
     public:

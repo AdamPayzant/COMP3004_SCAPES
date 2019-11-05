@@ -8,12 +8,9 @@
 
 class Identifier {
     public:
-        Identifier(std::string &);
-        ~Identifier();
-
         // Getters and setters
         void getName(std::string &);
-    private:
+    protected:
         std::string name;
 };
 

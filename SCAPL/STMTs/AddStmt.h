@@ -13,7 +13,7 @@ class AddStmt: public Statement {
         AddStmt(Program *);
         ~AddStmt();
 
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

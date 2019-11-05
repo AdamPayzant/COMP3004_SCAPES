@@ -9,7 +9,7 @@ class MovStmt: public Statement {
     public:
         MovStmt(Program *);
         ~MovStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

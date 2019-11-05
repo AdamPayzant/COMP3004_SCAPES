@@ -7,7 +7,7 @@
 
 class Label: public Identifier {
     public:
-        Label();
+        Label(std::string &);
         ~Label();
     private:
 };
