@@ -7,7 +7,7 @@
 
 class CompStmt: public Statement {
     public:
-        CompStmt();
+        CompStmt(Program *);
         ~CompStmt();
         void compile(std::string);
         void run();

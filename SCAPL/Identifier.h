@@ -8,10 +8,13 @@
 
 class Identifier {
     public:
+        Identifier();
+        ~Identifier();
+
+        // Getters and setters
+        void getName(std::string &);
     private:
         std::string name;
-        Variable value;
-        Label label;
 };
 
 #endif

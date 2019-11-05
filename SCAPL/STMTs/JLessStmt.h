@@ -7,7 +7,7 @@
 
 class JLessStmt: public Statement {
     public:
-        JLessStmt();
+        JLessStmt(Program *);
         ~JLessStmt();
         void compile(std::string);
         void run();

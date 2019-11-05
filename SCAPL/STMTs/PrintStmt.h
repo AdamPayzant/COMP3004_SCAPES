@@ -7,7 +7,7 @@
 
 class PrintStmt: public Statement {
     public:
-        PrintStmt();
+        PrintStmt(Program *);
         ~PrintStmt();
         void compile(std::string);
         void run();

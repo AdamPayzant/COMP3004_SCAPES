@@ -1,0 +1,24 @@
+Needed Functionality:
+    dci
+    rdi
+    prt
+    cmp
+    jmr
+    jmp
+    end
+    #
+
+Classes Needing to be written to:
+    Program
+    Identifier
+    Variable
+    Label
+    Operand
+    Statement
+    DeclIntStmt
+    ReadStmt
+    PrintStmt
+    CompStmt
+    JMoreStmt
+    JumpStmt
+    EndStmt
