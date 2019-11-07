@@ -4,6 +4,8 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 
+#include <string>
+
 /**
  * Program: School of Computer Science Assembly Programming Environment System
  * Author: //TODO: Team Name
@@ -88,7 +90,12 @@ class SQLiteConnector
      * - string value representing the file name of the source code whose
      * compiled intermediary representation we'd like to store or retrieve.
      **/
-    SQLiteConnector(string&);
+    SQLiteConnector(string);
+
+    /**
+     * Destructor
+     **/
+    ~SQLiteConnector();
 
     /**
      * Function used to establish a connection with a local SQLite Database 
@@ -96,24 +103,18 @@ class SQLiteConnector
      * connection with a newly created database associated with the file name
      * of the source code.
      **/
-    Connect();
+    void connect();
 
     /**
      * Function used to terminate the connect to the local SQLite Database.
      **/
-    Disconnect();
-
+    void disconnect();
+  
+  private:
     /**
-     * Getter function used to get the current value of the source code's 
-     * file name.
+     * 
      **/
-    string& getFilename();
+    QSqlDatabase database;
+};
 
-    /**
-     * Setter function used to set the value of the source code's file name.
-     * Cannot change the file name while a connection to a database is open.
-     * Parameters:
-     * - Reference to string variable that is holding a source file name.
-     **/
-    void setFilename(string&);
-     
+#endif
