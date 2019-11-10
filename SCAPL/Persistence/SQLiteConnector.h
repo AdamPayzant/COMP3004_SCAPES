@@ -112,7 +112,7 @@ class SQLiteConnector
   
   private:
     /**
-     * 
+     * Object used to establish and maintain a connection to an SQLite database.
      **/
     QSqlDatabase database;
 };
