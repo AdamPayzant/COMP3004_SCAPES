@@ -8,16 +8,31 @@ Needed Functionality:
     end
     #
 
-Classes Needing to be written to:
+Classes Needing to be written to Compile:
     Program X
     Identifier X
     Variable X
     Label X
     Operand X
     Statement X
-    DeclIntStmt
-    ReadStmt
-    PrintStmt
+    DeclIntStmt X
+    ReadStmt X
+    PrintStmt X
+    CompStmt
+    JMoreStmt
+    JumpStmt
+    EndStmt
+
+Classes Needing to be written to run:
+    Program 
+    Identifier 
+    Variable 
+    Label 
+    Operand 
+    Statement 
+    DeclIntStmt 
+    ReadStmt 
+    PrintStmt 
     CompStmt
     JMoreStmt
     JumpStmt
