@@ -3,8 +3,6 @@
 
 #include <string>
 
-#include "Variable.h"
-#include "Label.h"
 
 class Identifier {
     public:

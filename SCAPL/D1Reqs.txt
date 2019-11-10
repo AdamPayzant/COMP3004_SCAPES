@@ -22,18 +22,3 @@ Classes Needing to be written to Compile:
     JMoreStmt
     JumpStmt
     EndStmt
-
-Classes Needing to be written to run:
-    Program 
-    Identifier 
-    Variable 
-    Label 
-    Operand 
-    Statement 
-    DeclIntStmt 
-    ReadStmt 
-    PrintStmt 
-    CompStmt
-    JMoreStmt
-    JumpStmt
-    EndStmt

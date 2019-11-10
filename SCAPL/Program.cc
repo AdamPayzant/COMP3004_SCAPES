@@ -49,6 +49,8 @@ void Program::compile() {
                     stmts->push_back(new JumpStmt(this));
                 case 11:
                     stmts->push_back(new EndStmt(this));
+                default:
+                    // Add Label
             }
             stmts->at(stmts->size())->compile(line);
         }

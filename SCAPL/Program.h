@@ -38,7 +38,7 @@ class Program {
         std::string filename;
         int comparisonFlag;
         std::vector<Identifier*> *ids;
-        std::vector<Statement*> *stmts;
+        std::map<Statement*> *stmts;
 };
 
 #endif
