@@ -6,106 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>764</height>
+    <width>871</width>
+    <height>682</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="sourceTextWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
-      <width>761</width>
+      <y>10</y>
+      <width>851</width>
       <height>401</height>
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_2">
+   <widget class="QTextEdit" name="feedbackWindow">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>570</y>
-      <width>631</width>
-      <height>221</height>
+      <x>10</x>
+      <y>420</y>
+      <width>851</width>
+      <height>211</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="save">
-    <property name="geometry">
-     <rect>
-      <x>830</x>
-      <y>230</y>
-      <width>83</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>save</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="compilebutton">
-    <property name="geometry">
-     <rect>
-      <x>830</x>
-      <y>270</y>
-      <width>83</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>compile</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Openbutton">
-    <property name="geometry">
-     <rect>
-      <x>830</x>
-      <y>310</y>
-      <width>83</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>open</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>360</y>
-      <width>101</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>settings/about</string>
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionsave">
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>871</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuButtonFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="menuButtonNewOption"/>
+    <addaction name="menuButtonOpenOption"/>
+    <addaction name="menuButtonSaveOption"/>
+   </widget>
+   <widget class="QMenu" name="menuProgram">
+    <property name="title">
+     <string>Program</string>
+    </property>
+    <addaction name="menuButtonCompileOption"/>
+    <addaction name="menuButtonRunOption"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="menuButtonFuncDescOption"/>
+    <addaction name="menuButtonAboutOption"/>
+   </widget>
+   <addaction name="menuButtonFile"/>
+   <addaction name="menuProgram"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="menuButtonNewOption">
    <property name="text">
-    <string>save</string>
+    <string>New</string>
    </property>
   </action>
-  <action name="actioncompile">
+  <action name="menuButtonOpenOption">
    <property name="text">
-    <string>run</string>
+    <string>Open</string>
    </property>
   </action>
-  <action name="actionopen">
+  <action name="menuButtonSaveOption">
    <property name="text">
-    <string>open</string>
+    <string>Save</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="menuButtonCompileOption">
    <property name="text">
-    <string>'</string>
+    <string>Compile</string>
+   </property>
+  </action>
+  <action name="menuButtonRunOption">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="menuButtonFuncDescOption">
+   <property name="text">
+    <string>Functionality Description</string>
+   </property>
+  </action>
+  <action name="menuButtonAboutOption">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
