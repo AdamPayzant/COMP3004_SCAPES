@@ -27,6 +27,7 @@ CONFIG += c++11
 
 SOURCES += \
          ./main.cc \
+         ./ApplicationLogic/*.cc \
          ./Interface/*.cc \
          ./Interface/*.cpp \
          ./Persistence/*.cc \
@@ -38,6 +39,7 @@ SOURCES += \
 #        ./Interface/savewindow.cpp
 
 HEADERS += \
+         ./ApplicationLogic/*.h \
          ./Interface/*.h \
          ./Persistence/*.h \
          ./SCAPL/*.h
