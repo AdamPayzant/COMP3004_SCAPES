@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    prepareInitialWindowState();
 }
 
 MainWindow::~MainWindow()
@@ -22,6 +23,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_menuButtonNewOption_triggered()
 {
+    ui->sourceTextWindow->setReadOnly(false);
+    ui->feedbackWindow->setText("");
+    ui->sourceTextWindow->show();
+    QPalette feedbackPalette;
+    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
+    ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
+                                "To save your source file, please use the 'Save' menu option.\n"
+                                "To compile your source file, please use the 'Compile' menu option.\n"
+                                "Clarifications on program details or functionality can be found under the 'Help' menu option of the menu bar.\n\n"
+                                "Please note that creating a new source file using the 'New' menu option without saving your current source file will "
+                                "result in the loss of any unsaved changes.");
+    ui->feedbackWindow->setPalette(feedbackPalette);
 }
 
 void MainWindow::on_menuButtonOpenOption_triggered()
@@ -57,6 +70,18 @@ void MainWindow::on_menuButtonFuncDescOption_triggered()
 
 void MainWindow::on_menuButtonAboutOption_triggered()
 {
+}
+
+void MainWindow::prepareInitialWindowState()
+{
+    ui->sourceTextWindow->setReadOnly(true);
+    ui->sourceTextWindow->hide();
+    QPalette feedbackPalette;
+    feedbackPalette.setColor(QPalette::Base, QColor(220,220,220));
+    ui->feedbackWindow->setText("To display the editor window, please create ('New' menu option) "
+                                "or open ('Open' menu option) a file.");
+    ui->feedbackWindow->setPalette(feedbackPalette);
+    ui->feedbackWindow->setReadOnly(true);
 }
 
 /*
