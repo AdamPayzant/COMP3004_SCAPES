@@ -9,7 +9,8 @@ JumpStmt::~JumpStmt() {
 }
 
 void JumpStmt::compile(std::string &line) {
-
+    // Syntax: "jmp <Destination Label>"
+    // Nothing to do here for now
 }
 
 void JumpStmt::run() {

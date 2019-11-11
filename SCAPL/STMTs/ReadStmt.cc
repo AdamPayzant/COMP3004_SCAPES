@@ -10,6 +10,9 @@ ReadStmt::~ReadStmt() {
 
 void ReadStmt::compile(std::string &line) {
     std::string operand = line.substr(4, line.size()-4);
+    while(operand.at(0) == ' ') {
+        line.erase(operand.begin());
+    }
     std::vector<Identifier*> *ids;
     master->getIds(ids);
 

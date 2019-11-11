@@ -11,6 +11,9 @@ class Statement {
     public:
         virtual void compile(std::string &) = 0;
         virtual void run() = 0;
+        void setLabel(Label *l) {
+            label = l;
+        };
     protected:
         // Master program
         Program *master;

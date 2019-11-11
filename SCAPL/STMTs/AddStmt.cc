@@ -9,7 +9,7 @@ AddStmt::~AddStmt() {
     delete(o2);
 }
 
-void AddStmt::compile(std::string line) {
+void AddStmt::compile(std::string &line) {
     
 }
 

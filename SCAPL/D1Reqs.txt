@@ -18,7 +18,7 @@ Classes Needing to be written to Compile:
     DeclIntStmt X
     ReadStmt X
     PrintStmt X
-    CompStmt
-    JMoreStmt
-    JumpStmt
-    EndStmt
+    CompStmt X
+    JMoreStmt X
+    JumpStmt X
+    EndStmt X
