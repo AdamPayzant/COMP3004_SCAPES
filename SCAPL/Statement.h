@@ -27,7 +27,7 @@ class Statement {
         Operand *o2;
         // Label (Can be NULL)
         Label *label;
-        string subtype;
+        std::string subtype;
 };
 
 #endif
