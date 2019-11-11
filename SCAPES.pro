@@ -25,23 +25,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        dialog.cpp \
-        main.cpp \
-        mainwindow.cpp \
-        openoption.cpp \
-        savewindow.cpp
+        ./Interface/dialog.cpp \
+        ./Interface/main.cpp \
+        ./Interface/mainwindow.cpp \
+        ./Interface/openoption.cpp \
+        ./Interface/savewindow.cpp
 
 HEADERS += \
-        dialog.h \
-        mainwindow.h \
-        openoption.h \
-        savewindow.h
+        ./Interface/dialog.h \
+        ./Interface/mainwindow.h \
+        ./Interface/openoption.h \
+        ./Interface/savewindow.h
 
 FORMS += \
-        dialog.ui \
-        mainwindow.ui \
-        openoption.ui \
-        savewindow.ui
+        ./Interface/dialog.ui \
+        ./Interface/mainwindow.ui \
+        ./Interface/openoption.ui \
+        ./Interface/savewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -49,6 +49,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Save.qml \
-    SaveForm.ui.qml \
-    SavewindowForm.ui.qml
+    ./Interface/Save.qml \
+    ./Interface/SaveForm.ui.qml \
+    ./Interface/SavewindowForm.ui.qml
