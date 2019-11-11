@@ -1,5 +1,5 @@
 #include "mainWindow.h"
-#include "ui_mainwindow.h"
+#include "ui_mainWindow.h"
 //#include "PersistenceManager.h"
 #include <QFileDialog>
 #include <QString>
@@ -20,38 +20,46 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_compile_clicked(bool)
+void MainWindow::on_menuButtonNewOption_triggered()
 {
-
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    savewindow * s = new savewindow(this);
-    s->show();
-
-}
-
-void MainWindow::on_compile_clicked()
-{
-
-
-}
-
-void MainWindow::on_Openbutton_clicked()
+void MainWindow::on_menuButtonOpenOption_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("openTxtFile"), "/home", tr("txt files (*.txt)"));
+                                                    tr("Open File"), "/home", tr("txt files (*.txt)"));
     string  fn = fileName.toUtf8().constData();
     string code;
 
     //loadFromFile( &editorText, fileName);
-    QString qstr = QString::fromStdString(code);
-    ui->textEdit->setText(qstr);
+    //QString qstr = QString::fromStdString(code);
+    //ui->feedbackWindow->setText(qstr);
+}
+
+void MainWindow::on_menuButtonSaveOption_triggered()
+{
+    savewindow* s = new savewindow(this);
+    s->show();
 
 }
 
+void MainWindow::on_menuButtonCompileOption_triggered()
+{
+}
+
+void MainWindow::on_menuButtonRunOption_triggered()
+{
+}
+
+void MainWindow::on_menuButtonFuncDescOption_triggered()
+{
+}
+
+void MainWindow::on_menuButtonAboutOption_triggered()
+{
+}
+
+/*
 void MainWindow::on_save_clicked()
 {
 
@@ -92,7 +100,9 @@ void MainWindow::on_save_clicked()
 
 
 }
+*/
 
+/*
 void MainWindow::on_compilebutton_clicked()
 {
     
@@ -107,3 +117,4 @@ void MainWindow::on_compilebutton_clicked()
 
 
 }
+*/

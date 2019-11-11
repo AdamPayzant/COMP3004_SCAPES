@@ -17,18 +17,34 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    /**
+     *
+     *
+     **/
+    string& getEditorText();
+
+    /**
+     *
+     *
+     **/
+    void setEditorText();
+
+
+
 private slots:
-    void on_compile_clicked(bool checked);
+    void on_menuButtonNewOption_triggered();
 
-    void on_compile_clicked();
+    void on_menuButtonOpenOption_triggered();
 
-    void on_pushButton_clicked();
+    void on_menuButtonSaveOption_triggered();
 
-    void on_Openbutton_clicked();
+    void on_menuButtonCompileOption_triggered();
 
-    void on_save_clicked();
+    void on_menuButtonRunOption_triggered();
 
-    void on_compilebutton_clicked();
+    void on_menuButtonFuncDescOption_triggered();
+
+    void on_menuButtonAboutOption_triggered();
 
 private:
     Ui::MainWindow *ui;
