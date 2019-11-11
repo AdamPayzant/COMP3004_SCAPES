@@ -4,12 +4,14 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Identifier.h"
+#include "../Variable.h"
 
 class DeclIntStmt: public Statement {
     public:
-        DeclIntStmt();
+        DeclIntStmt(Program *);
         ~DeclIntStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

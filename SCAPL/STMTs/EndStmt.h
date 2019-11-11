@@ -7,9 +7,9 @@
 
 class EndStmt: public Statement {
     public:
-        EndStmt();
+        EndStmt(Program *);
         ~EndStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

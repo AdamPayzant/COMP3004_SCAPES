@@ -7,9 +7,9 @@
 
 class ReadStmt: public Statement {
     public:
-        ReadStmt();
+        ReadStmt(Program *);
         ~ReadStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

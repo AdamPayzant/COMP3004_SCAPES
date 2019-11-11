@@ -5,8 +5,12 @@
 
 class Operand {
     public:
+        Operand(Identifier *);
+        ~Operand();
+
+        void getID(Identifier *);
     private:
-        Identifier id;
+        Identifier *id;
 };
 
 #endif

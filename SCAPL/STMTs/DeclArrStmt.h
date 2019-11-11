@@ -7,9 +7,9 @@
 
 class DeclArrStmt: public Statement {
     public:
-        DeclArrStmt();
+        DeclArrStmt(Program *);
         ~DeclArrStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 

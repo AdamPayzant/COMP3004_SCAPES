@@ -3,15 +3,13 @@
 
 #include <string>
 
-#include "Variable.h"
-#include "Label.h"
 
 class Identifier {
     public:
-    private:
+        // Getters and setters
+        void getName(std::string &);
+    protected:
         std::string name;
-        Variable value;
-        Label label;
 };
 
 #endif

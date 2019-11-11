@@ -7,9 +7,9 @@
 
 class JEqStmt: public Statement {
     public:
-        JEqStmt();
+        JEqStmt(Program *);
         ~JEqStmt();
-        void compile(std::string);
+        void compile(std::string &);
         void run();
 };
 
