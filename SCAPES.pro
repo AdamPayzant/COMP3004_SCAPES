@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,23 +26,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        ./Interface/dialog.cpp \
-        ./main.cc \
-        ./Interface/mainWindow.cc \
-        ./Interface/openoption.cpp \
-        ./Interface/savewindow.cpp
+         ./main.cc \
+         ./Interface/*.cc \
+         ./Interface/*.cpp \
+         ./Persistence/*.cc \
+         ./SCAPL/*.cc
+#        ./Interface/dialog.cpp \
+#        ./main.cc \
+#        ./Interface/mainWindow.cc \
+#        ./Interface/openoption.cpp \
+#        ./Interface/savewindow.cpp
 
 HEADERS += \
-        ./Interface/dialog.h \
-        ./Interface/mainWindow.h \
-        ./Interface/openoption.h \
-        ./Interface/savewindow.h
+         ./Interface/*.h \
+         ./Persistence/*.h \
+         ./SCAPL/*.h
+#        ./Interface/dialog.h \
+#        ./Interface/mainWindow.h \
+#        ./Interface/openoption.h \
+#        ./Interface/savewindow.h
 
 FORMS += \
-        ./Interface/dialog.ui \
-        ./Interface/mainWindow.ui \
-        ./Interface/openoption.ui \
-        ./Interface/savewindow.ui
+        ./Interface/*.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -5,8 +5,8 @@
 
 #include "DatabaseConductor.h"
 #include "FileSupervisor.h"
-#include "Identifier.h"
-#include "Statement.h"
+#include "./../SCAPL/Identifier.h"
+#include "./../SCAPL/Statement.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
