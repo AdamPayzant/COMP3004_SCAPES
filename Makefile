@@ -5,8 +5,15 @@ STMTDIR=./SCAPL/STMTs/
 UIDIR=./ui/
 
 # Master Compile
-SCAPES: $(SCAPLDIR)Program.o $(SCAPLDIR)Identifier.o $(SCAPLDIR)Label $(SCAPLDIR)Variable $(SCAPLDIR)Operand $(SCAPLDIR)Statement.o $(STMTDIR)AddStmt.o $(STMTDIR)CompStmt.o $(STMTDIR)DeclArrStmt.o $(STMTDIR)DeclIntStmt.o $(STMTDIR)EndStmt.o $(STMTDIR)JEqStmt.o $(STMTDIR)JLessStmt.o $(STMTDIR)JMoreStmt.o $(STMTDIR)JumpStmt.o $(STMTDIR)MovStmt.o $(STMTDIR)PrintStmt.o $(STMTDIR)ReadStmt.o
+
+SCAPES: main.o mainController.o $(SCAPLDIR)Program.o $(SCAPLDIR)Identifier.o $(SCAPLDIR)Label $(SCAPLDIR)Variable $(SCAPLDIR)Operand $(SCAPLDIR)Statement.o $(STMTDIR)AddStmt.o $(STMTDIR)CompStmt.o $(STMTDIR)DeclArrStmt.o $(STMTDIR)DeclIntStmt.o $(STMTDIR)EndStmt.o $(STMTDIR)JEqStmt.o $(STMTDIR)JLessStmt.o $(STMTDIR)JMoreStmt.o $(STMTDIR)JumpStmt.o $(STMTDIR)MovStmt.o $(STMTDIR)PrintStmt.o $(STMTDIR)ReadStmt.o
 	$(CC) -o SCAPES
+
+main.o: main.cc
+	$(CC) $(CFLAGS) main.cc
+
+mainController.o: mainController.cc
+	$(CC) $(CFLAGS) mainController.cc
 
 # SCAPL Compile
 
