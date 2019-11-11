@@ -16,6 +16,7 @@ Program::~Program() {
         delete(id);
     }
     ids->clear();
+    delete(ids);
 }
 
 void Program::compile() {
@@ -26,7 +27,7 @@ void Program::compile() {
     for(std::string line ; getline(file, line); ) {
         std::cout << line << std::endl;
         // Had issues loading in blank lines, this should work around it
-        if(line.size() == 0) { 
+        if(line.size() != 0) { 
             // This removes any white space at the start of the line
             while(line.at(0) == ' ') {
                 line.erase(line.begin());

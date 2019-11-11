@@ -29,6 +29,9 @@ class Program {
 
         // Getters
         void getIds(std::vector<Identifier*> *);
+        void getStmts(std::vector<Statement*> *s) {
+            s = stmts;
+        };
         void getCFlag(int *);
     private:
         std::string filename;
