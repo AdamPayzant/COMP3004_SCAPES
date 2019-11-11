@@ -55,12 +55,12 @@ class PersistenceManager
     /**
      *
      **/
-    bool saveToFile(string&, string);
+    bool saveToFile(string, string&);
 
     /**
      * 
      **/
-    bool loadFromFile(string&, string);
+    bool loadFromFile(string&, string&);
 
   private:
     /**
@@ -72,6 +72,11 @@ class PersistenceManager
      * 
      **/
     FileSupervisor fileSupervisor;
+
+    /**
+     *
+     **/
+    string sourceCodeSnapshot;
 };
 
 #endif

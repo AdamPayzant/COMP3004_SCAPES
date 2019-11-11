@@ -3,13 +3,16 @@
 
 #include <ios>
 #include <fstream>
+#include <string.h>
 #include <string>
 
 using namespace std;
 
 #include "./Interface/MainWindow.h"
 #include "./Persistence/PersistenceManager.h"
+//#include "./SCAPL/Program.h"
 
+class MainWindow;
 /**
  * Program: School of Computer Science Assembly Programming Environment System
  * Author: //TODO: Team Name
@@ -47,6 +50,11 @@ class MainController
         /**
          *
          **/
+        void clientRequestHandler(string);
+
+        /**
+         *
+         **/
         void saveSourceCode();
 
         /**
@@ -62,7 +70,7 @@ class MainController
         /**
          *
          **/
-        void runSourceCode();
+        void runCompiledProgram();
 
 
     private:

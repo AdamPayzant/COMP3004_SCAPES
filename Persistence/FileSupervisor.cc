@@ -12,6 +12,7 @@ FileSupervisor::~FileSupervisor()
 bool FileSupervisor::saveToFile(string& editorText, string filename)
 {
   ofstream outputFile;
+  filename += ".scapl";
   outputFile.open(filename);
   if(!outputFile.is_open()){
     return false;
