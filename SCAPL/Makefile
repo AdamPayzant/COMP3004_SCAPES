@@ -1,6 +1,6 @@
 Test: main.o Program.o Identifier.o Label.o Variable.o Operand.o ReadStmt.o PrintStmt.o JumpStmt.o JMoreStmt.o EndStmt.o DeclIntStmt.o CompStmt.o
 	g++ -o Test main.o Program.o Identifier.o Label.o Variable.o Operand.o ReadStmt.o PrintStmt.o JumpStmt.o JMoreStmt.o EndStmt.o DeclIntStmt.o CompStmt.o
-	
+
 main.o: main.cc Program.h
 	g++ -c main.cc
 
@@ -39,3 +39,7 @@ Operand.o: Operand.cc Operand.h Identifier.h
 
 ./STMTs/CompStmt.o: ./STMTs/CompStmt.cc ./STMTs/CompStmt.h Statement.h Program.h
 	g++ -c ./STMTs/CompStmt.cc
+
+
+clean:
+	rm *.o Test

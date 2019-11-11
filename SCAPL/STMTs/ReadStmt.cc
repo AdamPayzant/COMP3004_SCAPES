@@ -76,7 +76,7 @@
  **/
 
 
-
+#include <iostream> // Just here for debugging
 #include "ReadStmt.h"
 
 ReadStmt::ReadStmt(Program *p) {
@@ -92,6 +92,7 @@ void ReadStmt::compile(std::string &line) {
     while(operand.at(0) == ' ') {
         line.erase(operand.begin());
     }
+    std::cout << "Removed whitespace" << std::endl;
     std::vector<Identifier*> *ids;
     master->getIds(ids);
 

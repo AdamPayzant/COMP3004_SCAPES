@@ -43,15 +43,21 @@ void Program::compile() {
                     case 0:
                         stmts->push_back(new DeclIntStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     /*case 1:
                         stmts->push_back(new DeclArrStmt(this));
                         stmts->at(stmts->size()-1)->compile(line); */
                     case 2:
+                        std::cout << "In case 2" << std::endl;
                         stmts->push_back(new ReadStmt(this));
+                        std::cout << "Added Stmts" << std::endl;
                         stmts->at(stmts->size()-1)->compile(line);
+                        std::cout << "Compiled" << std::endl;
+                        break;
                     case 3:
                         stmts->push_back(new PrintStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     /*case 4:
                         stmts->push_back(new MovStmt(this));
                         stmts->at(stmts->size()-1)->compile(line); */
@@ -61,21 +67,25 @@ void Program::compile() {
                     case 6:
                         stmts->push_back(new CompStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     /*case 7:
                         stmts->push_back(new JLessStmt(this));
                         stmts->at(stmts->size()-1)->compile(line); */
                     case 8:
                         stmts->push_back(new JMoreStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     /*case 9:
                         stmts->push_back(new JEqStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);  */
                     case 10:
                         stmts->push_back(new JumpStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     case 11:
                         stmts->push_back(new EndStmt(this));
                         stmts->at(stmts->size()-1)->compile(line);
+                        break;
                     default:
                         // Check and make sure it's a valid statement
                         // Call statement constructor then give it a label
@@ -133,7 +143,9 @@ void Program::compile() {
                                 }
                             }
                         }
+                        break;
                 }
+                std::cout << "Out of switch" << std::endl;
             }
         }
     }
