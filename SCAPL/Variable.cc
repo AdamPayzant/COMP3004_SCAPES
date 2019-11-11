@@ -2,6 +2,7 @@
 
 Variable::Variable(std::string &n) {
     name = n;
+    subType = "Variable";
 }
 
 void Variable::getVal(int &v) {

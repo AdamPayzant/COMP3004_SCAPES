@@ -10,6 +10,7 @@ class Identifier {
         void getName(std::string &);
     protected:
         std::string name;
+        std::string subType;
 };
 
 #endif
