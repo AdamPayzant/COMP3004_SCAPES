@@ -9,7 +9,7 @@ FileSupervisor::~FileSupervisor()
 {
 }
 
-bool saveToFile(string& editorText, string filename)
+bool FileSupervisor::saveToFile(string& editorText, string filename)
 {
   ofstream outputFile;
   outputFile.open(filename);
@@ -21,14 +21,14 @@ bool saveToFile(string& editorText, string filename)
   return true;
 }
 
-bool loadFromFile(string& editorText, string filename)
+bool FileSupervisor::loadFromFile(string& editorText, string filename)
 {
   ifstream inputFile;
   inputFile.open(filename);
   if(!inputFile.is_open()){
     return false;
   }
-  inputFile.get(editorText);
+//inputFile.get(editorText);
   inputFile.close();
   return true;
 }

@@ -3,10 +3,10 @@
 
 DatabaseConductor::DatabaseConductor()
 {
-  this.connector = NULL;
-  this.identifier_array = NULL;
-  this.statement_array = NULL;
-  this.filename="";
+  this->connector = nullptr;
+  this->identifier_array = nullptr;
+  this->statement_array = nullptr;
+  this->filename="";
 }
 
 DatabaseConductor::~DatabaseConductor()
@@ -16,8 +16,8 @@ DatabaseConductor::~DatabaseConductor()
 bool DatabaseConductor::persistProgramObjects(Identifier** identity_array, Statement** statement_array, string filename)
 {
   setFilename(filename);
-  this.connector = new SQLiteConnector(this.filename);
-  this.connector.connect();
+  this->connector = new SQLiteConnector(this->filename);
+  this->connector->connect();
 
   /**
    * 
@@ -95,50 +95,56 @@ bool DatabaseConductor::persistProgramObjects(Identifier** identity_array, State
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (11, 'JUMPSTMT');");
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (12, 'ENDSTMT');");
 
-  persistIdentifiers();
-  persistStatements();
+  this->persistIdentifiers();
+  this->persistStatements();
   
-  this.connector.disconnect();
-  delete this.connector;
-  this.connector = NULL;
+  this->connector->disconnect();
+  delete this->connector;
+  this->connector = nullptr;
+  return true;
 }
 
 bool DatabaseConductor::restoreProgramObjects(Identifier** identity_array, Statement** statement_array, string filename)
 {
   setFilename(filename);
-  this.connector = new SQLiteConnector(this.filename);
-  this.connector.connect();
+  this->connector = new SQLiteConnector(this->filename);
+  this->connector->connect();
 
-  restoreIdentifiers();
-  restoreStatements();
+  this->restoreIdentifiers();
+  this->restoreStatements();
 
-  this.connector.disconnect();
-  delete this.connector;
-  this.connector = NULL;
+  this->connector->disconnect();
+  delete this->connector;
+  this->connector = nullptr;
+  return true;
 }
 
 string DatabaseConductor::getFilename() const
 {
-  return this.filename;
+  return this->filename;
 }
 
 void DatabaseConductor::setFilename(string newFilename)
 {
-  this.filename = newFilename;
+  this->filename = newFilename;
 }
 
-bool persistIdentifiers()
+bool DatabaseConductor::persistIdentifiers()
 {
+    return true;
 }
 
-bool persistStatements()
+bool DatabaseConductor::persistStatements()
 {
+    return true;
 }
 
-bool restoreIdentifiers()
+bool DatabaseConductor::restoreIdentifiers()
 {
+    return true;
 }
 
-bool restoreStatements()
+bool DatabaseConductor::restoreStatements()
 {
+    return true;
 }

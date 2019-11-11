@@ -1,9 +1,11 @@
 #ifndef FILESUPERVISOR_H
 #define FILESUPERVISOR_H
 
-#include <ofstream>
-#include <ifstream>
+#include <ios>
+#include <fstream>
 #include <string>
+
+using namespace std;
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System

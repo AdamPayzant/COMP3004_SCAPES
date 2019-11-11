@@ -5,6 +5,7 @@
 #include <QSqlError>
 
 #include <string>
+using namespace std;
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System

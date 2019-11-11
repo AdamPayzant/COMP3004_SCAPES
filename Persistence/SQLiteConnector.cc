@@ -4,24 +4,24 @@
 SQLiteConnector::SQLiteConnector(string filename)
 {
   database = QSqlDatabase::addDatabase("QSQLITE");
-  database.setDatabaseName(filename);
+  database.setDatabaseName(QString::fromStdString(filename));
 }
 
 SQLiteConnector::~SQLiteConnector()
 {
-  this.disconnect();
+  this->disconnect();
 }
 
 void SQLiteConnector::connect()
 {
-  if(!(database == NULL)){
+  if(!(database.isOpen())){
     database.open();
   }
 }
 
 void SQLiteConnector::disconnect()
 {
-  if(!(database == NULL)){
+  if(database.isOpen()){
     database.close();
   }
 }

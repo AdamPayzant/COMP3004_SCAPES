@@ -6,10 +6,11 @@
 #include <QSqlError>
 
 #include <string>
+using namespace std;
 
 #include "SQLiteConnector.h"
-#include "Identifier.h"
-#include "Statement.h"
+#include "./../SCAPL/Identifier.h"
+#include "./../SCAPL/Statement.h"
 
 #define MAX_IDENTIFIER_ARRAY_SIZE 256
 #define MAX_STATEMENT_ARRAY_SIZE 128
