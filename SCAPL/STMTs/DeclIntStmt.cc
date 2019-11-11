@@ -5,9 +5,11 @@ DeclIntStmt::DeclIntStmt(Program *p) {
 }
 
 DeclIntStmt::~DeclIntStmt() {
-    
-}
 
+}
+/**
+* Compiles and makes the objects for the compile instruction
+**/
 void DeclIntStmt::compile(std::string &line) {
     std::string name = line.substr(4, line.size()-4);
     while(name.at(0) == ' ') {

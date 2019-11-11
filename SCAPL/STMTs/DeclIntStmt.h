@@ -9,9 +9,23 @@
 
 class DeclIntStmt: public Statement {
     public:
+
         DeclIntStmt(Program *);
+
+
         ~DeclIntStmt();
+
+        /**
+       * Constructor
+       * Parameters:
+       * -  sting repersenting the instruction
+       *
+       **/
         void compile(std::string &);
+
+        /**
+     * run function produces the result of the code
+     **/
         void run();
 };
 
