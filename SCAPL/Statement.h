@@ -2,15 +2,17 @@
 #define STATEMENT_H
 
 #include <string>
+#include <vector>
 
-#include "Program.h"
 #include "Operand.h"
 #include "Label.h"
 
+class Program;
 class Statement {
     public:
         virtual void compile(std::string &) = 0;
         virtual void run() = 0;
+        virtual std::string& getName();
         void setLabel(Label *l) {
             label = l;
         };

@@ -81,6 +81,7 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Program.h"
 
 class EndStmt: public Statement {
     public:

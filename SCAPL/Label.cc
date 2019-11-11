@@ -3,3 +3,7 @@
 Label::Label(std::string &n) {
     name = n;
 }
+
+Label::~Label() {
+    
+}

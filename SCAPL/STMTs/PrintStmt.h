@@ -80,6 +80,7 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Program.h"
 
 class PrintStmt: public Statement {
     public:
@@ -103,6 +104,11 @@ class PrintStmt: public Statement {
         * run function produces the result of the code
         **/
         void run();
+
+        std::string& getName() { 
+                                 std::string n = "PrintStmt";
+                                 return(n);
+                               };
 };
 
 #endif

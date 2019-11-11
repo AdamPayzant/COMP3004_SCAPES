@@ -82,6 +82,8 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Program.h"
+#include "../Label.h"
 
 class JumpStmt: public Statement {
     public:
@@ -108,6 +110,11 @@ class JumpStmt: public Statement {
      * run function produces the result of the code
      **/
         void run();
+
+        std::string& getName() { 
+                                 std::string n = "JumpStmt";
+                                 return(n);
+                               };
 };
 
 #endif

@@ -80,7 +80,7 @@
 #include <string>
 
 #include "../Statement.h"
-
+#include "../Program.h"
 
 class CompStmt: public Statement {
     public:
@@ -102,6 +102,11 @@ class CompStmt: public Statement {
         
         void compile(std::string &);
         void run();
+
+        std::string& getName() { 
+                                 std::string n = "CompStmt";
+                                 return(n);
+                               };
 };
 
 #endif
