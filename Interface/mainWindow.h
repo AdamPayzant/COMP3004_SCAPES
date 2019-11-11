@@ -47,6 +47,8 @@ private slots:
     void on_menuButtonAboutOption_triggered();
 
 private:
+    void prepareInitialWindowState();
+
     Ui::MainWindow *ui;
     string  Filename;
 };
