@@ -16,6 +16,9 @@ class Statement {
         Label* setLabel(Label *l) {
             label =  l;
         };
+        std::string getSubtype(){
+            return subtype;
+        }
     protected:
         // Master program
         Program *master;
@@ -24,6 +27,7 @@ class Statement {
         Operand *o2;
         // Label (Can be NULL)
         Label *label;
+        string subtype;
 };
 
 #endif
