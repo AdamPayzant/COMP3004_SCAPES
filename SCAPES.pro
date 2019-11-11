@@ -26,20 +26,20 @@ CONFIG += c++11
 
 SOURCES += \
         ./Interface/dialog.cpp \
-        ./Interface/main.cpp \
-        ./Interface/mainwindow.cpp \
+        ./main.cc \
+        ./Interface/mainWindow.cc \
         ./Interface/openoption.cpp \
         ./Interface/savewindow.cpp
 
 HEADERS += \
         ./Interface/dialog.h \
-        ./Interface/mainwindow.h \
+        ./Interface/mainWindow.h \
         ./Interface/openoption.h \
         ./Interface/savewindow.h
 
 FORMS += \
         ./Interface/dialog.ui \
-        ./Interface/mainwindow.ui \
+        ./Interface/mainWindow.ui \
         ./Interface/openoption.ui \
         ./Interface/savewindow.ui
 
