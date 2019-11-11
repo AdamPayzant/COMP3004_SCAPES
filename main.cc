@@ -11,5 +11,6 @@ int main(int argc, char *argv[])
     mainWindow.setWindowTitle("SCAPES");
     mainWindow.show();
     MainController mainController(&persistenceManager, &mainWindow);
+    mainWindow.setMainController(&mainController);
     return app.exec();
 }

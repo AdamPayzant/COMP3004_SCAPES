@@ -1,15 +1,13 @@
+
 #include "MainWindow.h"
-//#include "PersistenceManager.h"
-#include <QFileDialog>
-#include <QString>
-#include <QInputDialog>
-#include <QFile>
-#include <iostream>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    mainController(nullptr),
+    programFilename("")
 {
     ui->setupUi(this);
     prepareInitialWindowState();
@@ -19,6 +17,42 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+string MainWindow::getEditorText()
+{
+    return (ui->sourceTextWindow->toPlainText()).toUtf8().constData();
+}
+
+void MainWindow::setEditorText(string text)
+{
+    ui->sourceTextWindow->setText(QString::fromStdString(text));
+}
+
+void MainWindow::setFeedbackText(string text)
+{
+    ui->feedbackWindow->setText(QString::fromStdString(text));
+}
+
+MainController* MainWindow::getMainController()
+{
+    return this->mainController;
+}
+
+void MainWindow::setMainController(MainController* controllerPtr)
+{
+    this->mainController = controllerPtr;
+}
+
+string& MainWindow::getProgramFilename()
+{
+    return this->programFilename;
+}
+
+void MainWindow:: setProgramFilename(string newFilename)
+{
+    this->programFilename = newFilename;
+}
+
 
 void MainWindow::on_menuButtonNewOption_triggered()
 {
@@ -30,9 +64,10 @@ void MainWindow::on_menuButtonNewOption_triggered()
     ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
                                 "To save your source file, please use the 'Save' menu option.\n"
                                 "To compile your source file, please use the 'Compile' menu option.\n"
-                                "Clarifications on program details or functionality can be found under the 'Help' menu option of the menu bar.\n\n"
-                                "Please note that creating a new source file using the 'New' menu option without saving your current source file will "
-                                "result in the loss of any unsaved changes.");
+                                "Clarifications on program details or functionality can be found under the "
+                                "'Help' menu option of the menu bar.\n\n"
+                                "Please note that creating a new source file using the 'New' menu option without "
+                                "saving your current source file will result in the loss of any unsaved changes.");
     ui->feedbackWindow->setPalette(feedbackPalette);
     ui->menuButtonSaveOption->setEnabled(true);
     ui->menuButtonCloseOption->setEnabled(true);
@@ -42,21 +77,15 @@ void MainWindow::on_menuButtonNewOption_triggered()
 
 void MainWindow::on_menuButtonOpenOption_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open File"), "/home", tr("txt files (*.txt)"));
-    string  fn = fileName.toUtf8().constData();
-    string code;
-
-    //loadFromFile( &editorText, fileName);
-    //QString qstr = QString::fromStdString(code);
-    //ui->feedbackWindow->setText(qstr);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("txt files (*.txt)"));
+    programFilename = fileName.toUtf8().constData();
+    mainController->clientRequestHandler("load");
 }
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
-    savewindow* s = new savewindow(this);
-    s->show();
-
+    SaveWindow* saveWindow = new SaveWindow(this);
+    saveWindow->show();
 }
 
 void MainWindow::on_menuButtonCloseOption_triggered()
@@ -79,6 +108,8 @@ void MainWindow::on_menuButtonFuncDescOption_triggered()
 void MainWindow::on_menuButtonAboutOption_triggered()
 {
 }
+
+
 
 void MainWindow::prepareInitialWindowState()
 {

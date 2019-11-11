@@ -1,7 +1,8 @@
 
 #include "PersistenceManager.h"
 
-PersistenceManager::PersistenceManager()
+PersistenceManager::PersistenceManager():
+    sourceCodeSnapshot("")
 {
 }
 
@@ -19,12 +20,13 @@ bool PersistenceManager::restoreProgramObjects(Identifier** identifier_array, St
   return this->databaseConductor.restoreProgramObjects(identifier_array, statement_array, filename);
 }
 
-bool PersistenceManager::saveToFile(string& editorText, string filename)
+bool PersistenceManager::saveToFile(string editorText, string& filename)
 {
-  return this->fileSupervisor.saveToFile(editorText, filename);
+  sourceCodeSnapshot=editorText;
+  return this->fileSupervisor.saveToFile(sourceCodeSnapshot, filename);
 }
 
-bool PersistenceManager::loadFromFile(string& editorText, string filename)
+bool PersistenceManager::loadFromFile(string& editorText, string& filename)
 {
   return this->fileSupervisor.loadFromFile(editorText, filename);
 }

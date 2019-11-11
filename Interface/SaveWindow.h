@@ -1,44 +1,34 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SAVEWINDOW_H
+#define SAVEWINDOW_H
 
-#include <QMainWindow>
-#include <QtGui>
-#include <QFileDialog>
-#include <QString>
-#include <QInputDialog>
-#include <QFile>
-#include <iostream>
+#include <QDialog>
 
-#include "./../ui_MainWindow.h"
-#include "./../ApplicationLogic/MainController.h"
-#include "SaveWindow.h"
-#include "openoption.h"
+#include "ui_SaveWindow.h"
+
 using namespace std;
 
 namespace Ui {
-    class MainWindow;
+    class SaveWindow;
 }
-
-class MainController;
 /**
  * Program: School of Computer Science Assembly Programming Environment System
  * Author: //TODO: Team Name
  * Date: 12/11/2019
  *
  * Version 1.0:
- * File: mainWindow.h
- * Author: Zacc
+ * File: savewindow.h
+ * Author: Zaccgaeus Leung
  * Date: 08/11/2019
  *
  * Version 2.0:
- * File: MainWindow.h
+ * File: SaveWindow.h
  * Author: Mathieu Leblanc
  * Date 12/11/2019
  *
- * File Purpose: Used to create the main window of the SCAPES application, from which the user
- * will be able to create a source file, open an existing source file, save the current source
- * file in the editor window, close the current source file, compile the current source file, or
- * run the compiled version of the current source file if found in storage.
+ * File Purpose: Used to create a save window where the user can specify the filename
+ * they'd like to use for the file that will store their source code in secondary memory.
+ * Please note that at this time directory selection is not available, however it will most
+ * likely be implemented for Deliverable 2.
  *
  * Formatting style based on course notes and course work from COMP2401 and
  * COMP2404.
@@ -101,7 +91,7 @@ class MainController;
  *
  *
  **/
-class MainWindow : public QMainWindow
+class SaveWindow : public QDialog
 {
     Q_OBJECT
 
@@ -109,113 +99,29 @@ class MainWindow : public QMainWindow
         /**
          *
          **/
-        explicit MainWindow(QWidget *parent = nullptr);
+        explicit SaveWindow(QWidget* parent = nullptr);
 
         /**
          *
          **/
-        ~MainWindow();
-
-        /**
-        *
-        *
-        **/
-        string getEditorText();
-
-        /**
-        *
-        *
-        **/
-        void setEditorText(string text);
-
-        /**
-         *
-         **/
-        void setFeedbackText(string text);
-
-        /**
-         *
-         **/
-        MainController* getMainController();
-
-        /**
-         *
-         **/
-        void setMainController(MainController*);
-
-        /**
-         *
-         **/
-        string& getProgramFilename();
-
-        /**
-         *
-         **/
-        void setProgramFilename(string);
+        ~SaveWindow();
 
     private slots:
         /**
          *
          **/
-        void on_menuButtonNewOption_triggered();
+        void on_confirmationBar_accepted();
 
         /**
          *
          **/
-        void on_menuButtonOpenOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonSaveOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonCloseOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonCompileOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonRunOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonFuncDescOption_triggered();
-
-        /**
-         *
-         **/
-        void on_menuButtonAboutOption_triggered();
+        void on_confirmationBar_rejected();
 
     private:
-
         /**
          *
          **/
-        Ui::MainWindow *ui;
-
-        /**
-         *
-         **/
-        MainController* mainController;
-
-        /**
-         *
-         **/
-        string  programFilename;
-
-        /**
-         *
-         **/
-        void prepareInitialWindowState();
-
+        Ui::SaveWindow* ui;
 };
 
 #endif
