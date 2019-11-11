@@ -28,11 +28,13 @@ class Program {
         void print();
 
         // Getters
-        void getIds(std::vector<Identifier*> *);
-        void getStmts(std::vector<Statement*> *s) {
-            s = stmts;
+        std::vector<Identifier*>* getIds() {
+            return ids;
         };
-        void getCFlag(int *);
+        std::vector<Statement*>* getStmts() {
+            return stmts;
+        };
+        int getCFlag();
     private:
         std::string filename;
         int comparisonFlag;

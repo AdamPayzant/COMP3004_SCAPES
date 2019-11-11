@@ -94,7 +94,7 @@ void ReadStmt::compile(std::string &line) {
     }
     std::cout << "Removed whitespace" << std::endl;
     std::vector<Identifier*> *ids;
-    master->getIds(ids);
+    ids = master->getIds();
 
     for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
         std::string temp;

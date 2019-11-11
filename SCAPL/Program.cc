@@ -161,11 +161,7 @@ void Program::print() {
 
 }
 
-void Program::getIds(std::vector<Identifier*> *i) {
-    i = ids;
-}
-
 // returns the pointer to the comparison flag so compare statements can modify it
-void Program::getCFlag(int *cFlag) {
-    cFlag = &comparisonFlag;
+int Program::getCFlag() {
+    return(comparisonFlag);
 }
