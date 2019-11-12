@@ -99,7 +99,7 @@ class DatabaseConductor
 {
   public:
     /**
-     * 
+     * Constructor
      **/
     DatabaseConductor();
 
@@ -109,12 +109,14 @@ class DatabaseConductor
     ~DatabaseConductor();
 
     /**
-     * 
+     * Function used to manage the operations required to render the Identifier and Statement
+     * objects currently held within a Program object's vectors into persistence.
      **/
     bool persistProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
-     * 
+     * Function used to manage the operations required to instantiate the Identifier and Statement
+     * objects currently held within the database into the vectors of a Program object.
      **/ 
     bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
@@ -134,47 +136,47 @@ class DatabaseConductor
 
   private:
     /**
-     * 
+     * Pointer to object used to establish and maintain the connection the SQLite Database.
      **/
     SQLiteConnector* connector;
 
     /**
-     * 
+     *  Pointer to the current Program object's vector of Identifiers.
      **/
     std::vector<Identifier*>* identifier_vector;
 
     /**
-     * 
+     * Pointer to the current Program object's vector of Statements.
      **/
     std::vector<Statement*>* statement_vector;
 
     /**
-     *
+     * Filename of the current program.
      **/
     string filename;
 
     /**
-     * 
+     * Function used to render the Identifiers into persistence.
      **/
     bool persistIdentifiers();
 
     /**
-     * 
+     * Function used to render the Statements into persistence.
      **/
     bool persistStatements();
 
     /**
-     *
+     * Function used to render the Operands into persistence.
      **/
     bool persistOperands();
 
     /**
-     * 
+     * Function used to instantiate the Identifiers from database tuples
      **/
     bool restoreIdentifiers();
 
     /**
-     * 
+     * Function used to instantiate the Statements from database tuples
      **/
     bool restoreStatements();
 };

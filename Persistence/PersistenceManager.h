@@ -35,7 +35,7 @@ class PersistenceManager
 {
   public:
     /**
-     * 
+     * Constructor
      **/
     PersistenceManager();
 
@@ -45,38 +45,42 @@ class PersistenceManager
     ~PersistenceManager();
 
     /**
-     * 
+     * Function used to delegate the operations required to render the Identifier and Statement
+     * objects currently held within a Program object's vectors into persistence.
      **/
     bool persistProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
-     * 
-     **/ 
+     * Function used to delegate the operations required to instantiate the Identifier and Statement
+     * objects currently held within the database into the vectors of a Program object.
+     **/
     bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
-     *
+     * Function used to delegate the operations required to save the contents of the editor textbox
+     * into secondary memory as a SCAPL source file.
      **/
     bool saveToFile(string, string&);
 
     /**
-     * 
+     * Function used to delegate the operations required to load the contents of a SCAPL source file
+     * from secondary memory into the editor textbox.
      **/
     bool loadFromFile(string&, string&);
 
   private:
     /**
-     * 
+     * Object used to manage operations relating to object persistence in the database
      **/
     DatabaseConductor databaseConductor;
 
     /**
-     * 
+     * Object used to manage operations relating to source codee persistance on secondary memory
      **/
     FileSupervisor fileSupervisor;
 
     /**
-     *
+     * Used to store a local instance of the editor textbox's text in case of interface layer failure.
      **/
     string sourceCodeSnapshot;
 };

@@ -102,7 +102,6 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
 
   this->persistIdentifiers();
   this->persistStatements();
-  //this->persistOperands();
   
   this->connector->disconnect();
   delete this->connector;
@@ -290,7 +289,6 @@ bool DatabaseConductor::persistOperands()
             }
         }
 
-        /*
         if(this->statement_vector->at(i)->getOperand2() != nullptr){
             this->statement_vector->at(i)->getOperand2()->getID(idPtr);
             if(idPtr != nullptr){
@@ -302,7 +300,6 @@ bool DatabaseConductor::persistOperands()
                 sqlstmt[0]='\0';
             }
         }
-        */
 
     }
     return true;
