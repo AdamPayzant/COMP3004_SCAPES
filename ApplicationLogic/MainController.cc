@@ -41,10 +41,9 @@ void MainController::loadSourceCode()
 
 void MainController::compileSourceCode()
 {
-    Identifier* example2 = nullptr;
-    Statement* example1 = nullptr;
-    string filename = "example";
-    this->persistenceManager->persistProgramObjects(&example2, &example1, filename);
+    this->program = new Program(mainWindow->getProgramFilename());
+    program->compile();
+    this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
 }
 
 void MainController::runCompiledProgram()
