@@ -12,7 +12,6 @@
 #include "./../ui_MainWindow.h"
 #include "./../ApplicationLogic/MainController.h"
 #include "SaveWindow.h"
-#include "openoption.h"
 using namespace std;
 
 namespace Ui {
