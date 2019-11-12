@@ -23,7 +23,7 @@ class Program {
     public:
         Program(std::string &);
         ~Program(); 
-        void compile();
+        bool compile();
         void execute();
         void print();
 

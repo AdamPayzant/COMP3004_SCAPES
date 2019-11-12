@@ -100,8 +100,11 @@ EndStmt::~EndStmt() {
 *
 **/
 
-void EndStmt::compile(std::string &name) {
+bool EndStmt::compile(std::string &name) {
     // Doesn't have anything in the line to consider
+    if(name.size() > 3) {
+        return(false);
+    }
 }
 /**
 * run function produces the result of the run fuction

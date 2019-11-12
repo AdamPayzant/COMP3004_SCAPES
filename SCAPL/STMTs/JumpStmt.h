@@ -105,7 +105,7 @@ class JumpStmt: public Statement {
         *
         **/
 
-        void compile(std::string &);
+        bool compile(std::string &);
         /**
      * run function produces the result of the code
      **/

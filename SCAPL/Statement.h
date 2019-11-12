@@ -18,7 +18,7 @@ class Statement {
                 delete(o2);
             }
         };
-        virtual void compile(std::string &) = 0;
+        virtual bool compile(std::string &) = 0;
         virtual void run() = 0;
         virtual std::string getName() = 0;
         virtual void setLabel(Label *l) = 0;

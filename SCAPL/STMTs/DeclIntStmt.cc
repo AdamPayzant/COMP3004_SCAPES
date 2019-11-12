@@ -12,14 +12,18 @@ DeclIntStmt::~DeclIntStmt() {
 /**
 * Compiles and makes the objects for the compile instruction
 **/
-void DeclIntStmt::compile(std::string &line) {
+bool DeclIntStmt::compile(std::string &line) {
     std::string name = line.substr(4, line.size()-4);
-    while(name.at(0) == ' ') {
-        line.erase(name.begin());
+    for(int i =0; i < name.size(); i++) {
+        if(name.at(i) == ' ') {
+            return{false};
+        }
     }
     std::vector<Identifier*> *ids;
     ids = master->getIds();
     ids->push_back(new Variable(name));
+
+    return(true);
 }
 
 void DeclIntStmt::run() {

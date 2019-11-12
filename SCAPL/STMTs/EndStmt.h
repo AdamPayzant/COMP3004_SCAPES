@@ -102,7 +102,7 @@ class EndStmt: public Statement {
        * -  sting repersenting the instruction
        *
        **/
-        void compile(std::string &);
+        bool compile(std::string &);
 
         /**
      * run function produces the result of the code

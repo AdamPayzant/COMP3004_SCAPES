@@ -25,7 +25,7 @@ class JMoreStmt: public Statement {
         * -  String being the instruction
         *
         **/
-        void compile(std::string &);
+        bool compile(std::string &);
         /**
      * run function produces the result of the code
      **/

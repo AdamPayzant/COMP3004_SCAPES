@@ -90,19 +90,22 @@ CompStmt::~CompStmt() {
 /**
 * Compile fuction makes the objects for the jump operation
 **/
-void CompStmt::compile(std::string &line) {
+bool CompStmt::compile(std::string &line) {
     // Syntax is "cmp <first value> <second value>"
     std::string operand = line.substr(4, line.size()-4);
     std::string oone;
     std::string otwo;
-    while(operand.at(0) == ' ') {
-        line.erase(operand.begin());
-    }
+    bool synCheck = false;
     for(int i = 0; i < operand.size(); i++) {
         if(operand.at(i) == ' ') {
-            oone = operand.substr(0, i);
-            otwo = operand.substr(i+1, line.size()-i);
-            break;
+            if(synCheck) {
+                return(false);
+            }
+            else {
+                oone = operand.substr(0, i);
+                otwo = operand.substr(i+1, line.size()-i);
+                synCheck = true;
+            }
         }
     }
 
@@ -118,6 +121,10 @@ void CompStmt::compile(std::string &line) {
             o2 = new Operand(*iter);
         }
     }
+    if(o1 == nullptr || o2 == nullptr) {
+        return(false);
+    }
+    return(true);
     // TODO: Create error case if one or both operands are unassigned
 }
 

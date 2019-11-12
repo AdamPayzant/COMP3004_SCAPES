@@ -20,7 +20,7 @@ Program::~Program() {
     delete(ids);
 }
 
-void Program::compile() {
+bool Program::compile() {
     std::ifstream file(filename + ".scapl");
     // Just a big 'ole map to track statements with their switch options
     std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
@@ -34,31 +34,45 @@ void Program::compile() {
                 // Doing a massive if/else tree
                 if(type == 1) {
                     stmts->push_back(new DeclIntStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 } 
                 else if(type == 3) {
                     stmts->push_back(new ReadStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 else if(type == 4) {
                     stmts->push_back(new PrintStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 else if(type == 7) {
                     stmts->push_back(new CompStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 else if(type == 9) {
                     stmts->push_back(new JMoreStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 else if(type == 11) {
                     stmts->push_back(new JumpStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 else if(type == 12) {
                     stmts->push_back(new EndStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
+                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                        return(false);
+                    }
                 }
                 // TODO: Fix
                 else {
@@ -71,31 +85,45 @@ void Program::compile() {
                                 int t2 = stats[line.substr(i+1,3)];
                                 if(t2 == 1) {
                                     stmts->push_back(new DeclIntStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 } 
                                 else if(t2 == 3) {
                                     stmts->push_back(new ReadStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
                                 else if(t2 == 4) {
                                     stmts->push_back(new PrintStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
                                 else if(t2 == 7) {
                                     stmts->push_back(new CompStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
                                 else if(t2 == 9) {
                                     stmts->push_back(new JMoreStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
                                 else if(t2 == 11) {
                                     stmts->push_back(new JumpStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
                                 else if(t2 == 12) {
                                     stmts->push_back(new EndStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
+                                    if(stmts->at(!stmts->size()-1)->compile(line)) {
+                                        return(false);
+                                    }
                                 }
 
                                 std::string lName = line.substr(0, i-1);
@@ -103,12 +131,16 @@ void Program::compile() {
                                 ids->push_back(l);
                                 stmts->at(stmts->size()-1)->setLabel(l);
                             }
+                            else {
+                                return(false);
+                            }
                         }
                     }
                 }
             }
         }
     }
+    return(true);
 }
 
 void Program::execute() {

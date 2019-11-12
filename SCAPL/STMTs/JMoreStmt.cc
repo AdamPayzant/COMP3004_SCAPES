@@ -23,9 +23,25 @@ JMoreStmt::~JMoreStmt() {
 * -  String being the instruction
 *
 **/
-void JMoreStmt::compile(std::string &line) {
+bool JMoreStmt::compile(std::string &line) {
     // Syntax: "jmr <destination label>"
-    // Nothing to do here for now
+    std::string name = line.substr(4, line.size()-4);
+    for(int i =0; i < name.size(); i++) {
+        if(name.at(i) == ' ') {
+            return{false};
+        }
+    }
+
+    std::vector<Identifier*> *ids = master->getIds();
+    for(int i = 0; i < ids->size(); i++) {
+        std::string n; 
+        ids->at(i)->getName(n);
+        if(n.compare(name) == 0) {
+            label = ids->at(i);
+            return(true);
+        }
+    }
+    return(false);
 }
 /**
 * run function produces the result of the code

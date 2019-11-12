@@ -100,7 +100,7 @@ class CompStmt: public Statement {
        **/
         ~CompStmt();
         
-        void compile(std::string &);
+        bool compile(std::string &);
         void run();
 
         std::string getName() { 

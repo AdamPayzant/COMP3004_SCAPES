@@ -87,10 +87,13 @@ ReadStmt::~ReadStmt() {
     delete(o1);
 }
 
-void ReadStmt::compile(std::string &line) {
+bool ReadStmt::compile(std::string &line) {
     std::string operand = line.substr(4, line.size()-4);
-    while(operand.at(0) == ' ') {
-        line.erase(operand.begin());
+    
+    for(int i = 0; i < operand.size(); i++) {
+        if(operand.at(i) == ' ') {
+            return(false);
+        }
     }
     std::vector<Identifier*> *ids;
     ids = master->getIds();
@@ -101,9 +104,10 @@ void ReadStmt::compile(std::string &line) {
         (*iter)->getName(temp);
         if(temp.compare(operand) == 0) {
             o1 = new Operand(*iter);
-            return;
+            return(true);
         }
     }
+    return(false);
 }
 
 void ReadStmt::run() {
