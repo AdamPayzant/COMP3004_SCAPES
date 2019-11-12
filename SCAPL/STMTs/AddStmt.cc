@@ -79,7 +79,11 @@
 
 
 
-AddStmt::AddStmt(Program *m) {
+AddStmt::AddStmt(Program *m)
+{
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
     master = m;
 }
 
@@ -95,7 +99,7 @@ AddStmt::~AddStmt() {
 /**
    * Compile fuction takes in a line and provides and add object
    **/
-bool AddStmt::compile(std::string &line) {
+void AddStmt::compile(std::string &line) {
 
 }
 

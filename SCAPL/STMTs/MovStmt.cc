@@ -1,6 +1,7 @@
 
 #include "MovStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
+
 
 std::string MovStmt::getName() {
   std::string n = "MovStmt";

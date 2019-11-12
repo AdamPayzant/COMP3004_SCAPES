@@ -1,6 +1,7 @@
 
 #include "JEqStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
+
 
 std::string JEqStmt::getName() {
   std::string n = "JEqStmt";

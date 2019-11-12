@@ -101,7 +101,7 @@ class ReadStmt: public Statement {
         * -  String being the instruction
         *
         **/
-        bool compile(std::string &);
+        void compile(std::string &);
         /**
         * run function produces the result of the code
         **/

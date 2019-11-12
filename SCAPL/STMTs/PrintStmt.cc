@@ -76,14 +76,7 @@
  **/
 
 #include "PrintStmt.h"
-#include "./../Program.h"
-
-/**
-* Constructor
-* Parameters:
-* -  sting repersenting the instruction
-*
-**/
+#include "../Program.h"
 
 /**
 * Constructor
@@ -93,6 +86,9 @@
 **/
 
 PrintStmt::PrintStmt(Program *p) {
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
     master = p;
 }
 /**
@@ -108,15 +104,11 @@ PrintStmt::~PrintStmt() {
 *
 **/
 
-bool PrintStmt::compile(std::string &line) {
+void PrintStmt::compile(std::string &line) {
     std::string operand = line.substr(4, line.size()-4);
-    
-    for(int i = 0; i < operand.size(); i++) {
-        if(operand.at(i) == ' ') {
-            return(false);
-        }
+    while(operand.at(0) == ' ') {
+        line.erase(operand.begin());
     }
-
     std::vector<Identifier*> *ids;
     ids = master->getIds();
 
@@ -125,10 +117,9 @@ bool PrintStmt::compile(std::string &line) {
         (*iter)->getName(temp);
         if(temp.compare(operand) == 0) {
             o1 = new Operand(*iter);
-            return(true);
+            return;
         }
     }
-    return(false);
     // Make an error case here perhaps
 }
 /**
