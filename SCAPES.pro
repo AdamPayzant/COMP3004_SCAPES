@@ -12,6 +12,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = SCAPES
 TEMPLATE = app
 
+QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -31,22 +33,15 @@ SOURCES += \
          ./Interface/*.cc \
          ./Interface/*.cpp \
          ./Persistence/*.cc \
-         ./SCAPL/*.cc
-#        ./Interface/dialog.cpp \
-#        ./main.cc \
-#        ./Interface/mainWindow.cc \
-#        ./Interface/openoption.cpp \
-#        ./Interface/savewindow.cpp
+         ./SCAPL/*.cc \
+         ./SCAPL/STMTs/*.cc
 
 HEADERS += \
          ./ApplicationLogic/*.h \
          ./Interface/*.h \
          ./Persistence/*.h \
-         ./SCAPL/*.h
-#        ./Interface/dialog.h \
-#        ./Interface/mainWindow.h \
-#        ./Interface/openoption.h \
-#        ./Interface/savewindow.h
+         ./SCAPL/*.h \
+         ./SCAPL/STMTs/*.h
 
 FORMS += \
         ./Interface/*.ui
@@ -56,7 +51,9 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    ./Interface/Save.qml \
-    ./Interface/SaveForm.ui.qml \
-    ./Interface/SavewindowForm.ui.qml
+
+#DISTFILES += \
+#    ./Interface/Save.qml \
+#    ./Interface/SaveForm.ui.qml \
+#    ./Interface/SavewindowForm.ui.qml
+
