@@ -5,12 +5,13 @@
 #include <fstream>
 #include <string.h>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 #include "./Interface/MainWindow.h"
 #include "./Persistence/PersistenceManager.h"
-//#include "./SCAPL/Program.h"
+#include "./SCAPL/Program.h"
 
 class MainWindow;
 /**
@@ -87,7 +88,7 @@ class MainController
         /**
          *
          **/
-        //Program* program;
+        Program* program;
 };
 
 #endif

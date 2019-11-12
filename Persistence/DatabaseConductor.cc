@@ -1,11 +1,13 @@
 
 #include "DatabaseConductor.h"
+#include "./../SCAPL/Variable.h"
+#include "./../SCAPL/Label.h"
 
 DatabaseConductor::DatabaseConductor()
 {
   this->connector = nullptr;
-  this->identifier_array = nullptr;
-  this->statement_array = nullptr;
+  this->identifier_vector = nullptr;
+  this->statement_vector = nullptr;
   this->filename="";
 }
 
@@ -13,11 +15,13 @@ DatabaseConductor::~DatabaseConductor()
 {
 }
 
-bool DatabaseConductor::persistProgramObjects(Identifier** identity_array, Statement** statement_array, string filename)
+bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
 {
   setFilename(filename);
   this->connector = new SQLiteConnector(this->filename);
   this->connector->connect();
+  this->identifier_vector = identifier_vector;
+  this->statement_vector = statement_vector;
 
   /**
    * 
@@ -104,7 +108,7 @@ bool DatabaseConductor::persistProgramObjects(Identifier** identity_array, State
   return true;
 }
 
-bool DatabaseConductor::restoreProgramObjects(Identifier** identity_array, Statement** statement_array, string filename)
+bool DatabaseConductor::restoreProgramObjects(std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
 {
   setFilename(filename);
   this->connector = new SQLiteConnector(this->filename);
@@ -131,11 +135,75 @@ void DatabaseConductor::setFilename(string newFilename)
 
 bool DatabaseConductor::persistIdentifiers()
 {
+    int i;
+    int tempInt;
+    char identifierName[64];
+    char identifierValue[12];
+    char sqlstmt[128];
+    string tempName;
+    string identifierSubtype;
+    QSqlQuery sqlcli;
+    for(i=0; i< this->identifier_vector->size(); i++){
+        sqlstmt[0]='\0';
+        this->identifier_vector->at(i)->getName(tempName);
+        snprintf(identifierName, 63, "%s", tempName.data());
+        identifierName[63]='\0';
+        this->identifier_vector->at(i)->getSubtype(identifierSubtype);
+
+        if(identifierSubtype.compare("Label") == 0){
+            identifierSubtype = "1";
+            identifierValue[0] = 'N';
+            identifierValue[1] = 'U';
+            identifierValue[2] = 'L';
+            identifierValue[3] = 'L';
+            identifierValue[4] = '\0';
+        }
+
+        if(identifierSubtype.compare("Variable") == 0){
+            identifierSubtype = "2";
+            ((Variable*) (this->identifier_vector->at(i)))->getVal(tempInt);
+            sprintf(identifierValue, "%d", tempInt);
+        }
+        sprintf(sqlstmt, "INSERT INTO IDENTIFIER VALUES('%s', %s, %s);", identifierName, identifierSubtype.data(), identifierValue);
+        sqlcli.exec(sqlstmt);
+    }
     return true;
 }
 
 bool DatabaseConductor::persistStatements()
 {
+    /*
+    int i;
+    char identifierName[64];
+    char sqlstmt[128];
+    string tempName;
+    string identifierSubtype;
+    QSqlQuery sqlcli;
+    for(i=0; i<this->statement_vector->size(); i++){
+        sqlstmt[0]='\0';
+        this->statement_vector->at(i)->
+        snprintf(identifierName, 63, tempName.data());
+        identifierName[63]='\0';
+        this->identifier_vector->at(i)->getSubtype(identifierSubtype);
+
+        if(identifierSubtype.compare("Label") == 0){
+            identifierSubtype = "1";
+            identifierName[0] = 'N';
+            identifierName[1] = 'U';
+            identifierName[2] = 'L';
+            identifierName[3] = 'L';
+            identifierName[4] = '\0';
+        }
+
+        if(identifierSubtype.compare("Variable") == 0){
+            identifierSubtype = "2";
+            ((Variable*) (this->identifier_vector->at(i)))->getVal(tempInt);
+            sprintf(identifierValue, "%d", tempInt);
+        }
+        sprintf(sqlstmt, "INSERT INTO IDENTIFIER VALUES('%s', %s, %d);", identifierName, identifierSubtype.data(), identifierValue);
+        sqlcli.exec(sqlstmt);
+    }
+    */
     return true;
 }
 

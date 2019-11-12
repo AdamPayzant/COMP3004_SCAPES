@@ -71,8 +71,6 @@ void MainWindow::on_menuButtonNewOption_triggered()
     ui->feedbackWindow->setPalette(feedbackPalette);
     ui->menuButtonSaveOption->setEnabled(true);
     ui->menuButtonCloseOption->setEnabled(true);
-    ui->menuButtonCompileOption->setEnabled(true);
-    ui->menuButtonRunOption->setEnabled(true);
 }
 
 void MainWindow::on_menuButtonOpenOption_triggered()
@@ -80,11 +78,31 @@ void MainWindow::on_menuButtonOpenOption_triggered()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("txt files (*.txt)"));
     programFilename = fileName.toUtf8().constData();
     mainController->clientRequestHandler("load");
+
+    ui->sourceTextWindow->setReadOnly(false);
+    ui->sourceTextWindow->setText("");
+    ui->sourceTextWindow->show();
+    QPalette feedbackPalette;
+    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
+    ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
+                                "To save your source file, please use the 'Save' menu option.\n"
+                                "To compile your source file, please use the 'Compile' menu option.\n"
+                                "Clarifications on program details or functionality can be found under the "
+                                "'Help' menu option of the menu bar.\n\n"
+                                "Please note that creating a new source file using the 'New' menu option without "
+                                "saving your current source file will result in the loss of any unsaved changes.");
+    ui->feedbackWindow->setPalette(feedbackPalette);
+    ui->menuButtonSaveOption->setEnabled(true);
+    ui->menuButtonCloseOption->setEnabled(true);
+    ui->menuButtonCompileOption->setEnabled(true);
+    ui->menuButtonRunOption->setEnabled(true);
 }
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
     SaveWindow* saveWindow = new SaveWindow(this);
+    ui->menuButtonCompileOption->setEnabled(true);
+    ui->menuButtonRunOption->setEnabled(true);
     saveWindow->show();
 }
 
@@ -95,6 +113,8 @@ void MainWindow::on_menuButtonCloseOption_triggered()
 
 void MainWindow::on_menuButtonCompileOption_triggered()
 {
+    mainController->clientRequestHandler("compile");
+
 }
 
 void MainWindow::on_menuButtonRunOption_triggered()
@@ -127,63 +147,3 @@ void MainWindow::prepareInitialWindowState()
     ui->menuButtonCompileOption->setEnabled(false);
     ui->menuButtonRunOption->setEnabled(false);
 }
-
-/*
-void MainWindow::on_save_clicked()
-{
-
-
-
-    QString dir;
-    QString fn;
-    while(dir==""){
-        dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                "/home",
-                                                QFileDialog::ShowDirsOnly
-                                                | QFileDialog::DontResolveSymlinks);
-
-       fn = QInputDialog::getText(this, tr("QInputDialog::getText()"),
-                                             tr("file name:"), QLineEdit::Normal,
-                                             QDir::home().dirName());
-
-        qDebug()<<"directory"<<dir;
-        qDebug()<<"name"<<fn;
-    }
-    if(dir!=""){
-
-        QString s = ui->textEdit->toPlainText();
-        string directory =  dir.toUtf8().constData();
-        string name= fn.toUtf8().constData();
-        string program = s.toUtf8().constData();
-        string path = directory +"/"+name;
-       // SaveToFile( program,  dir);
-
-
-
-
-    }
-
-
-
-
-
-
-}
-*/
-
-/*
-void MainWindow::on_compilebutton_clicked()
-{
-    
-    QString qs = ui->textEdit->toPlainText();
-    ui->textEdit->setText("recieved");
-    std::string utf8_text = qs.toUtf8().constData();
-    qDebug() << "Custom coordinate type:" << qs;
-    
-    
-    //Program *newProgram = new Program(fileName);
-    //newProgram->compile();
-
-
-}
-*/

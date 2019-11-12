@@ -8,7 +8,6 @@ Program::Program(std::string &f) {
 
 Program::~Program() {
     for(int i = 0; i < stmts->size(); i++) {
-        //std::string name = 
         std::cout << stmts->at(i)->getName() << std::endl;
         delete(stmts->at(i));
     }
@@ -22,7 +21,7 @@ Program::~Program() {
 }
 
 void Program::compile() {
-    std::ifstream file(filename);
+    std::ifstream file(filename + ".scapl");
     // Just a big 'ole map to track statements with their switch options
     std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
 
@@ -119,6 +118,13 @@ void Program::execute() {
 void Program::print() {
 
 }
+
+std::vector<Identifier*>* Program::getIds() {
+    return ids;
+};
+std::vector<Statement*>* Program::getStmts() {
+    return stmts;
+};
 
 // returns the pointer to the comparison flag so compare statements can modify it
 int Program::getCFlag() {

@@ -74,6 +74,8 @@
  *
  **/
 
+#include "EndStmt.h"
+#include "../Program.h"
 
 /**
 * Constructor
@@ -81,9 +83,6 @@
 * -  pointer to a program object
 *
 **/
-#include "EndStmt.h"
-
-
 EndStmt::EndStmt(Program *p) {
 
 }

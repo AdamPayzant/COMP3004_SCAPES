@@ -1,4 +1,6 @@
+
 #include "DeclIntStmt.h"
+#include "../Program.h"
 
 DeclIntStmt::DeclIntStmt(Program *p) {
     master = p;

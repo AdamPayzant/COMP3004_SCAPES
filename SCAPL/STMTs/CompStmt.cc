@@ -77,6 +77,7 @@
 
 
 #include "CompStmt.h"
+#include "../Program.h"
 
 CompStmt::CompStmt(Program *p) {
     master = p;
