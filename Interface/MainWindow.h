@@ -26,7 +26,7 @@ class MainController;
  *
  * Version 1.0:
  * File: mainWindow.h
- * Author: Zacc
+ * Author: Zacchaeus Leung
  * Date: 08/11/2019
  *
  * Version 2.0:
