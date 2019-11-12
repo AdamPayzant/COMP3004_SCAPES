@@ -119,7 +119,6 @@ void Program::print() {
 
 }
 
-
 std::vector<Identifier*>* Program::getIds() {
     return ids;
 };

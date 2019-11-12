@@ -1,0 +1,11 @@
+# Program 2, meant to show looping
+dci a
+dci b
+rdi b
+# loop back to reading variable A until A is higher than b
+L1: rdi a
+cmp a b
+jls L1
+prt a
+prt b
+end

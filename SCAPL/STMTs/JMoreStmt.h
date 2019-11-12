@@ -4,6 +4,7 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Program.h"
 
 class JMoreStmt: public Statement {
     public:

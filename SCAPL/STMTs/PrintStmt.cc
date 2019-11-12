@@ -85,6 +85,13 @@
 *
 **/
 
+/**
+* Constructor
+* Parameters:
+* -  sting repersenting the instruction
+*
+**/
+
 PrintStmt::PrintStmt(Program *p) {
     master = p;
 }

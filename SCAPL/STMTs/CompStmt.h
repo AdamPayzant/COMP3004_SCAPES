@@ -80,6 +80,7 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../Program.h"
 
 class CompStmt: public Statement {
     public:

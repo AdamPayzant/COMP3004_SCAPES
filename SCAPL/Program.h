@@ -31,7 +31,7 @@ class Program {
         std::vector<Identifier*>* getIds();
 
         std::vector<Statement*>* getStmts();
-
+  
         int getCFlag();
     private:
         std::string filename;

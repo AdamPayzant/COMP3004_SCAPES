@@ -81,8 +81,9 @@
 
 #include <string>
 
-#include "../Statement.h"
 #include "../Label.h"
+#include "../Statement.h"
+#include "../Program.h"
 
 class JumpStmt: public Statement {
     public:
