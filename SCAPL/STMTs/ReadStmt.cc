@@ -76,7 +76,6 @@
  **/
 
 
-#include <iostream> // Just here for debugging
 #include "ReadStmt.h"
 
 ReadStmt::ReadStmt(Program *p) {
