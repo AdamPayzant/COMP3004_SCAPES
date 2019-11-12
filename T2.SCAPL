@@ -6,4 +6,6 @@ rdi b
 L1: rdi a
 cmp a b
 jls L1
+prt a
+prt b
 end
