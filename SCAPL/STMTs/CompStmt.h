@@ -99,7 +99,7 @@ class CompStmt: public Statement {
        **/
         ~CompStmt();
         
-        bool compile(std::string &);
+        void compile(std::string &);
         void run();
         virtual std::string getName();
         virtual Operand* getOperand1();

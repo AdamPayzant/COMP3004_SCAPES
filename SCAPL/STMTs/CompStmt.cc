@@ -80,6 +80,9 @@
 #include "../Program.h"
 
 CompStmt::CompStmt(Program *p) {
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
     master = p;
 }
 
@@ -90,22 +93,19 @@ CompStmt::~CompStmt() {
 /**
 * Compile fuction makes the objects for the jump operation
 **/
-bool CompStmt::compile(std::string &line) {
+void CompStmt::compile(std::string &line) {
     // Syntax is "cmp <first value> <second value>"
     std::string operand = line.substr(4, line.size()-4);
     std::string oone;
     std::string otwo;
-    bool synCheck = false;
+    while(operand.at(0) == ' ') {
+        line.erase(operand.begin());
+    }
     for(int i = 0; i < operand.size(); i++) {
         if(operand.at(i) == ' ') {
-            if(synCheck) {
-                return(false);
-            }
-            else {
-                oone = operand.substr(0, i);
-                otwo = operand.substr(i+1, line.size()-i);
-                synCheck = true;
-            }
+            oone = operand.substr(0, i);
+            otwo = operand.substr(i+1, line.size()-i);
+            break;
         }
     }
 
@@ -121,10 +121,6 @@ bool CompStmt::compile(std::string &line) {
             o2 = new Operand(*iter);
         }
     }
-    if(o1 == nullptr || o2 == nullptr) {
-        return(false);
-    }
-    return(true);
     // TODO: Create error case if one or both operands are unassigned
 }
 

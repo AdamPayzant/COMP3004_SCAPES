@@ -101,7 +101,7 @@ class AddStmt: public Statement {
              *  the fuction compiles the instrucution into objects to be executed
              *
              **/
-        bool compile(std::string &);
+        void compile(std::string &);
         /**
      * run function produces the result of the run fuction
      **/
@@ -111,6 +111,7 @@ class AddStmt: public Statement {
         virtual Operand* getOperand2();
         virtual Label* getLabel();
         virtual void setLabel(Label *l);
+
 };
 
 #endif

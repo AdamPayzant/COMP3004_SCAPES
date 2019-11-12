@@ -101,7 +101,7 @@ class JEqStmt: public Statement {
        * -  sting repersenting the instruction
        *
        **/
-        bool compile(std::string &);
+        void compile(std::string &);
         /**
      * run function produces the result of the code
      **/
@@ -112,6 +112,7 @@ class JEqStmt: public Statement {
         virtual Operand* getOperand2();
         virtual Label* getLabel();
         virtual void setLabel(Label *l);
+
 };
 
 #endif

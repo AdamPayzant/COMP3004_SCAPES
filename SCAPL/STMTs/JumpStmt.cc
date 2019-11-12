@@ -21,12 +21,12 @@ JumpStmt::~JumpStmt() {
 /**
 * run function produces the result of the code
 **/
-bool JumpStmt::compile(std::string &line) {
+void JumpStmt::compile(std::string &line) {
     // Syntax: "jmp <Destination Label>"
     std::string name = line.substr(4, line.size()-4);
     for(int i =0; i < name.size(); i++) {
         if(name.at(i) == ' ') {
-            return(false);
+            return;
         }
     }
 
@@ -36,10 +36,10 @@ bool JumpStmt::compile(std::string &line) {
         (*iter)->getName(temp);
         if(temp.compare(name) == 0) {
             o1 = new Operand(*iter);
-            return(true);
+            return;
         }
     }
-    return(false);
+    return;
 }
 /**
 * run function produces the result of the code

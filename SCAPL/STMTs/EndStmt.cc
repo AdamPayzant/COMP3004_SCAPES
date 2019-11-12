@@ -74,8 +74,10 @@
  *
  **/
 
+
 #include "EndStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
+
 
 /**
 * Constructor
@@ -84,7 +86,9 @@
 *
 **/
 EndStmt::EndStmt(Program *p) {
-
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
 }
 
 /**
@@ -100,11 +104,8 @@ EndStmt::~EndStmt() {
 *
 **/
 
-bool EndStmt::compile(std::string &name) {
+void EndStmt::compile(std::string &name) {
     // Doesn't have anything in the line to consider
-    if(name.size() > 3) {
-        return(false);
-    }
 }
 /**
 * run function produces the result of the run fuction
@@ -112,6 +113,7 @@ bool EndStmt::compile(std::string &name) {
 void EndStmt::run() {
 
 }
+
 
 std::string EndStmt::getName() {
   std::string n = "EndStmt";

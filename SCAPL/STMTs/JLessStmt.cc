@@ -1,6 +1,7 @@
 
 #include "JLessStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
+
 
 std::string JLessStmt::getName() {
   std::string n = "JLessStmt";

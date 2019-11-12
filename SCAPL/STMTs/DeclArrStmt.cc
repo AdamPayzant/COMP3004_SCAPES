@@ -75,7 +75,8 @@
  **/
 
 #include "DeclArrStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
+
 
 std::string DeclArrStmt::getName() {
   std::string n = "DeclArrStmt";

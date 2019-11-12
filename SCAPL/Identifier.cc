@@ -1,9 +1,13 @@
 #include "Identifier.h"
 
-void Identifier::getName(std::string &n) {
-    n = name;
+void Identifier::getName(std::string& n) {
+    n = this->name;
 }
 
-void Identifier::getSubtype(std::string &s) {
-    s = subtype;   
+std::string Identifier::getNameValue(){
+    return this->name;
+}
+
+std::string Identifier::getSubtype() {
+    return this->subtype;
 }

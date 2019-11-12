@@ -7,8 +7,9 @@
 class Identifier {
     public:
         // Getters and setters
-        void getName(std::string &);
-        void getSubtype(std::string &);
+        void getName(std::string&);
+        std::string getNameValue();
+        std::string getSubtype();
     protected:
         std::string name;
         std::string subtype;
