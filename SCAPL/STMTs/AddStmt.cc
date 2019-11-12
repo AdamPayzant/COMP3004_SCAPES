@@ -77,8 +77,6 @@
 
 #include "AddStmt.h"
 
-
-
 AddStmt::AddStmt(Program *m)
 {
     o1 = nullptr;
@@ -87,25 +85,18 @@ AddStmt::AddStmt(Program *m)
     master = m;
 }
 
-/**
-   * Destructor
-   **/
 
 AddStmt::~AddStmt() {
     delete(o1);
     delete(o2);
 }
 
-/**
-   * Compile fuction takes in a line and provides and add object
-   **/
+
 void AddStmt::compile(std::string &line) {
 
 }
 
-/**
-   * run fuction  produces the result of the code
-   **/
+
 void AddStmt::run() {
 
 }
