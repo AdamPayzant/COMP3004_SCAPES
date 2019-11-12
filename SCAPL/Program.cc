@@ -25,6 +25,22 @@ bool Program::compile() {
     // Just a big 'ole map to track statements with their switch options
     std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
 
+    // This mess premptively adds all of the labels to IDS
+    for(std::string line ; getline(file, line); ) {
+        if(line.size() != 0) {
+            // Makes sure it's not a comment or a valid command
+            if(line[0] != '#' && stats[line.substr(0,3)] == 0) {
+                for(int i = 0; i < line.size; i++) {
+                    if(line.at(i) == ':' ) {
+                        std::string lName = line.substr(0, i);
+                        Label *l = new Label(lName);
+                        ids->push_back(l);
+                    }
+                }
+            }
+        }
+    }
+
     for(std::string line ; getline(file, line); ) {
         // Had issues loading in blank lines, this should work around it
         if(line.size() != 0) { 
@@ -125,10 +141,16 @@ bool Program::compile() {
                                         return(false);
                                     }
                                 }
-
-                                std::string lName = line.substr(0, i-1);
-                                Label *l = new Label(lName);
-                                ids->push_back(l);
+                                std::string lName = line.substr(0, i);
+                                Label* l;
+                                for(int j = 0; j < ids->size(); j++) {
+                                    std::string n;
+                                    ids->at(i)->getName(n);
+                                    if(lName.compare(n) == 0){
+                                        l = ids->at(i);
+                                    }
+                                }
+                                
                                 stmts->at(stmts->size()-1)->setLabel(l);
                             }
                             else {
