@@ -83,25 +83,19 @@
 
 #include "SaveWindow.h"
 #include "MainWindow.h"
-/**
- *]Contrstructor
- **/
+
 SaveWindow::SaveWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SaveWindow)
 {
     ui->setupUi(this);
 }
-/**
- * Distructor
- **/
+
 SaveWindow::~SaveWindow()
 {
     delete ui;
 }
-/**
- * saves the fileName
- **/
+
 void SaveWindow::on_confirmationBar_accepted()
 {
     string filename = (ui->filenameTextEdit->toPlainText()).toUtf8().constData();
@@ -111,9 +105,7 @@ void SaveWindow::on_confirmationBar_accepted()
         this->close();
     }
 }
-/**
- * close the saveWindow
- **/
+
 void SaveWindow::on_confirmationBar_rejected()
 {
     this->close();
