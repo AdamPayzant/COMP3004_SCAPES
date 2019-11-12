@@ -31,10 +31,14 @@ class JMoreStmt: public Statement {
      **/
         void run();
 
-        std::string& getName() { 
-                                 std::string n = "JMoreStmt";
-                                 return(n);
-                               };
+        std::string getName() { 
+            std::string n = "JMoreStmt";
+            return(n);
+         };
+
+         void setLabel(Label *l) {
+          label = l;
+         };
 };
 
 #endif

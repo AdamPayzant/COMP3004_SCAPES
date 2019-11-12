@@ -19,25 +19,25 @@ Variable.o: Variable.cc Variable.h Identifier.h
 Operand.o: Operand.cc Operand.h Identifier.h
 	g++ -c Operand.cc
 
-./STMTs/ReadStmt.o: ./STMTs/ReadStmt.cc ./STMTs/ReadStmt.h Statement.h Program.h
+ReadStmt.o: ./STMTs/ReadStmt.cc ./STMTs/ReadStmt.h Statement.h Program.h
 	g++ -c ./STMTs/ReadStmt.cc
 
-./STMTs/PrintStmt.o: ./STMTs/PrintStmt.cc ./STMTs/PrintStmt.h Statement.h Program.h
+PrintStmt.o: ./STMTs/PrintStmt.cc ./STMTs/PrintStmt.h Statement.h Program.h
 	g++ -c ./STMTs/PrintStmt.cc
 
-./STMTs/JumpStmt.o: ./STMTs/JumpStmt.cc ./STMTs/JumpStmt.h Statement.h Program.h
+JumpStmt.o: ./STMTs/JumpStmt.cc ./STMTs/JumpStmt.h Statement.h Program.h
 	g++ -c ./STMTs/JumpStmt.cc
 
-./STMTs/JMoreStmt.o: ./STMTs/JMoreStmt.cc ./STMTs/JMoreStmt.h Statement.h Program.h
+JMoreStmt.o: ./STMTs/JMoreStmt.cc ./STMTs/JMoreStmt.h Statement.h Program.h
 	g++ -c ./STMTs/JMoreStmt.cc
 
-./STMTs/EndStmt.o: ./STMTs/EndStmt.cc ./STMTs/EndStmt.h Statement.h Program.h
+EndStmt.o: ./STMTs/EndStmt.cc ./STMTs/EndStmt.h Statement.h Program.h
 	g++ -c ./STMTs/EndStmt.cc
 
-./STMTs/DeclIntStmt.o: ./STMTs/DeclIntStmt.cc ./STMTs/DeclIntStmt.h Statement.h Program.h
+DeclIntStmt.o: ./STMTs/DeclIntStmt.cc ./STMTs/DeclIntStmt.h Statement.h Program.h
 	g++ -c ./STMTs/DeclIntStmt.cc
 
-./STMTs/CompStmt.o: ./STMTs/CompStmt.cc ./STMTs/CompStmt.h Statement.h Program.h
+CompStmt.o: ./STMTs/CompStmt.cc ./STMTs/CompStmt.h Statement.h Program.h
 	g++ -c ./STMTs/CompStmt.cc
 
 

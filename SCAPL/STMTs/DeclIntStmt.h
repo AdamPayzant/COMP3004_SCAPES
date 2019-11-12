@@ -29,11 +29,13 @@ class DeclIntStmt: public Statement {
      **/
         void run();
 
-
-        std::string& getName() { 
-                                 std::string n = "DeclIntStmt";
-                                 return(n);
-                               };
+        std::string getName() { 
+          std::string n = "CompStmt";
+          return(n);
+        };
+        void setLabel(Label *l) {
+          label = l;
+        };
 };
 
 #endif

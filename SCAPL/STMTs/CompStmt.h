@@ -103,10 +103,14 @@ class CompStmt: public Statement {
         void compile(std::string &);
         void run();
 
-        std::string& getName() { 
-                                 std::string n = "CompStmt";
-                                 return(n);
-                               };
+        std::string getName() { 
+          std::string n = "CompStmt";
+          return(n);
+        };
+        
+        void setLabel(Label *l) {
+          label = l;
+        };
 };
 
 #endif

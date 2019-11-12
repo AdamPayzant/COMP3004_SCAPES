@@ -108,10 +108,14 @@ class ReadStmt: public Statement {
         **/
         void run();
 
-        std::string& getName() { 
-                                 std::string n = "ReadStmt";
-                                 return(n);
-                               };
+        std::string getName() { 
+          std::string n = "ReadStmt";
+          return(n);
+        };
+
+        void setLabel(Label *l) {
+          label = l;
+        };
 };
 
 #endif

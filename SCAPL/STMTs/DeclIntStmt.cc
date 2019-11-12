@@ -16,7 +16,7 @@ void DeclIntStmt::compile(std::string &line) {
         line.erase(name.begin());
     }
     std::vector<Identifier*> *ids;
-    master->getIds(ids);
+    ids = master->getIds();
     ids->push_back(new Variable(name));
 }
 
