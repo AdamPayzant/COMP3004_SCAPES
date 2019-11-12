@@ -95,7 +95,7 @@ AddStmt::~AddStmt() {
 /**
    * Compile fuction takes in a line and provides and add object
    **/
-void AddStmt::compile(std::string &line) {
+bool AddStmt::compile(std::string &line) {
 
 }
 
