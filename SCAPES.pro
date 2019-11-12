@@ -31,7 +31,6 @@ SOURCES += \
          ./main.cc \
          ./ApplicationLogic/*.cc \
          ./Interface/*.cc \
-         ./Interface/*.cpp \
          ./Persistence/*.cc \
          ./SCAPL/*.cc \
          ./SCAPL/STMTs/*.cc
