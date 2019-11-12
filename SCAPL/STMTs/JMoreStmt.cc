@@ -1,51 +1,22 @@
 
 #include "JMoreStmt.h"
-#include "./../Program.h"
+#include "../Program.h"
 
-/**
-* Constructor
-* Parameters:
-* -  pointer to a program object
-*
-**/
 JMoreStmt::JMoreStmt(Program *p) {
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
     master = p;
 }
-/**
-* Destructor
-**/
+
 JMoreStmt::~JMoreStmt() {
     delete(label);
 }
-/**
-* compile
-* Parameters:
-* -  String being the instruction
-*
-**/
+
 void JMoreStmt::compile(std::string &line) {
     // Syntax: "jmr <destination label>"
-    std::string name = line.substr(4, line.size()-4);
-    for(int i =0; i < name.size(); i++) {
-        if(name.at(i) == ' ') {
-            return;
-        }
-    }
-
-    std::vector<Identifier*> *ids = master->getIds();
-    for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-        std::string temp;
-        (*iter)->getName(temp);
-        if(temp.compare(name) == 0) {
-            o1 = new Operand(*iter);
-            return;
-        }
-    }
-    return;
+    // Nothing to do here for now
 }
-/**
-* run function produces the result of the code
-**/
 
 void JMoreStmt::run() {
 
@@ -61,7 +32,6 @@ Operand* JMoreStmt::getOperand1()
     return this->o1;
 }
 
-
 Operand* JMoreStmt::getOperand2()
 {
     return this->o2;
@@ -71,7 +41,6 @@ Label* JMoreStmt::getLabel()
 {
     return this->label;
 }
-
 
 void JMoreStmt::setLabel(Label *l) {
   label = l;
