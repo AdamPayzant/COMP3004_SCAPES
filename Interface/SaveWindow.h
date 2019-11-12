@@ -97,29 +97,29 @@ class SaveWindow : public QDialog
 
     public:
         /**
-         *
+         * constructor
          **/
         explicit SaveWindow(QWidget* parent = nullptr);
 
         /**
-         *
+         *distroctor
          **/
         ~SaveWindow();
 
     private slots:
         /**
-         *
+         * accept confirmation bar
          **/
         void on_confirmationBar_accepted();
 
         /**
-         *
+         * reject
          **/
         void on_confirmationBar_rejected();
 
     private:
         /**
-         *
+         * window
          **/
         Ui::SaveWindow* ui;
 };

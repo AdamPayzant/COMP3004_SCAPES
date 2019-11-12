@@ -106,70 +106,71 @@ class MainWindow : public QMainWindow
 
     public:
         /**
-         *
+         *Consturctor
+         * Default constructor
          **/
         explicit MainWindow(QWidget *parent = nullptr);
 
         /**
-         *
+         *Distructor
          **/
         ~MainWindow();
 
         /**
         *
-        *
+        * retrieves the text from the Editor textbox
         **/
         string getEditorText();
 
         /**
-        *
+        * set the editor text for the
         *
         **/
         void setEditorText(string text);
 
         /**
-         *
+         * sets the feedback text
          **/
         void setFeedbackText(string text);
 
         /**
-         *
+         * returns the controller object to call other fuctions
          **/
         MainController* getMainController();
 
         /**
-         *
+         * sets main controller
          **/
         void setMainController(MainController*);
 
         /**
-         *
+         * get the file name for saving
          **/
         string& getProgramFilename();
 
         /**
-         *
+         * set the file name for a drectory to save
          **/
         void setProgramFilename(string);
 
     private slots:
         /**
-         *
+         * trigger new button
          **/
         void on_menuButtonNewOption_triggered();
 
         /**
-         *
+         * trigger open button
          **/
         void on_menuButtonOpenOption_triggered();
 
         /**
-         *
+         * trigger save button
          **/
         void on_menuButtonSaveOption_triggered();
 
         /**
-         *
+         * trigger close
          **/
         void on_menuButtonCloseOption_triggered();
 
@@ -184,34 +185,34 @@ class MainWindow : public QMainWindow
         void on_menuButtonRunOption_triggered();
 
         /**
-         *
+         *trigger description button
          **/
         void on_menuButtonFuncDescOption_triggered();
 
         /**
-         *
+         * trigger about button
          **/
         void on_menuButtonAboutOption_triggered();
 
     private:
 
         /**
-         *
+         * ui object pointer
          **/
         Ui::MainWindow *ui;
 
         /**
-         *
+         * the main controller object
          **/
         MainController* mainController;
 
         /**
-         *
+         * filename to be saved
          **/
         string  programFilename;
 
         /**
-         *
+         * inital state of the window
          **/
         void prepareInitialWindowState();
 
