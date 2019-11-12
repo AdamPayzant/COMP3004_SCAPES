@@ -30,7 +30,7 @@ bool Program::compile() {
         if(line.size() != 0) {
             // Makes sure it's not a comment or a valid command
             if(line[0] != '#' && stats[line.substr(0,3)] == 0) {
-                for(int i = 0; i < line.size; i++) {
+                for(int i = 0; i < line.size(); i++) {
                     if(line.at(i) == ':' ) {
                         std::string lName = line.substr(0, i);
                         Label *l = new Label(lName);
@@ -147,7 +147,7 @@ bool Program::compile() {
                                     std::string n;
                                     ids->at(i)->getName(n);
                                     if(lName.compare(n) == 0){
-                                        l = ids->at(i);
+                                        l = (Label*) ids->at(i);
                                     }
                                 }
                                 
