@@ -46,62 +46,66 @@
 class Program {
     public:
         /**
-         *
+         * Constructor
+         * Parameters:
+         * - Filename of the source file to be compiled or restored.
          **/
         Program(std::string &);
+
         /**
-         *
+         * Destructor
          **/
         ~Program();
 
         /**
-         *
+         * Function used to manage the operations required to compile the source code of the program
          **/
         void compile();
 
         /**
-         *
+         * Function used to manage the operations required to execute the compiled version of the source code
+         * of the program.
          **/
         void execute();
 
         /**
-         *
+         * Function used to print for testing purposes in D2
          **/
         void print();
 
         /**
-         *
+         * Getter function that returns a pointer to the vector of Identifiers of the program
          **/
         std::vector<Identifier*>* getIds();
 
         /**
-         *
+         * Getter function that returns a pointer to the vector of Statements of the program
          **/
         std::vector<Statement*>* getStmts();
 
         /**
-         *
+         * Getter function that returns the current value of the comparison flag of the program
          **/
         int getCFlag();
 
     private:
         /**
-         *
+         * String variable used to hold the program's filename
          **/
         std::string filename;
 
         /**
-         *
+         * Integer variable used to hold the current state of the program's comparison flag
          **/
         int comparisonFlag;
 
         /**
-         *
+         * Pointer used to hold the memory address of the vector of Identifiers for the program
          **/
         std::vector<Identifier*> *ids;
 
         /**
-         *
+         * Pointer used to hold the memory address of the vector of Statements for the program
          **/
         std::vector<Statement*> *stmts;
 };

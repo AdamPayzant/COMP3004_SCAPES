@@ -28,12 +28,14 @@
 class Label: public Identifier {
     public:
         /**
-         *
+         * Constructor
+         * Parameters:
+         * - A reference to text containing the label name
          **/
         Label(std::string &);
 
         /**
-         *
+         * Destructor
          **/
         ~Label();
 

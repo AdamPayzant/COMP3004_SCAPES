@@ -26,23 +26,25 @@
 class Operand {
     public:
         /**
-         *
+         * Constructor
+         * Parameters:
+         * - Pointer to the Identifier serving as the Operand of a statement.
          **/
         Operand(Identifier *);
 
         /**
-         *
+         * Destructor
          **/
         ~Operand();
 
         /**
-         *
+         * Getter method for pointer to the identifier of the Operand.
          **/
         void getID(Identifier *);
 
     private:
         /**
-         *
+         * Pointer to the Identifier serving as the Operand of a statement.
          **/
         Identifier *id;
 };

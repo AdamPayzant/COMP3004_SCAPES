@@ -13,7 +13,7 @@
  * Date: 12/11/2019
  *
  * Version 1.0:
- * File: Variable.h
+ * File: Statement.h
  * Author: Edward Adam Payzant
  * Date: 12/11/2019
  *
@@ -33,6 +33,9 @@
 class Program;
 class Statement {
     public:
+        /**
+         * Destructor
+         **/
         ~Statement() {
             if(o1 != nullptr) {
                 delete(o1);
@@ -41,21 +44,65 @@ class Statement {
                 delete(o2);
             }
         };
+        /**
+         * Function used to compile the statement being provided as a parameter value
+         **/
         virtual void compile(std::string &) = 0;
+
+        /**
+         * Function used to execute the state contained within the current statement
+         **/
         virtual void run() = 0;
+
+        /**
+         * Getter function used to return name of the subclass of the current statement
+         **/
         virtual std::string getName() = 0;
+
+        /**
+         * Getter function used to return a pointer to the first operand object associated with the statement
+         **/
         virtual Operand* getOperand1() = 0;
+
+        /**
+         * Getter function used to return a pointer to the second operand object associated with the statement
+         **/
         virtual Operand* getOperand2() = 0;
+
+        /**
+         * Getter function used to return a pointer to the label object associated with the statement
+         **/
         virtual Label* getLabel() = 0;
+
+        /**
+         * Setter function used to set a pointer to the label object associated with the statement
+         **/
         virtual void setLabel(Label *l) = 0;
+
     protected:
-        // Master program
+        /**
+         * Pointer to the program from which the statement was derived
+         **/
         Program *master;
-        // Two operands (Either can be NULL)
+
+        /**
+         * Pointer to the first operand object associated with the statement
+         **/
         Operand *o1;
+
+        /**
+         * Pointer to the second operand object associated with the statement
+         **/
         Operand *o2;
-        // Label (Can be NULL)
+
+        /**
+         * Pointer to the label object associated with the statement
+         **/
         Label *label;
+
+        /**
+         * String variable used to hold the subclass name of the current statement
+         **/
         std::string subtype;
 };
 

@@ -31,24 +31,24 @@ class Variable: public Identifier {
         /**
          * Constructor
          * Parameters:
-         * -
+         * - Reference to a string variable holding the name value of the variable
          **/
         Variable(std::string &);
 
         /**
-         *
+         * Setter function used to set the value of the current variable
          **/
         void setVal(int &);
 
         /**
-         *
+         * Getter function used to get the value of the current variable
          **/
         void getVal(int &);
 
     private:
 
         /**
-         *
+         * Integer variable used to hold the value of the Variable object
          **/
         int value;
 };

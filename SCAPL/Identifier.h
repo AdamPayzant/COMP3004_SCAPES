@@ -31,28 +31,28 @@
 class Identifier {
     public:
         /**
-         *
+         * Getter function for name using reference
          **/
         void getName(std::string&);
 
         /**
-         *
+         * Getter function for name using value
          **/
         std::string getNameValue();
 
         /**
-         *
+         * Getter function for subtype
          **/
         std::string getSubtype();
 
     protected:
         /**
-         *
+         * String variable that stores the name of the identifier
          **/
         std::string name;
 
         /**
-         *
+         * String variable that stores the subclass name of the object
          **/
         std::string subtype;
 };
