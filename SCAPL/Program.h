@@ -23,7 +23,7 @@ class Program {
     public:
         Program(std::string &);
         ~Program(); 
-        bool compile();
+        void compile();
         void execute();
         void print();
 
@@ -31,7 +31,7 @@ class Program {
         std::vector<Identifier*>* getIds();
 
         std::vector<Statement*>* getStmts();
-  
+
         int getCFlag();
     private:
         std::string filename;
