@@ -92,10 +92,10 @@ void ReadStmt::compile(std::string &line) {
     while(operand.at(0) == ' ') {
         line.erase(operand.begin());
     }
-    std::cout << "Removed whitespace" << std::endl;
     std::vector<Identifier*> *ids;
     ids = master->getIds();
-
+    
+    // Memory issues is created here
     for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
         std::string temp;
         (*iter)->getName(temp);
@@ -104,7 +104,6 @@ void ReadStmt::compile(std::string &line) {
             return;
         }
     }
-    // Make an error case here perhaps
 }
 
 void ReadStmt::run() {

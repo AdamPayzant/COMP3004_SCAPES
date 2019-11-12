@@ -30,9 +30,10 @@ class DeclIntStmt: public Statement {
         void run();
 
         std::string getName() { 
-          std::string n = "CompStmt";
+          std::string n = "DeclIntStmt";
           return(n);
         };
+
         void setLabel(Label *l) {
           label = l;
         };

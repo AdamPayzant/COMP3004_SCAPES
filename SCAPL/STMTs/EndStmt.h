@@ -110,7 +110,7 @@ class EndStmt: public Statement {
         void run();
 
         std::string getName() { 
-            std::string n = "JMoreStmt";
+            std::string n = "EndStmt";
             return(n);
          };
 

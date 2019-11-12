@@ -2,7 +2,7 @@
 
 Label::Label(std::string &n) {
     name = n;
-    subType = "Label";
+    subtype = "Label";
 }
 
 Label::~Label() {
