@@ -77,7 +77,7 @@
 
 
 #include "ReadStmt.h"
-#include "../Program.h"
+#include "./../Program.h"
 
 ReadStmt::ReadStmt(Program *p) {
     master = p;
@@ -113,3 +113,30 @@ bool ReadStmt::compile(std::string &line) {
 void ReadStmt::run() {
 
 }
+
+
+std::string ReadStmt::getName() {
+  std::string n = "PrintStmt";
+  return(n);
+}
+
+Operand* ReadStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* ReadStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* ReadStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void ReadStmt::setLabel(Label *l) {
+  label = l;
+};

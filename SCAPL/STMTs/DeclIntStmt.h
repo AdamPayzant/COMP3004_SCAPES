@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "../Program.h"
 #include "../Statement.h"
 #include "../Identifier.h"
 #include "../Variable.h"
@@ -28,15 +27,11 @@ class DeclIntStmt: public Statement {
      * run function produces the result of the code
      **/
         void run();
-
-        std::string getName() { 
-          std::string n = "DeclIntStmt";
-          return(n);
-        };
-
-        void setLabel(Label *l) {
-          label = l;
-        };
+        virtual std::string getName();
+        virtual Operand* getOperand1();
+        virtual Operand* getOperand2();
+        virtual Label* getLabel();
+        virtual void setLabel(Label *l);
 };
 
 #endif

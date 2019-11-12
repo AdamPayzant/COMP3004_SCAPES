@@ -75,7 +75,7 @@
  **/
 
 #include "EndStmt.h"
-#include "../Program.h"
+#include "./../Program.h"
 
 /**
 * Constructor
@@ -112,3 +112,29 @@ bool EndStmt::compile(std::string &name) {
 void EndStmt::run() {
 
 }
+
+std::string EndStmt::getName() {
+  std::string n = "EndStmt";
+  return(n);
+}
+
+Operand* EndStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* EndStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* EndStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void EndStmt::setLabel(Label *l) {
+  label = l;
+};

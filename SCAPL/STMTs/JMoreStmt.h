@@ -4,7 +4,6 @@
 #include <string>
 
 #include "../Statement.h"
-#include "../Program.h"
 
 class JMoreStmt: public Statement {
     public:
@@ -30,15 +29,11 @@ class JMoreStmt: public Statement {
      * run function produces the result of the code
      **/
         void run();
-
-        std::string getName() { 
-            std::string n = "JMoreStmt";
-            return(n);
-         };
-
-         void setLabel(Label *l) {
-          label = l;
-         };
+         virtual std::string getName();
+         virtual Operand* getOperand1();
+         virtual Operand* getOperand2();
+         virtual Label* getLabel();
+         virtual void setLabel(Label *l);
 };
 
 #endif

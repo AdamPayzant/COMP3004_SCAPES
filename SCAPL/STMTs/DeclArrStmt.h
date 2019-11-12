@@ -103,12 +103,17 @@ class DeclArrStmt: public Statement {
        * -  sting repersenting the instruction
        *
        **/
-        void compile(std::string &);
+        bool compile(std::string &);
 
         /**
      * run function produces the result of the code
      **/
         void run();
+        virtual std::string getName();
+        virtual Operand* getOperand1();
+        virtual Operand* getOperand2();
+        virtual Label* getLabel();
+        virtual void setLabel(Label *l);
 };
 
 #endif
