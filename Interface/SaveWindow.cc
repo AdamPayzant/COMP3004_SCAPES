@@ -19,7 +19,7 @@ void SaveWindow::on_confirmationBar_accepted()
     string filename = (ui->filenameTextEdit->toPlainText()).toUtf8().constData();
     if(filename!=""){
         ((MainWindow*) parent())->setProgramFilename(filename);
-        ((MainWindow*) parent())->getMainController()->saveSourceCode();
+        ((MainWindow*) parent())->getMainController()->clientRequestHandler("save");
         this->close();
     }
 }
