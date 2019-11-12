@@ -21,7 +21,11 @@ class Statement {
         virtual bool compile(std::string &) = 0;
         virtual void run() = 0;
         virtual std::string getName() = 0;
+        virtual Operand* getOperand1() = 0;
+        virtual Operand* getOperand2() = 0;
+        virtual Label* getLabel() = 0;
         virtual void setLabel(Label *l) = 0;
+
     protected:
         // Master program
         Program *master;

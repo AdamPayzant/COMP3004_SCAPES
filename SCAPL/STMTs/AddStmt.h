@@ -101,11 +101,16 @@ class AddStmt: public Statement {
              *  the fuction compiles the instrucution into objects to be executed
              *
              **/
-        void compile(std::string &);
+        bool compile(std::string &);
         /**
      * run function produces the result of the run fuction
      **/
         void run();
+        virtual std::string getName();
+        virtual Operand* getOperand1();
+        virtual Operand* getOperand2();
+        virtual Label* getLabel();
+        virtual void setLabel(Label *l);
 };
 
 #endif

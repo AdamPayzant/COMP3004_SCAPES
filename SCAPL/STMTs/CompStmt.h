@@ -80,7 +80,6 @@
 #include <string>
 
 #include "../Statement.h"
-#include "../Program.h"
 
 class CompStmt: public Statement {
     public:
@@ -102,15 +101,11 @@ class CompStmt: public Statement {
         
         bool compile(std::string &);
         void run();
-
-        std::string getName() { 
-          std::string n = "CompStmt";
-          return(n);
-        };
-        
-        void setLabel(Label *l) {
-          label = l;
-        };
+        virtual std::string getName();
+        virtual Operand* getOperand1();
+        virtual Operand* getOperand2();
+        virtual Label* getLabel();
+        virtual void setLabel(Label *l);
 };
 
 #endif

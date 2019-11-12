@@ -81,7 +81,6 @@
 #include <string>
 
 #include "../Statement.h"
-#include "../Program.h"
 
 class ReadStmt: public Statement {
     public:
@@ -107,15 +106,11 @@ class ReadStmt: public Statement {
         * run function produces the result of the code
         **/
         void run();
-
-        std::string getName() { 
-          std::string n = "ReadStmt";
-          return(n);
-        };
-
-        void setLabel(Label *l) {
-          label = l;
-        };
+        virtual std::string getName();
+        virtual Operand* getOperand1();
+        virtual Operand* getOperand2();
+        virtual Label* getLabel();
+        virtual void setLabel(Label *l);
 };
 
 #endif

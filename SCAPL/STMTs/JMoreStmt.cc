@@ -1,6 +1,6 @@
 
 #include "JMoreStmt.h"
-#include "../Program.h"
+#include "./../Program.h"
 
 /**
 * Constructor
@@ -50,3 +50,29 @@ bool JMoreStmt::compile(std::string &line) {
 void JMoreStmt::run() {
 
 }
+
+std::string JMoreStmt::getName() {
+  std::string n = "JMoreStmt";
+  return(n);
+}
+
+Operand* JMoreStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* JMoreStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* JMoreStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void JMoreStmt::setLabel(Label *l) {
+  label = l;
+};

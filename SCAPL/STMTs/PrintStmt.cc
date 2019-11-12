@@ -76,7 +76,7 @@
  **/
 
 #include "PrintStmt.h"
-#include "../Program.h"
+#include "./../Program.h"
 
 /**
 * Constructor
@@ -137,3 +137,30 @@ bool PrintStmt::compile(std::string &line) {
 void PrintStmt::run() {
 
 }
+
+
+std::string PrintStmt::getName() {
+  std::string n = "PrintStmt";
+  return(n);
+}
+
+Operand* PrintStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* PrintStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* PrintStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void PrintStmt::setLabel(Label *l) {
+  label = l;
+};
