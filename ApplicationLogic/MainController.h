@@ -39,54 +39,69 @@ class MainController
 {
     public:
         /**
-         *
+         * Constructor
+         * Parameters:
+         * - Pointer to the Persistence Manager object that directs
+         * operations involving making objects or text persistent.
+         * - Pointer to the MainWindow object who is the primary widget
+         * of the Qt Application and manages user input and view by managing its
+         * widgets and delegating calls to the Main Controller.
          **/
         MainController(PersistenceManager*, MainWindow*);
 
         /**
-         *
+         * Destructor
          **/
         ~MainController();
 
         /**
-         *
+         * Function used by the Interface layer to signal the MainController to
+         * begin an operation when the user has requested that action.
          **/
         void clientRequestHandler(string);
 
         /**
-         *
+         * Function used to begin an operation involving saving the source code
+         * in the editor on the MainWindow to persistence.
          **/
         void saveSourceCode();
 
         /**
-         *
+         * Function used to begin an operation involving loading the source code
+         * onto the editor on the MainWindow from persistence.
          **/
         void loadSourceCode();
 
         /**
-         *
+         * Function used to begin an operation involving compiling the saved version of
+         * source code currenty in the editor.
          **/
         void compileSourceCode();
 
         /**
-         *
+         * Function used to begin an operation involving running the compiled version
+         * of the source code currently in the editor.
          **/
         void runCompiledProgram();
 
 
     private:
         /**
-         *
+         * Pointer to the Persistence Manager object that directs
+         * operations involving making objects or text persistent.
          **/
         PersistenceManager* persistenceManager;
 
         /**
-         *
+         * Pointer to the MainWindow object who is the primary widget
+         * of the Qt Application and manages user input and view by managing its
+         * widgets and delegating calls to the Main Controller.
          **/
         MainWindow* mainWindow;
 
         /**
-         *
+         * Pointer to a program object currently being handled by the Main Controller for
+         * either compilation or execution.
          **/
         Program* program;
 };
