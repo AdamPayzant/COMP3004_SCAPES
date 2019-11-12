@@ -2,6 +2,8 @@
 #define PERSISTENCEMANAGER_H
 
 #include <string>
+#include <vector>
+using namespace std;
 
 #include "DatabaseConductor.h"
 #include "FileSupervisor.h"
@@ -45,12 +47,12 @@ class PersistenceManager
     /**
      * 
      **/
-    bool persistProgramObjects(Identifier**, Statement**, string);
+    bool persistProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      * 
      **/ 
-    bool restoreProgramObjects(Identifier**, Statement**, string);
+    bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      *

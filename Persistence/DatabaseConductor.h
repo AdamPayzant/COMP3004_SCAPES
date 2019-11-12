@@ -6,6 +6,7 @@
 #include <QSqlError>
 
 #include <string>
+#include <stdio.h>
 using namespace std;
 
 #include "SQLiteConnector.h"
@@ -109,12 +110,12 @@ class DatabaseConductor
     /**
      * 
      **/
-    bool persistProgramObjects(Identifier**, Statement**, string);
+    bool persistProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      * 
      **/ 
-    bool restoreProgramObjects(Identifier**, Statement**, string);
+    bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      * Getter function used to get the current value of the source code's 
@@ -139,12 +140,12 @@ class DatabaseConductor
     /**
      * 
      **/
-    Identifier** identifier_array;
+    std::vector<Identifier*>* identifier_vector;
 
     /**
      * 
      **/
-    Statement** statement_array;
+    std::vector<Statement*>* statement_vector;
 
     /**
      *

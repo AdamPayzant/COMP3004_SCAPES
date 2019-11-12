@@ -10,14 +10,14 @@ PersistenceManager::~PersistenceManager()
 {
 }
 
-bool PersistenceManager::persistProgramObjects(Identifier** identifier_array, Statement** statement_array, string filename)
+bool PersistenceManager::persistProgramObjects(std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
 {
-  return this->databaseConductor.persistProgramObjects(identifier_array, statement_array, filename);
+  return this->databaseConductor.persistProgramObjects(identifier_vector, statement_vector, filename);
 }
 
-bool PersistenceManager::restoreProgramObjects(Identifier** identifier_array, Statement** statement_array, string filename)
+bool PersistenceManager::restoreProgramObjects(std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
 {
-  return this->databaseConductor.restoreProgramObjects(identifier_array, statement_array, filename);
+  return this->databaseConductor.restoreProgramObjects(identifier_vector, statement_vector, filename);
 }
 
 bool PersistenceManager::saveToFile(string editorText, string& filename)
