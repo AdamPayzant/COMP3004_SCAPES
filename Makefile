@@ -1153,6 +1153,7 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -1160,7 +1161,6 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		SCAPL/Variable.h \
 		SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/JMoreStmt.h \
-		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/ReadStmt.h \
 		moc_predefs.h \
@@ -1661,6 +1661,7 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -1668,7 +1669,6 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		SCAPL/Variable.h \
 		SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/JMoreStmt.h \
-		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/ReadStmt.h \
 		../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
@@ -2035,6 +2035,7 @@ MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainContro
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -2042,7 +2043,6 @@ MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainContro
 		SCAPL/Variable.h \
 		SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/JMoreStmt.h \
-		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainController.o ApplicationLogic/MainController.cc
@@ -2403,6 +2403,7 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -2410,7 +2411,6 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		SCAPL/Variable.h \
 		SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/JMoreStmt.h \
-		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/ReadStmt.h \
 		Interface/SaveWindow.h \
@@ -2777,6 +2777,7 @@ SaveWindow.o: Interface/SaveWindow.cc Interface/SaveWindow.h \
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -2784,7 +2785,6 @@ SaveWindow.o: Interface/SaveWindow.cc Interface/SaveWindow.h \
 		SCAPL/Variable.h \
 		SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/JMoreStmt.h \
-		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SaveWindow.o Interface/SaveWindow.cc
@@ -2834,6 +2834,7 @@ DatabaseConductor.o: Persistence/DatabaseConductor.cc Persistence/DatabaseConduc
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/Variable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DatabaseConductor.o Persistence/DatabaseConductor.cc
 
@@ -2886,6 +2887,7 @@ PersistenceManager.o: Persistence/PersistenceManager.cc Persistence/PersistenceM
 		SCAPL/Statement.h \
 		SCAPL/Operand.h \
 		SCAPL/Label.h \
+		SCAPL/STMTs/JumpStmt.h \
 		Persistence/FileSupervisor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PersistenceManager.o Persistence/PersistenceManager.cc
 
@@ -2981,7 +2983,20 @@ CompStmt.o: SCAPL/STMTs/CompStmt.cc SCAPL/STMTs/CompStmt.h \
 		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CompStmt.o SCAPL/STMTs/CompStmt.cc
 
-DeclArrStmt.o: SCAPL/STMTs/DeclArrStmt.cc 
+DeclArrStmt.o: SCAPL/STMTs/DeclArrStmt.cc SCAPL/STMTs/DeclArrStmt.h \
+		SCAPL/Statement.h \
+		SCAPL/Operand.h \
+		SCAPL/Identifier.h \
+		SCAPL/Label.h \
+		SCAPL/Program.h \
+		SCAPL/STMTs/CompStmt.h \
+		SCAPL/STMTs/DeclIntStmt.h \
+		SCAPL/Variable.h \
+		SCAPL/STMTs/EndStmt.h \
+		SCAPL/STMTs/JMoreStmt.h \
+		SCAPL/STMTs/JumpStmt.h \
+		SCAPL/STMTs/PrintStmt.h \
+		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DeclArrStmt.o SCAPL/STMTs/DeclArrStmt.cc
 
 DeclIntStmt.o: SCAPL/STMTs/DeclIntStmt.cc SCAPL/STMTs/DeclIntStmt.h \
@@ -3014,10 +3029,36 @@ EndStmt.o: SCAPL/STMTs/EndStmt.cc SCAPL/STMTs/EndStmt.h \
 		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EndStmt.o SCAPL/STMTs/EndStmt.cc
 
-JEqStmt.o: SCAPL/STMTs/JEqStmt.cc 
+JEqStmt.o: SCAPL/STMTs/JEqStmt.cc SCAPL/STMTs/JEqStmt.h \
+		SCAPL/Statement.h \
+		SCAPL/Operand.h \
+		SCAPL/Identifier.h \
+		SCAPL/Label.h \
+		SCAPL/Program.h \
+		SCAPL/STMTs/CompStmt.h \
+		SCAPL/STMTs/DeclIntStmt.h \
+		SCAPL/Variable.h \
+		SCAPL/STMTs/EndStmt.h \
+		SCAPL/STMTs/JMoreStmt.h \
+		SCAPL/STMTs/JumpStmt.h \
+		SCAPL/STMTs/PrintStmt.h \
+		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JEqStmt.o SCAPL/STMTs/JEqStmt.cc
 
-JLessStmt.o: SCAPL/STMTs/JLessStmt.cc 
+JLessStmt.o: SCAPL/STMTs/JLessStmt.cc SCAPL/STMTs/JLessStmt.h \
+		SCAPL/Statement.h \
+		SCAPL/Operand.h \
+		SCAPL/Identifier.h \
+		SCAPL/Label.h \
+		SCAPL/Program.h \
+		SCAPL/STMTs/CompStmt.h \
+		SCAPL/STMTs/DeclIntStmt.h \
+		SCAPL/Variable.h \
+		SCAPL/STMTs/EndStmt.h \
+		SCAPL/STMTs/JMoreStmt.h \
+		SCAPL/STMTs/JumpStmt.h \
+		SCAPL/STMTs/PrintStmt.h \
+		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JLessStmt.o SCAPL/STMTs/JLessStmt.cc
 
 JMoreStmt.o: SCAPL/STMTs/JMoreStmt.cc SCAPL/STMTs/JMoreStmt.h \
@@ -3050,7 +3091,20 @@ JumpStmt.o: SCAPL/STMTs/JumpStmt.cc SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JumpStmt.o SCAPL/STMTs/JumpStmt.cc
 
-MovStmt.o: SCAPL/STMTs/MovStmt.cc 
+MovStmt.o: SCAPL/STMTs/MovStmt.cc SCAPL/STMTs/MovStmt.h \
+		SCAPL/Statement.h \
+		SCAPL/Operand.h \
+		SCAPL/Identifier.h \
+		SCAPL/Label.h \
+		SCAPL/Program.h \
+		SCAPL/STMTs/CompStmt.h \
+		SCAPL/STMTs/DeclIntStmt.h \
+		SCAPL/Variable.h \
+		SCAPL/STMTs/EndStmt.h \
+		SCAPL/STMTs/JMoreStmt.h \
+		SCAPL/STMTs/JumpStmt.h \
+		SCAPL/STMTs/PrintStmt.h \
+		SCAPL/STMTs/ReadStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MovStmt.o SCAPL/STMTs/MovStmt.cc
 
 PrintStmt.o: SCAPL/STMTs/PrintStmt.cc SCAPL/STMTs/PrintStmt.h \
