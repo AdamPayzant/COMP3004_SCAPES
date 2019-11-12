@@ -102,7 +102,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
 
   this->persistIdentifiers();
   this->persistStatements();
-  this->persistOperands();
+  //this->persistOperands();
   
   this->connector->disconnect();
   delete this->connector;
@@ -151,7 +151,7 @@ bool DatabaseConductor::persistIdentifiers()
         this->identifier_vector->at(i)->getName(tempName);
         snprintf(identifierName, 63, "%s", tempName.data());
         identifierName[63]='\0';
-        this->identifier_vector->at(i)->getSubtype(identifierSubtype);
+        identifierSubtype = this->identifier_vector->at(i)->getSubtype();
 
         if(identifierSubtype.compare("Label") == 0){
             identifierSubtype = "1";
