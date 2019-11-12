@@ -12,6 +12,7 @@ using namespace std;
 #include "SQLiteConnector.h"
 #include "./../SCAPL/Identifier.h"
 #include "./../SCAPL/Statement.h"
+#include "./../SCAPL/STMTs/JumpStmt.h"
 
 #define MAX_IDENTIFIER_ARRAY_SIZE 256
 #define MAX_STATEMENT_ARRAY_SIZE 128
@@ -161,6 +162,11 @@ class DatabaseConductor
      * 
      **/
     bool persistStatements();
+
+    /**
+     *
+     **/
+    bool persistOperands();
 
     /**
      * 
