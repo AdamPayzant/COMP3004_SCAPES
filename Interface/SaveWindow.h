@@ -17,7 +17,7 @@ namespace Ui {
  *
  * Version 1.0:
  * File: savewindow.h
- * Author: Zaccgaeus Leung
+ * Author: Zacchaeus Leung
  * Date: 08/11/2019
  *
  * Version 2.0:
@@ -97,29 +97,33 @@ class SaveWindow : public QDialog
 
     public:
         /**
-         * constructor
+         * Constructor
+         * Parameters:
+         * - Pointer to QWidget object corresponding to the Widget that
+         * contains the object
          **/
         explicit SaveWindow(QWidget* parent = nullptr);
 
         /**
-         *distroctor
+         * Destructor
          **/
         ~SaveWindow();
 
     private slots:
         /**
-         * accept confirmation bar
+         * Handler function used to delegate save operation once accepted.
          **/
         void on_confirmationBar_accepted();
 
         /**
-         * reject
+         * Handler function used to discard save operation once rejected.
          **/
         void on_confirmationBar_rejected();
 
     private:
         /**
-         * window
+         * Pointer to the user interface model bound to the current SaveWindow object through
+         * the namespace Ui
          **/
         Ui::SaveWindow* ui;
 };
