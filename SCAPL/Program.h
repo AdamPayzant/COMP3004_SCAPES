@@ -88,6 +88,8 @@ class Program {
          **/
         int getCFlag();
 
+        void changeStmt(Label *);
+
     private:
         /**
          * String variable used to hold the program's filename
@@ -108,6 +110,9 @@ class Program {
          * Pointer used to hold the memory address of the vector of Statements for the program
          **/
         std::vector<Statement*> *stmts;
+
+        Statement *curStmt;
+        int stmtPos;
 };
 
 #endif

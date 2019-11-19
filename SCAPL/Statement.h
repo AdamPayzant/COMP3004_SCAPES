@@ -72,7 +72,9 @@ class Statement {
         /**
          * Getter function used to return a pointer to the label object associated with the statement
          **/
-        virtual Label* getLabel() = 0;
+        virtual Label* getLabel() {
+            return label;
+        };
 
         /**
          * Setter function used to set a pointer to the label object associated with the statement
