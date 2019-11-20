@@ -19,7 +19,11 @@ void JMoreStmt::compile(std::string &line) {
 }
 
 void JMoreStmt::run() {
-
+    if(master->getCFlag() == 1) {
+        Label *l;
+        o1->getID(l);
+        master->changeStmt(l);
+    }
 }
 
 std::string JMoreStmt::getName() {

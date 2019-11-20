@@ -22,7 +22,9 @@ void JumpStmt::compile(std::string &line) {
 
 
 void JumpStmt::run() {
-
+    Label *l;
+    o1->getID(l);
+    master->changeStmt(l);
 }
 
 std::string JumpStmt::getName() {

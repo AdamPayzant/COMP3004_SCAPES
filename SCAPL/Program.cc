@@ -144,5 +144,5 @@ std::vector<Statement*>* Program::getStmts() {
 
 // returns the pointer to the comparison flag so compare statements can modify it
 int Program::getCFlag() {
-    return(comparisonFlag);
+    return comparisonFlag;
 }
