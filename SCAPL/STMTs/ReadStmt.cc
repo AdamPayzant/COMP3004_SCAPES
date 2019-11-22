@@ -97,7 +97,7 @@ void ReadStmt::compile(std::string &line) {
     }
     std::vector<Identifier*> *ids;
     ids = master->getIds();
-    
+
     // Memory issues is created here
     for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
         std::string temp;
@@ -110,6 +110,9 @@ void ReadStmt::compile(std::string &line) {
 }
 
 void ReadStmt::run() {
+ // get varible 
+ //  std:;in stuff
+ // set it to the value
 
 }
 
@@ -139,4 +142,5 @@ Label* ReadStmt::getLabel()
 
 void ReadStmt::setLabel(Label *l) {
   label = l;
+
 };

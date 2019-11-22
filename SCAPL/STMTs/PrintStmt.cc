@@ -126,7 +126,10 @@ void PrintStmt::compile(std::string &line) {
 * run function produces the result of the code
 **/
 void PrintStmt::run() {
+Std::String s;
 
+s=std::to_string(o1.getValue());
+master->addPrint(s);
 }
 
 

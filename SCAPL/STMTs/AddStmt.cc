@@ -101,13 +101,20 @@ AddStmt::~AddStmt() {
    **/
 void AddStmt::compile(std::string &line) {
 
+
+
 }
 
 /**
    * run fuction  produces the result of the code
    **/
 void AddStmt::run() {
-
+  // get operands
+  // add  number 2 to 1
+  // set the value
+  Variable *des;
+  o1.setId(destination)
+ dest->setValue(o1.getVal()+o2.getVal());
 }
 
 
