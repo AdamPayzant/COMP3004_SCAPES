@@ -151,7 +151,7 @@ bool DatabaseConductor::persistIdentifiers()
         this->identifier_vector->at(i)->getName(tempName);
         snprintf(identifierName, 63, "%s", tempName.data());
         identifierName[63]='\0';
-        this->identifier_vector->at(i)->getSubtype(identifierSubtype);
+        //this->identifier_vector->at(i)->getSubtype(identifierSubtype);
 
         if(identifierSubtype.compare("Label") == 0){
             identifierSubtype = "1";

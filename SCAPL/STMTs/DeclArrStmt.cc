@@ -103,3 +103,8 @@ Label* DeclArrStmt::getLabel()
 void DeclArrStmt::setLabel(Label *l) {
   label = l;
 };
+
+void DeclArrStmt::run(){
+
+  
+}
