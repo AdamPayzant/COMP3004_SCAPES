@@ -1,3 +1,4 @@
+
 #include "Program.h"
 
 Program::Program(std::string &f) {
@@ -112,13 +113,27 @@ void Program::compile() {
 }
 
 void Program::execute() {
-
+    curStmt = stmts->at(0);
+    stmtPos = 0;
+    while(true) {
+        curStmt->run();
+        stmtPos++;
+        curStmt = stmts->at(stmtPos);
+    }
 }
 
 void Program::print() {
 
 }
 
+void Program::changeStmt(Label *l) {
+    for(int i = 0; i < stmts->size(); i++) {
+        if(l == stmts->at(i)->getLabel()) {
+            curStmt = stmts->at(i);
+            stmtPos = i;
+        }
+    }
+}
 
 std::vector<Identifier*>* Program::getIds() {
     return ids;
@@ -129,5 +144,5 @@ std::vector<Statement*>* Program::getStmts() {
 
 // returns the pointer to the comparison flag so compare statements can modify it
 int Program::getCFlag() {
-    return(comparisonFlag);
+    return comparisonFlag;
 }

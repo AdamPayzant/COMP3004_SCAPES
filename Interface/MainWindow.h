@@ -26,7 +26,7 @@ class MainController;
  *
  * Version 1.0:
  * File: mainWindow.h
- * Author: Zacc
+ * Author: Zacchaeus Leung
  * Date: 08/11/2019
  *
  * Version 2.0:
@@ -106,113 +106,125 @@ class MainWindow : public QMainWindow
 
     public:
         /**
-         *Consturctor
-         * Default constructor
+         * Constructor
+         * Parameters:
+         * - Pointer to QWidget object corresponding to the Widget that
+         * contains the object
          **/
         explicit MainWindow(QWidget *parent = nullptr);
 
         /**
-         *Distructor
+         * Destructor
          **/
         ~MainWindow();
 
         /**
-        *
-        * retrieves the text from the Editor textbox
-        **/
+         *
+         * Function used to retrieve the text from the Editor textbox
+         **/
         string getEditorText();
 
         /**
-        * set the editor text for the
-        *
-        **/
+         * Function used to set the text for the Editor textbox
+         **/
         void setEditorText(string text);
 
         /**
-         * sets the feedback text
+         * Function used to set the text for the feedback textbox
          **/
         void setFeedbackText(string text);
 
         /**
-         * returns the controller object to call other fuctions
+         * Getter function returns a pointer to the main controller object of the main window
          **/
         MainController* getMainController();
 
         /**
-         * sets main controller
+         * Setter function sets a pointer to the main controller object of the main window
          **/
         void setMainController(MainController*);
 
         /**
-         * get the file name for saving
+         * Getter function for the program filename
          **/
         string& getProgramFilename();
 
         /**
-         * set the file name for a drectory to save
+         * Setter function for the program filename
          **/
         void setProgramFilename(string);
 
     private slots:
         /**
-         * trigger new button
+         * Handler function called when "New" menu option is clicked.
+         * Will alter state of the view to allow a new program to be written.
          **/
         void on_menuButtonNewOption_triggered();
 
         /**
-         * trigger open button
+         * Handler function called when "Open" menu option is clicked.
+         * Will alter state of the view to allow the source code to be edited and
+         * delegate opening operations to the main controller.
          **/
         void on_menuButtonOpenOption_triggered();
 
         /**
-         * trigger save button
+         * Handler function called when "Save" menu option is clicked.
+         * Will delegate save operation to the main controller.
          **/
         void on_menuButtonSaveOption_triggered();
 
         /**
-         * trigger close
+         * Handler function called when "Close" menu option is clicked.
+         * Will alter state of the view to reflect the source code file being closed.
          **/
         void on_menuButtonCloseOption_triggered();
 
         /**
-         *
+         * Handler function called when "Compile" menu option is clicked.
+         * Will delegate compile operation to the main controller.
          **/
         void on_menuButtonCompileOption_triggered();
 
         /**
-         *
+         * Handler function called when "Run" menu option is clicked.
+         * Will delegate execution operation to the main controller.
          **/
         void on_menuButtonRunOption_triggered();
 
         /**
-         *trigger description button
+         * Handler function called when "Functionality Description" menu option is clicked.
+         * When implemented, will allow for an informative window to appear to inform the
+         * user on SCAPES functionality.
          **/
         void on_menuButtonFuncDescOption_triggered();
 
         /**
-         * trigger about button
+         * Handler function called when "About" menu option is clicked.
+         * When implemented, will allow for an informative window to appear to inform the
+         * user about the program in general (most likely copy of readme)
          **/
         void on_menuButtonAboutOption_triggered();
 
     private:
-
         /**
-         * ui object pointer
+         * Pointer to the user interface model bound to the current MainWindow object through
+         * the namespace Ui
          **/
         Ui::MainWindow *ui;
 
         /**
-         * the main controller object
+         * Pointer to the main controller object managing the current MainWindow
          **/
         MainController* mainController;
 
         /**
-         * filename to be saved
+         * Name of the source code file currently being handled.
          **/
         string  programFilename;
 
         /**
-         * inital state of the window
+         * Function used to set the MainWindow to its initial state.
          **/
         void prepareInitialWindowState();
 
