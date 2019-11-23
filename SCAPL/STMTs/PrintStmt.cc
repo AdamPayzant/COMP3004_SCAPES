@@ -33,7 +33,10 @@ void PrintStmt::compile(std::string &line) {
 }
 
 void PrintStmt::run() {
+Std::String s;
 
+s=std::to_string(o1.getValue());
+master->addPrint(s);
 }
 
 

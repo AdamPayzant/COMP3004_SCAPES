@@ -28,3 +28,9 @@ Label* MovStmt::getLabel()
 void MovStmt::setLabel(Label *l) {
   label = l;
 };
+void MovStmt::run(){
+  Variable *des;
+  o1.setId(destination)
+ dest->setValue(o2.getVal());
+
+}
