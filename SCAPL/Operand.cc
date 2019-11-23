@@ -13,3 +13,7 @@ Operand::~Operand() {
 void Operand::getID(Identifier *i) {
     i = id;
 }
+
+void Operand::setID(Identifier *i) {
+    id = i;
+}

@@ -28,8 +28,10 @@ void AddStmt::run() {
   // add  number 2 to 1
   // set the value
   Variable *des;
-  o1.setId(destination)
- dest->setValue(o1.getVal()+o2.getVal());
+  /*
+  o1->setID(des);
+ des->setVal(o1->getVal()+o2->getVal());
+ */
 }
 
 

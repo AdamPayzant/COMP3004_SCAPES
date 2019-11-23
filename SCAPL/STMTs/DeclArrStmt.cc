@@ -41,8 +41,6 @@ void DeclArrStmt::compile(std::string &line){
 }
 
 
-
-
-
+void DeclArrStmt::run(){
 
 }

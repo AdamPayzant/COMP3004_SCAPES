@@ -42,6 +42,11 @@ class Operand {
          **/
         void getID(Identifier *);
 
+        /**
+         * Setter method for pointer to the identifier of the Operand.
+         **/
+        void setID(Identifier *);
+
     private:
         /**
          * Pointer to the Identifier serving as the Operand of a statement.
