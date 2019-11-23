@@ -1,19 +1,18 @@
-#include "userinputdialog.h"
-#include "ui_userinputdialog.h"
+#include "InputWindow.h"
 
-UserInputDialog::UserInputDialog(QWidget *parent) :
+InputWindow::InputWindow(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::UserInputDialog)
+    ui(new Ui::InputWindow)
 {
     ui->setupUi(this);
 }
 
-UserInputDialog::~UserInputDialog()
+InputWindow::~InputWindow()
 {
     delete ui;
 }
 
-void UserInputDialog::on_pushButton_clicked()
+void InputWindow::on_confirmationButton_clicked()
 {
 
 }
