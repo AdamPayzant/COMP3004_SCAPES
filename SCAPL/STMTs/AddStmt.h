@@ -7,6 +7,7 @@
 #include <sstream>
 
 #include "../Statement.h"
+#include "../Variable.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System

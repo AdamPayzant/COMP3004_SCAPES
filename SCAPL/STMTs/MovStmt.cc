@@ -30,7 +30,9 @@ void MovStmt::setLabel(Label *l) {
 };
 void MovStmt::run(){
   Variable *des;
-  o1.setId(destination)
+  /*
+  o1->setID(des)
  dest->setValue(o2.getVal());
+ */
 
 }
