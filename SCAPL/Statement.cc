@@ -20,3 +20,7 @@ Operand* Statement::getOperand2() {
 Label* Statement::getLabel() {
     return(label);
 }
+
+void Statement::setLabel(Label *l) {
+    label = l;
+}

@@ -44,25 +44,3 @@ std::string ReadStmt::getName() {
   std::string n = "ReadStmt";
   return(n);
 }
-
-Operand* ReadStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* ReadStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* ReadStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void ReadStmt::setLabel(Label *l) {
-  label = l;
-
-};

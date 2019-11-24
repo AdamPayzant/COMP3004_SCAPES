@@ -6,22 +6,6 @@ std::string MovStmt::getName() {
   return(n);
 }
 
-Operand* MovStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* MovStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* MovStmt::getLabel()
-{
-    return this->label;
-}
-
 void MovStmt::compile(std::string &line) {
     // Syntax: mov <source> <destination>
 
@@ -56,9 +40,6 @@ void MovStmt::compile(std::string &line) {
     }
 }
 
-void MovStmt::setLabel(Label *l) {
-  label = l;
-};
 void MovStmt::run(){
   Variable *des;
   /*

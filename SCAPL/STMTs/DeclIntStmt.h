@@ -54,26 +54,6 @@ class DeclIntStmt: public Statement {
          * Getter function used to return the current subclass name
          **/
         virtual std::string getName();
-
-        /**
-         * Getter function used to return a pointer to the first operand object associated with the subclass object
-         **/
-        virtual Operand* getOperand1();
-
-        /**
-         * Getter function used to return a pointer to the second operand object associated with the subclass object
-         **/
-        virtual Operand* getOperand2();
-
-        /**
-         * Getter function used to return a pointer to the label object associated with the subclass object
-         **/
-        virtual Label* getLabel();
-
-        /**
-         * Setter function used to set a pointer to the label object associated with the subclass object
-         **/
-        virtual void setLabel(Label *l);
 };
 
 #endif

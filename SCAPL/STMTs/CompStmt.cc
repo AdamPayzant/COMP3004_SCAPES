@@ -1,6 +1,5 @@
 
 #include "CompStmt.h"
-#include "../Program.h"
 
 CompStmt::CompStmt(Program *p) {
     o1 = nullptr;
@@ -56,24 +55,3 @@ std::string CompStmt::getName() {
   std::string n = "CompStmt";
   return(n);
 }
-
-Operand* CompStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* CompStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* CompStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void CompStmt::setLabel(Label *l) {
-  label = l;
-};
