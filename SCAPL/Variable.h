@@ -43,7 +43,7 @@ class Variable: public Identifier {
         /**
          * Getter function used to get the value of the current variable
          **/
-        void getVal(int &);
+        int getVal();
 
     private:
 

@@ -1,6 +1,5 @@
 
 #include "JEqStmt.h"
-#include "../Program.h"
 
 void JEqStmt::compile(std::string &line) {
 

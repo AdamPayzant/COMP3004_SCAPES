@@ -36,14 +36,7 @@ class Statement {
         /**
          * Destructor
          **/
-        ~Statement() {
-            if(o1 != nullptr) {
-                delete(o1);
-            }
-            if(o2 != nullptr) {
-                delete(o2);
-            }
-        };
+        ~Statement();
         /**
          * Function used to compile the statement being provided as a parameter value
          **/
@@ -62,24 +55,22 @@ class Statement {
         /**
          * Getter function used to return a pointer to the first operand object associated with the statement
          **/
-        virtual Operand* getOperand1() = 0;
+        Operand* getOperand1();
 
         /**
          * Getter function used to return a pointer to the second operand object associated with the statement
          **/
-        virtual Operand* getOperand2() = 0;
+        Operand* getOperand2();
 
         /**
          * Getter function used to return a pointer to the label object associated with the statement
          **/
-        virtual Label* getLabel() {
-            return label;
-        };
+        Label* getLabel();
 
         /**
          * Setter function used to set a pointer to the label object associated with the statement
          **/
-        virtual void setLabel(Label *l) = 0;
+        void setLabel(Label *l);
 
     protected:
         /**

@@ -1,6 +1,5 @@
 
 #include "JLessStmt.h"
-#include "../Program.h"
 
 void JLessStmt::compile(std::string &line) {
 

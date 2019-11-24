@@ -32,6 +32,8 @@ class Operand {
          **/
         Operand(Identifier *);
 
+        Operand(int);
+
         /**
          * Destructor
          **/
@@ -47,11 +49,14 @@ class Operand {
          **/
         void setID(Identifier *);
 
+        int getVal();
+
     private:
         /**
          * Pointer to the Identifier serving as the Operand of a statement.
          **/
         Identifier *id;
+        int val;
 };
 
 #endif
