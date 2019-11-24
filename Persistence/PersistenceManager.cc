@@ -15,9 +15,9 @@ bool PersistenceManager::persistProgramObjects(std::vector<Identifier*>* identif
   return this->databaseConductor.persistProgramObjects(identifier_vector, statement_vector, filename);
 }
 
-bool PersistenceManager::restoreProgramObjects(std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
+bool PersistenceManager::restoreProgramObjects(Program* program, std::vector<Identifier*>* identifier_vector, std::vector<Statement*>* statement_vector, string filename)
 {
-  return this->databaseConductor.restoreProgramObjects(identifier_vector, statement_vector, filename);
+  return this->databaseConductor.restoreProgramObjects(program, identifier_vector, statement_vector, filename);
 }
 
 bool PersistenceManager::saveToFile(string editorText, string& filename)

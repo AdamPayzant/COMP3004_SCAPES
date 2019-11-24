@@ -54,7 +54,7 @@ class PersistenceManager
      * Function used to delegate the operations required to instantiate the Identifier and Statement
      * objects currently held within the database into the vectors of a Program object.
      **/
-    bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
+    bool restoreProgramObjects(Program* program, std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      * Function used to delegate the operations required to save the contents of the editor textbox

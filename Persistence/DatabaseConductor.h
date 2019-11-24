@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QVariant>
 
 #include <string>
 #include <stdio.h>
@@ -11,8 +12,21 @@ using namespace std;
 
 #include "SQLiteConnector.h"
 #include "./../SCAPL/Identifier.h"
+#include "./../SCAPL/Label.h"
+#include "./../SCAPL/Variable.h"
 #include "./../SCAPL/Statement.h"
+#include "./../SCAPL/STMTs/ReadStmt.h"
+#include "./../SCAPL/STMTs/PrintStmt.h"
+#include "./../SCAPL/STMTs/DeclIntStmt.h"
+#include "./../SCAPL/STMTs/DeclArrStmt.h"
+#include "./../SCAPL/STMTs/MovStmt.h"
+#include "./../SCAPL/STMTs/AddStmt.h"
+#include "./../SCAPL/STMTs/CompStmt.h"
+#include "./../SCAPL/STMTs/JLessStmt.h"
+#include "./../SCAPL/STMTs/JMoreStmt.h"
+#include "./../SCAPL/STMTs/JEqStmt.h"
 #include "./../SCAPL/STMTs/JumpStmt.h"
+#include "./../SCAPL/STMTs/EndStmt.h"
 
 #define MAX_IDENTIFIER_ARRAY_SIZE 256
 #define MAX_STATEMENT_ARRAY_SIZE 128
@@ -118,7 +132,7 @@ class DatabaseConductor
      * Function used to manage the operations required to instantiate the Identifier and Statement
      * objects currently held within the database into the vectors of a Program object.
      **/ 
-    bool restoreProgramObjects(std::vector<Identifier*>*, std::vector<Statement*>*, string);
+    bool restoreProgramObjects(Program*, std::vector<Identifier*>*, std::vector<Statement*>*, string);
 
     /**
      * Getter function used to get the current value of the source code's 
@@ -139,6 +153,12 @@ class DatabaseConductor
      * Pointer to object used to establish and maintain the connection the SQLite Database.
      **/
     SQLiteConnector* connector;
+
+    /**
+     * Pointer to a program object currently being handled by the Main Controller for
+     * either compilation or execution.
+     **/
+    Program* program;
 
     /**
      *  Pointer to the current Program object's vector of Identifiers.
@@ -179,6 +199,11 @@ class DatabaseConductor
      * Function used to instantiate the Statements from database tuples
      **/
     bool restoreStatements();
+
+    /**
+     * Function used to instantiate the Operands from database tuples
+     **/
+    bool restoreOperands();
 };
 
 #endif
