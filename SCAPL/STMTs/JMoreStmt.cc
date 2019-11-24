@@ -1,11 +1,13 @@
 
 #include "JMoreStmt.h"
+#include "../Program.h"
 
 JMoreStmt::JMoreStmt(Program *p) {
     o1 = nullptr;
     o2 = nullptr;
     label = nullptr;
     master = p;
+    subtype = "JMoreStmt";
 }
 
 JMoreStmt::~JMoreStmt() {
@@ -29,3 +31,22 @@ std::string JMoreStmt::getName() {
   std::string n = "JMoreStmt";
   return(n);
 }
+
+Operand* JMoreStmt::getOperand1()
+{
+    return this->o1;
+}
+
+Operand* JMoreStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* JMoreStmt::getLabel()
+{
+    return this->label;
+}
+
+void JMoreStmt::setLabel(Label *l) {
+  label = l;
+};

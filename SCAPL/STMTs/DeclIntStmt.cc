@@ -7,6 +7,7 @@ DeclIntStmt::DeclIntStmt(Program *p) {
     o2 = nullptr;
     label = nullptr;
     master = p;
+    subtype = "DeclIntStmt";
 }
 
 DeclIntStmt::~DeclIntStmt() {
@@ -34,3 +35,24 @@ std::string DeclIntStmt::getName() {
   std::string n = "DeclIntStmt";
   return(n);
 }
+
+Operand* DeclIntStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* DeclIntStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* DeclIntStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void DeclIntStmt::setLabel(Label *l) {
+  label = l;
+};

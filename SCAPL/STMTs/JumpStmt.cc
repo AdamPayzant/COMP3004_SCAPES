@@ -1,5 +1,6 @@
 
 #include "JumpStmt.h"
+#include "../Program.h"
 
 
 JumpStmt::JumpStmt(Program *p) {
@@ -7,6 +8,7 @@ JumpStmt::JumpStmt(Program *p) {
     o2 = nullptr;
     label = nullptr;
     master = p;
+    subtype = "JumpStmt";
 }
 
 
@@ -30,3 +32,24 @@ std::string JumpStmt::getName() {
   std::string n = "JumpStmt";
   return(n);
 }
+
+Operand* JumpStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* JumpStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* JumpStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void JumpStmt::setLabel(Label *l) {
+  label = l;
+};

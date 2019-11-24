@@ -1,11 +1,13 @@
 
 #include "PrintStmt.h"
+#include "../Program.h"
 
 PrintStmt::PrintStmt(Program *p) {
     o1 = nullptr;
     o2 = nullptr;
     label = nullptr;
     master = p;
+    subtype = "PrintStmt";
 }
 
 PrintStmt::~PrintStmt() {
@@ -45,3 +47,24 @@ std::string PrintStmt::getName() {
   std::string n = "PrintStmt";
   return(n);
 }
+
+Operand* PrintStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* PrintStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* PrintStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void PrintStmt::setLabel(Label *l) {
+  label = l;
+};

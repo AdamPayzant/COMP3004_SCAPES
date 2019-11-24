@@ -1,11 +1,41 @@
 
 #include "DeclArrStmt.h"
+#include "../Program.h"
+
+DeclArrStmt::DeclArrStmt(Program *m)
+{
+    o1 = nullptr;
+    o2 = nullptr;
+    label = nullptr;
+    master = m;
+    subtype = "DeclArrStmt";
+}
 
 std::string DeclArrStmt::getName() {
   std::string n = "DeclArrStmt";
   return(n);
 }
 
+Operand* DeclArrStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* DeclArrStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* DeclArrStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void DeclArrStmt::setLabel(Label *l) {
+  label = l;
+};
 void DeclArrStmt::compile(std::string &line){
 
   std::string name = line.substr(4, line.size()-4);
