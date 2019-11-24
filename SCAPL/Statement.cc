@@ -9,12 +9,24 @@ Statement::~Statement() {
     }
 }
 
+std::string Statement::getName(){
+    return subtype;
+}
+
 Operand* Statement::getOperand1() {
     return(o1);
 }
 
+void Statement::setOperand1(Operand* operandPtr) {
+    o1 = operandPtr;
+}
+
 Operand* Statement::getOperand2() {
     return(o2);
+}
+
+void Statement::setOperand2(Operand* operandPtr) {
+    o2 = operandPtr;
 }
 
 Label* Statement::getLabel() {

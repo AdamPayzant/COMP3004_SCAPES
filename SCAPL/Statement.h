@@ -50,7 +50,7 @@ class Statement {
         /**
          * Getter function used to return name of the subclass of the current statement
          **/
-        virtual std::string getName() = 0;
+        std::string getName();
 
         /**
          * Getter function used to return a pointer to the first operand object associated with the statement
@@ -58,9 +58,19 @@ class Statement {
         Operand* getOperand1();
 
         /**
+         * Setter function used to set a pointer to the first operand object associated with the statement
+         **/
+        void setOperand1(Operand*);
+
+        /**
          * Getter function used to return a pointer to the second operand object associated with the statement
          **/
         Operand* getOperand2();
+
+        /**
+         * Setter function used to set a pointer to the first operand object associated with the statement
+         **/
+        void setOperand2(Operand*);
 
         /**
          * Getter function used to return a pointer to the label object associated with the statement

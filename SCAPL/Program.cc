@@ -70,34 +70,33 @@ void Program::compile() {
                             if(line.at(i-1) == ':') {
                                 // I hate that I copy and pasted this
                                 int t2 = stats[line.substr(i+1,3)];
-                                std::string st = line.substr(i, line.size() - i);
                                 if(t2 == 1) {
                                     stmts->push_back(new DeclIntStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 } 
                                 else if(t2 == 3) {
                                     stmts->push_back(new ReadStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
                                 else if(t2 == 4) {
                                     stmts->push_back(new PrintStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
                                 else if(t2 == 7) {
                                     stmts->push_back(new CompStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
                                 else if(t2 == 9) {
                                     stmts->push_back(new JMoreStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
                                 else if(t2 == 11) {
                                     stmts->push_back(new JumpStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
                                 else if(t2 == 12) {
                                     stmts->push_back(new EndStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
+                                    stmts->at(stmts->size()-1)->compile(line);
                                 }
 
                                 std::string lName = line.substr(0, i-1);
@@ -118,13 +117,8 @@ void Program::execute() {
     stmtPos = 0;
     while(true) {
         curStmt->run();
-        if(curStmt == nullptr) {
-            break;
-        }
-        else {
-            stmtPos++;
-            curStmt = stmts->at(stmtPos);
-        }
+        stmtPos++;
+        curStmt = stmts->at(stmtPos);
     }
 }
 
