@@ -7,8 +7,8 @@ Variable::Variable(std::string &n) {
     value = 0;
 }
 
-void Variable::getVal(int &v) {
-    v = value;
+int Variable::getVal() {
+    return(value);
 }
 
 void Variable::setVal(int &v) {

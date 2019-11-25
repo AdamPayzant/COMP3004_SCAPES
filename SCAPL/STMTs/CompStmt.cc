@@ -17,6 +17,7 @@ CompStmt::~CompStmt() {
 
 
 void CompStmt::compile(std::string &line) {
+    // TODO: Either operand can be a literal or array value
     // Syntax is "cmp <first value> <second value>"
     std::string operand = line.substr(4, line.size()-4);
     std::string oone;

@@ -92,7 +92,7 @@ class Program {
          **/
         int getCFlag();
 
-        void changeStmt(Label *);
+        void changeStmt(std::string);
 
     private:
         /**

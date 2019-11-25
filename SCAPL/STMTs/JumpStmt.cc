@@ -18,14 +18,12 @@ JumpStmt::~JumpStmt() {
 
 void JumpStmt::compile(std::string &line) {
     // Syntax: "jmp <Destination Label>"
-    // Nothing to do here for now
+    target = line.substr(3, line.size() - 4);
 }
 
 
 void JumpStmt::run() {
-    Label *l;
-    o1->getID(l);
-    master->changeStmt(l);
+    master->changeStmt(target);
 }
 
 std::string JumpStmt::getName() {

@@ -37,7 +37,8 @@ void DeclArrStmt::setLabel(Label *l) {
   label = l;
 };
 void DeclArrStmt::compile(std::string &line){
-
+  // TODO: REDO
+  // Syntax: dca <Name> <Size>
   std::string name = line.substr(4, line.size()-4);
   while(name.at(0) == ' ') {
       line.erase(name.begin());

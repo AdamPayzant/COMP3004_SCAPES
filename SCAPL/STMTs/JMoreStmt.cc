@@ -16,14 +16,12 @@ JMoreStmt::~JMoreStmt() {
 
 void JMoreStmt::compile(std::string &line) {
     // Syntax: "jmr <destination label>"
-    // Nothing to do here for now
+    target = line.substr(3, line.size() - 4);
 }
 
 void JMoreStmt::run() {
     if(master->getCFlag() == 1) {
-        Label *l;
-        o1->getID(l);
-        master->changeStmt(l);
+        master->changeStmt(target);
     }
 }
 

@@ -12,14 +12,13 @@ JLessStmt::JLessStmt(Program *m)
 }
 
 void JLessStmt::compile(std::string &line) {
-
+    // Syntax: jls <target label>
+    target = line.substr(3, line.size() - 4);
 }
 
 void JLessStmt::run() {
   if(master->getCFlag() == -1) {
-        Label *l;
-        o1->getID(l);
-        master->changeStmt(l);
+        master->changeStmt(target);
     }
 }
 

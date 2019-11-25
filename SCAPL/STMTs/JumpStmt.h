@@ -73,6 +73,8 @@ class JumpStmt: public Statement {
          * Setter function used to set a pointer to the label object associated with the subclass object
          **/
         virtual void setLabel(Label *l);
+    private:
+        std::string target;
 };
 
 #endif

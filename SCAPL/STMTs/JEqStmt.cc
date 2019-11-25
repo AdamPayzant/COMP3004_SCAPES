@@ -13,14 +13,13 @@ JEqStmt::JEqStmt(Program *m)
 }
 
 void JEqStmt::compile(std::string &line) {
-
+    // Syntax: jeq <target label>
+    target = line.substr(3, line.size() - 4);
 }
 
 void JEqStmt::run() {
   if(master->getCFlag() == 0) {
-        Label *l;
-        o1->getID(l);
-        master->changeStmt(l);
+        master->changeStmt(target);
     }
 }
 
