@@ -55,11 +55,9 @@ void AddStmt::run() {
   // get operands
   // add  number 2 to 1
   // set the value
-  Variable *des;
-  /*
-  o1->setID(des);
- des->setVal(o1->getVal()+o2->getVal());
- */
+    Variable *des = o1->getIDPtr();
+    des->setVal(o1->getVal()+o2->getVal());
+
 }
 
 
@@ -87,4 +85,4 @@ Label* AddStmt::getLabel()
 
 void AddStmt::setLabel(Label *l) {
   label = l;
-};
+}
