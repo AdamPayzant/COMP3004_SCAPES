@@ -26,10 +26,11 @@ void Operand::setID(Identifier *i) {
 }
 
 int Operand::getVal() {
+    Variable *temp = (Variable *) id;
     if(id == nullptr) {
         return val;
     }
     else {
-        return(id->getValue());
+        return(temp->getVal());
     }
 }

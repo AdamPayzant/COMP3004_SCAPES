@@ -55,9 +55,9 @@ void AddStmt::run() {
   // get operands
   // add  number 2 to 1
   // set the value
-    Variable *des = o1->getIDPtr();
-    des->setVal(o1->getVal()+o2->getVal());
-
+    Variable *des = (Variable *) o1->getIDPtr();
+    int val = o1->getVal() + o2->getVal();
+    des->setVal(val);
 }
 
 
