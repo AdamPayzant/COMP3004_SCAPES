@@ -40,6 +40,9 @@ Std::String s;
 s=std::to_string(o1.getValue());
 master->addPrint(s);
 */
+Variable *des = (Variable *) o1->getIDPtr();
+int val = std::to_string(o1->getVal());
+master->addPrint(s);
 }
 
 
