@@ -1,12 +1,13 @@
 #include "IntegerVariable.h"
 
 IntegerVariable::IntegerVariable() {
-    
+    subtype = "IntegerVariable";
+    val = 0;
 }
 
 IntegerVariable::IntegerVariable(std::string &n) : Variable(n){
-    val = 0;
     subtype = "IntegerVariable";
+    val = 0;
 }
 
 int IntegerVariable::getVal() {

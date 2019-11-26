@@ -8,10 +8,10 @@
 
 class ArrayVariable: public Variable {
     public:
-        ArrayVariable(int, std::string &);
+        ArrayVariable(std::string &);
         ~ArrayVariable();
-        void create();
-        void setAt(int);
+        void create(int);
+        void setAt(int, int);
         Variable* getAt(int);
     private:
         Variable** arr;

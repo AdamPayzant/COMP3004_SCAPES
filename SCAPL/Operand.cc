@@ -26,7 +26,7 @@ void Operand::setID(Identifier *i) {
 }
 
 int Operand::getVal() {
-    Variable *temp = (Variable *) id;
+    IntegerVariable *temp = (IntegerVariable *) id;
     if(id == nullptr) {
         return val;
     }
