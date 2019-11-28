@@ -58,24 +58,3 @@ std::string CompStmt::getName() {
   std::string n = "CompStmt";
   return(n);
 }
-
-Operand* CompStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* CompStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* CompStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void CompStmt::setLabel(Label *l) {
-  label = l;
-};

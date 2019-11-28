@@ -11,31 +11,6 @@ DeclArrStmt::DeclArrStmt(Program *m)
     subtype = "DeclArrStmt";
 }
 
-std::string DeclArrStmt::getName() {
-  std::string n = "DeclArrStmt";
-  return(n);
-}
-
-Operand* DeclArrStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* DeclArrStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* DeclArrStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void DeclArrStmt::setLabel(Label *l) {
-  label = l;
-};
 void DeclArrStmt::compile(std::string &line){
   // TODO: REDO
   // Syntax: dca <Name> <Size>
@@ -75,8 +50,12 @@ void DeclArrStmt::compile(std::string &line){
     }
 }
 
-
 void DeclArrStmt::run(){
     ArrayVariable *temp = (ArrayVariable *) o1->getIDPtr();
     temp->create(o2->getVal());
 } 
+
+std::string DeclArrStmt::getName() {
+  std::string n = "DeclArrStmt";
+  return(n);
+}
