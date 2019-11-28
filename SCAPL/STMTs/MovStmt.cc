@@ -74,10 +74,7 @@ void MovStmt::compile(std::string &line) {
 }
 
 void MovStmt::run(){
-  Variable *des;
-  /*
-  o1->setID(des)
- dest->setValue(o2.getVal());
- */
-
+  Variable *des = (Variable *) o1->getIDPtr();
+  int val =  o2->getVal();
+  des->setVal(val);
 }
