@@ -4,8 +4,9 @@
 #include <string>
 
 #include "Variable.h"
+#include "Value.h"
 
-class IntegerVariable: public Variable {
+class IntegerVariable: public Variable, public Value {
     public:
         IntegerVariable(std::string &);
         IntegerVariable();

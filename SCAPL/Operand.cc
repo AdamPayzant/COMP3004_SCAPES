@@ -5,12 +5,12 @@ Operand::Operand(Identifier *i) {
     id = i;
 }
 
-Operand::Operand(int v) {
-    val = v;
-}
-
 Operand::~Operand() {
     // id is not deleted here because it shares a pointer with Program
+    std::string name = id->getSubtype();
+    if(name.compare("ArrAccess") == 0 || name.compare("Literal") == 0) {
+        delete(id);
+    }
 }
 
 void Operand::getID(Identifier *i) {
@@ -26,11 +26,6 @@ void Operand::setID(Identifier *i) {
 }
 
 int Operand::getVal() {
-    IntegerVariable *temp = (IntegerVariable *) id;
-    if(id == nullptr) {
-        return val;
-    }
-    else {
-        return(temp->getVal());
-    }
+    Value *temp = (Value *) id;
+    return(temp->getVal());
 }

@@ -5,6 +5,7 @@
 #include "Variable.h"
 #include "IntegerVariable.h"
 #include "ArrayVariable.h"
+#include "Value.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
@@ -35,8 +36,6 @@ class Operand {
          **/
         Operand(Identifier *);
 
-        Operand(int);
-
         /**
          * Destructor
          **/
@@ -61,8 +60,6 @@ class Operand {
          * Pointer to the Identifier serving as the Operand of a statement.
          **/
         Identifier *id;
-
-        int val;
 };
 
 #endif

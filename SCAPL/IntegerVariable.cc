@@ -1,7 +1,7 @@
 #include "IntegerVariable.h"
 
 IntegerVariable::IntegerVariable() {
-    subtype = "IntegerVariable";
+    subtype = "ANONIntegerVariable";
     val = 0;
 }
 

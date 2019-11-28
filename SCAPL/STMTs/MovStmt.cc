@@ -46,7 +46,7 @@ void MovStmt::compile(std::string &line) {
     std::vector<Identifier*> *ids = master->getIds();
 
     for(i = 5; i < line.size(); i++) {
-        if(line[5] == ' ') {
+        if(line[i] == ' ') {
             break;
         }
     }

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "../Statement.h"
+#include "../ArrayVariable.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System

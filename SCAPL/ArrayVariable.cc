@@ -1,6 +1,6 @@
 #include "ArrayVariable.h"
 
-ArrayVariable::ArrayVariable(int s, std::string &n) : Variable(n){
+ArrayVariable::ArrayVariable(std::string &n) : Variable(n) {
     subtype = "ArrayVariable";
 }
 
