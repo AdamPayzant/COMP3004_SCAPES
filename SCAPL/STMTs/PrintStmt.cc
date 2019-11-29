@@ -15,22 +15,26 @@ PrintStmt::~PrintStmt() {
 }
 
 void PrintStmt::compile(std::string &line) {
-    std::string operand = line.substr(4, line.size()-4);
-    while(operand.at(0) == ' ') {
-        line.erase(operand.begin());
-    }
-    std::vector<Identifier*> *ids;
-    ids = master->getIds();
+    int i;
+    std::vector<Identifier*> *ids = master->getIds();
 
-    for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-        std::string temp;
-        (*iter)->getName(temp);
-        if(temp.compare(operand) == 0) {
-            o1 = new Operand(*iter);
-            return;
+    if(isdigit(line[4])) {
+        int v = std::stoi(line.substr(4, i - 4));
+        Literal *temp = new Literal(v);
+        o1 = new Operand(temp);
+    }
+    else if(line[4] == '$') {
+        // Do the array add-y thing
+    }
+    else {
+        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
+            std::string temp;
+            (*iter)->getName(temp);
+            if(temp.compare(line.substr(4, i - 4)) == 0) {
+                o1 = new Operand(*iter);
+            }
         }
     }
-    // Make an error case here perhaps
 }
 
 void PrintStmt::run() {
@@ -47,24 +51,3 @@ std::string PrintStmt::getName() {
   std::string n = "PrintStmt";
   return(n);
 }
-
-Operand* PrintStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* PrintStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* PrintStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void PrintStmt::setLabel(Label *l) {
-  label = l;
-};

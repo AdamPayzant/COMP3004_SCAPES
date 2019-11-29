@@ -12,17 +12,7 @@ DeclArrStmt::DeclArrStmt(Program *m)
 }
 
 void DeclArrStmt::compile(std::string &line){
-  // TODO: REDO
-  // Syntax: dca <Name> <Size>
-  // O1 is going to store the array, it's gross I know but it will make things more effecient
-  // O2 stores the size
-  /*
-  std::string name = line.substr(4, line.size()-4);
-  std::vector<Identifier*> *ids;
-  ids = master->getIds();
-  ids->push_back(new ArrayVariable(name));
-  */
-
+    // TODO: REDO
     int i;
     std::vector<Identifier*> *ids = master->getIds();
 

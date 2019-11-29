@@ -22,7 +22,7 @@ void DeclIntStmt::compile(std::string &line) {
     }
     std::vector<Identifier*> *ids;
     ids = master->getIds();
-    ids->push_back(new Variable(name));
+    ids->push_back(new IntegerVariable(name));
 }
 
 

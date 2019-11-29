@@ -19,33 +19,58 @@ CompStmt::~CompStmt() {
 void CompStmt::compile(std::string &line) {
     // TODO: Either operand can be a literal or array value
     // Syntax is "cmp <first value> <second value>"
-    std::string operand = line.substr(4, line.size()-4);
-    std::string oone;
-    std::string otwo;
-    while(operand.at(0) == ' ') {
-        line.erase(operand.begin());
-    }
-    for(int i = 0; i < operand.size(); i++) {
-        if(operand.at(i) == ' ') {
-            oone = operand.substr(0, i);
-            otwo = operand.substr(i+1, line.size()-i);
+        int i;
+    std::vector<Identifier*> *ids = master->getIds();
+
+    for(i = 5; i < line.size(); i++) {
+        if(line[5] == ' ') {
             break;
         }
     }
-
-    std::vector<Identifier*> *ids;
-    ids = master->getIds();
-    for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-        std::string temp;
-        (*iter)->getName(temp);
-        if(temp.compare(oone) == 0) {
-            o1 = new Operand(*iter);
-        }
-        else if(temp.compare(otwo) == 0) {
-            o2 = new Operand(*iter);
+    if(isdigit(line[4])) {
+        int v = std::stoi(line.substr(4, i - 4));
+        Literal *temp = new Literal(v);
+        o1 = new Operand(temp);
+    }
+    else if(line[4] == '$') {
+        // Do the array add-y thing
+    }
+    else {
+        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
+            std::string temp;
+            (*iter)->getName(temp);
+            if(temp.compare(line.substr(4, i - 4)) == 0) {
+                o1 = new Operand(*iter);
+            }
         }
     }
-    // TODO: Create error case if one or both operands are unassigned
+
+
+        int i;
+    std::vector<Identifier*> *ids = master->getIds();
+
+    for(i = 5; i < line.size(); i++) {
+        if(line[5] == ' ') {
+            break;
+        }
+    }
+    if(isdigit(line[i+1])) {
+        int v = std::stoi(line.substr(i, line.size() - i - 1));
+        Literal *temp = new Literal(v);
+        o2 = new Operand(temp);
+    }
+    else if(line[i+1] == '$') {
+        // Do the array add-y thing
+    }
+    else {
+        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
+            std::string temp;
+            (*iter)->getName(temp);
+            if(temp.compare(line.substr(i, line.size() - i - 1)) == 0) {
+                o2 = new Operand(*iter);
+            }
+        }
+    }
 }
 
 

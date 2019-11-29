@@ -6,6 +6,7 @@
 #include "../Statement.h"
 #include "../Identifier.h"
 #include "../Variable.h"
+#include "../IntegerVariable.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
