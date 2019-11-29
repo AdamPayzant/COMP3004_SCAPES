@@ -12,32 +12,7 @@ DeclArrStmt::DeclArrStmt(Program *m)
 }
 
 void DeclArrStmt::compile(std::string &line){
-    // TODO: REDO
-    int i;
-    std::vector<Identifier*> *ids = master->getIds();
-
-    for(i = 5; i < line.size(); i++) {
-        if(line[i] == ' ') {
-            break;
-        }
-    }
-    std::string name = line.substr(3, i - 4);
-    ArrayVariable *temp;
-    ids->push_back(temp);
-    o1 = new Operand(temp);
-
-    if(std::isdigit(line[i+1])) {
-        o2 = new Operand(stoi(line.substr(i, line.size() - 1 - i)));
-    }
-    else {
-        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-            std::string temp;
-            (*iter)->getName(temp);
-            if(temp.compare(line.substr(i, line.size() - i - 1)) == 0) {
-                o2 = new Operand(*iter);
-            }
-        }
-    }
+    // TODO
 }
 
 void DeclArrStmt::run(){

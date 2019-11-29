@@ -92,7 +92,11 @@ class Program {
          **/
         int getCFlag();
 
+        void setCFlag(int);
+
         void changeStmt(std::string);
+
+        void addPrint(std::string);
 
     private:
         /**
@@ -115,8 +119,9 @@ class Program {
          **/
         std::vector<Statement*> *stmts;
 
-        Statement *curStmt;
         int stmtPos;
+
+        std::vector<std::string> output;
 };
 
 #endif

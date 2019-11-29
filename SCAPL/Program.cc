@@ -61,7 +61,7 @@ void Program::compile() {
                     stmts->push_back(new EndStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
                 }
-                // TODO: Fix
+                // TODO: Fix, maybe
                 else {
                     // Check and make sure it's a valid statement
                     // Call statement constructor then give it a label
@@ -114,7 +114,7 @@ void Program::compile() {
 }
 
 void Program::execute() {
-    curStmt = stmts->at(0);
+    Statement *curStmt = stmts->at(0);
     stmtPos = 0;
     while(true) {
         if(curStmt == nullptr) {
@@ -131,9 +131,19 @@ void Program::print() {
 
 }
 
-// TODO
+void Program::addPrint(std::string o) {
+    output.push_back(o);
+}
+
 void Program::changeStmt(std::string l) {
     // Find the label, find the statement it matches
+    for(int i = 0; i < stmts->size(); i++) {
+        std::string temp;
+        stmts->at(i)->getLabel()->getName(temp);
+        if(temp.compare(l) == 0) {
+            stmtPos = i - 1;
+        }
+    }
 }
 
 std::vector<Identifier*>* Program::getIds() {
@@ -146,4 +156,8 @@ std::vector<Statement*>* Program::getStmts() {
 // returns the pointer to the comparison flag so compare statements can modify it
 int Program::getCFlag() {
     return comparisonFlag;
+}
+
+void Program::setCFlag(int v) {
+    comparisonFlag = v;
 }

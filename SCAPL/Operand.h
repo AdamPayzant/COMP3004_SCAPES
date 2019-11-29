@@ -54,6 +54,7 @@ class Operand {
         void setID(Identifier *);
 
         int getVal();
+        void setVal(int);
         
     private:
         /**

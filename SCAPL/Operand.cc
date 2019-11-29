@@ -29,3 +29,7 @@ int Operand::getVal() {
     Value *temp = (Value *) id;
     return(temp->getVal());
 }
+
+void Operand::setVal(int v) {
+    
+}
