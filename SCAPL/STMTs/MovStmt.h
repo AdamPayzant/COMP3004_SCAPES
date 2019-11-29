@@ -12,6 +12,8 @@
 #include "../Statement.h"
 #include "../Variable.h"
 #include "../Operand.h"
+#include "../ArrAccess.h"
+#include "../Literal.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System

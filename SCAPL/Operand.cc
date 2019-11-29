@@ -31,5 +31,6 @@ int Operand::getVal() {
 }
 
 void Operand::setVal(int v) {
-    
+    Value *temp = (Value *) id;
+    temp->setVal(v);
 }

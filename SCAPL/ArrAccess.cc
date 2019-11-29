@@ -13,3 +13,7 @@ ArrAccess::~ArrAccess() {
 int ArrAccess::getVal() {
     // TODO: Go through access value 
 }
+
+void ArrAccess::setVal(int v) {
+    
+}

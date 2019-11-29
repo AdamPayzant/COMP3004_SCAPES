@@ -2,11 +2,18 @@
 #define DECLINTSTMT_H
 
 #include <string>
+#include <vector>
+#include <iterator>
+#include <sstream>
+#include <stdlib.h>
+#include <stdio.h>
 
+#include "../Program.h"
 #include "../Statement.h"
-#include "../Identifier.h"
 #include "../Variable.h"
-#include "../IntegerVariable.h"
+#include "../Operand.h"
+#include "../ArrAccess.h"
+#include "../Literal.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
