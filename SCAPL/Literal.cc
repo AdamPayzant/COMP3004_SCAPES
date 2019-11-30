@@ -12,3 +12,7 @@ Literal::~Literal() {
 int Literal::getVal() {
     return(val);
 }
+
+void Literal::setVal(int i) {
+    return;
+}

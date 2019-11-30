@@ -4,6 +4,9 @@
 #include <string>
 
 #include "Variable.h"
+#include "Value.h"
+#include "Literal.h"
+#include "ArrAccess.h"
 #include "IntegerVariable.h"
 
 class ArrayVariable: public Variable {

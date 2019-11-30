@@ -9,6 +9,7 @@ class Literal: public Identifier, public Value {
         Literal(int);
         ~Literal();
         int getVal();
+        void setVal(int);
     private:
         int val;
 };
