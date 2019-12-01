@@ -54,7 +54,7 @@ void DeclArrStmt::compile(std::string &line){
             (*iter)->getName(an);
             if(an.compare(arrName) == 0) {
                 ArrayVariable *downcast = (ArrayVariable *) (*iter);
-                ArrAccess *temp = new ArrAccess(downcast, accessName);
+                ArrAccess *temp = new ArrAccess(downcast, accessName, master);
                 break;
             }
         }

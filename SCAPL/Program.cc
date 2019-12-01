@@ -30,13 +30,135 @@ void Program::compile() {
         // Had issues loading in blank lines, this should work around it
         if(line.size() != 0) { 
             if(line[0] != '#') {
-                // I'd rather change this to a map of lambas, but scoping, so now we just get a map and if/else statments
+                // I'd rather change this to a map of lambas, but scoping, so now we just get a map and switch statments
                 int type = stats[line.substr(0,3)];
-                // Doing a massive if/else tree
+                switch (type)
+                {
+                case 1:
+                    stmts->push_back(new DeclIntStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 2:
+                    stmts->push_back(new DeclArrStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 3:
+                    stmts->push_back(new ReadStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 4:
+                    stmts->push_back(new PrintStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 5:
+                    stmts->push_back(new MovStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 6:
+                    stmts->push_back(new AddStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 7:
+                    stmts->push_back(new CompStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 8:
+                    stmts->push_back(new JLessStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 9:
+                    stmts->push_back(new JMoreStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 10:
+                    stmts->push_back(new JEqStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 11:
+                    stmts->push_back(new JumpStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                case 12:
+                    stmts->push_back(new EndStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                    break;
+                default:
+                    for(int i = 1; i < line.size(); i++) {
+                        if(line.at(i) == ' ') {
+                            if(line.at(i-1) == ':') {
+                                // I hate that I copy and pasted this
+                                int t2 = stats[line.substr(i+1,3)];
+                                std::string st = line.substr(i, line.size() - i);
+                                switch (t2)
+                                {
+                                case 1:
+                                    stmts->push_back(new DeclIntStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 2:
+                                    stmts->push_back(new DeclArrStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 3:
+                                    stmts->push_back(new ReadStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(line);
+                                    break;
+                                case 4:
+                                    stmts->push_back(new PrintStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(line);
+                                    break;
+                                case 5:
+                                    stmts->push_back(new MovStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(line);
+                                    break;
+                                case 6:
+                                    stmts->push_back(new AddStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 7:
+                                    stmts->push_back(new CompStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 8:
+                                    stmts->push_back(new JLessStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(line);
+                                    break;
+                                case 9:
+                                    stmts->push_back(new JMoreStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 10:
+                                    stmts->push_back(new JEqStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 11:
+                                    stmts->push_back(new JumpStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                case 12:
+                                    stmts->push_back(new EndStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                    break;
+                                default:
+                                    // Error case
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+
+
+                /*
                 if(type == 1) {
                     stmts->push_back(new DeclIntStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
-                } 
+                }
+                else if(type == 2) {
+                    stmts->push_back(new DeclArrStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                }
                 else if(type == 3) {
                     stmts->push_back(new ReadStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
@@ -45,12 +167,28 @@ void Program::compile() {
                     stmts->push_back(new PrintStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
                 }
+                else if(type == 5) {
+                    stmts->push_back(new MovStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                }
+                else if(type == 6) {
+                    stmts->push_back(new AddStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                }
                 else if(type == 7) {
                     stmts->push_back(new CompStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
                 }
+                else if(type == 8) {
+                    stmts->push_back(new JLessStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                }
                 else if(type == 9) {
                     stmts->push_back(new JMoreStmt(this));
+                    stmts->at(stmts->size()-1)->compile(line);
+                }
+                else if(type == 10) {
+                    stmts->push_back(new JEqStmt(this));
                     stmts->at(stmts->size()-1)->compile(line);
                 }
                 else if(type == 11) {
@@ -74,7 +212,11 @@ void Program::compile() {
                                 if(t2 == 1) {
                                     stmts->push_back(new DeclIntStmt(this));
                                     stmts->at(stmts->size()-1)->compile(st);
-                                } 
+                                }
+                                else if(t2 == 2) {
+                                    stmts->push_back(new DeclArrStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                }
                                 else if(t2 == 3) {
                                     stmts->push_back(new ReadStmt(this));
                                     stmts->at(stmts->size()-1)->compile(st);
@@ -83,12 +225,28 @@ void Program::compile() {
                                     stmts->push_back(new PrintStmt(this));
                                     stmts->at(stmts->size()-1)->compile(st);
                                 }
+                                else if(t2 == 5) {
+                                    stmts->push_back(new MovStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                }
+                                else if(t2 == 6) {
+                                    stmts->push_back(new AddStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                }
                                 else if(t2 == 7) {
                                     stmts->push_back(new CompStmt(this));
                                     stmts->at(stmts->size()-1)->compile(st);
                                 }
+                                else if(t2 == 8) {
+                                    stmts->push_back(new JLessStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                }
                                 else if(t2 == 9) {
                                     stmts->push_back(new JMoreStmt(this));
+                                    stmts->at(stmts->size()-1)->compile(st);
+                                }
+                                else if(t2 == 10) {
+                                    stmts->push_back(new JEqStmt(this));
                                     stmts->at(stmts->size()-1)->compile(st);
                                 }
                                 else if(t2 == 11) {
@@ -108,6 +266,7 @@ void Program::compile() {
                         }
                     }
                 }
+                */
             }
         }
     }
