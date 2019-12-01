@@ -1,4 +1,3 @@
-
 #include "CompStmt.h"
 #include "../Program.h"
 
@@ -116,10 +115,4 @@ void CompStmt::run() {
     else {
         master->setCFlag(0);
     }
-}
-
-
-std::string CompStmt::getName() {
-  std::string n = "CompStmt";
-  return(n);
 }

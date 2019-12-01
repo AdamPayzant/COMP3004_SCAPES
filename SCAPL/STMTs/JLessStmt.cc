@@ -1,4 +1,3 @@
-
 #include "JLessStmt.h"
 #include "../Program.h"
 
@@ -20,10 +19,4 @@ void JLessStmt::run() {
   if(master->getCFlag() == -1) {
         master->changeStmt(target);
     }
-}
-
-
-std::string JLessStmt::getName() {
-  std::string n = "JLessStmt";
-  return(n);
 }

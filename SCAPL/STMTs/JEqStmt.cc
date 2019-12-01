@@ -1,4 +1,3 @@
-
 #include "JEqStmt.h"
 #include "../Program.h"
 
@@ -21,10 +20,4 @@ void JEqStmt::run() {
   if(master->getCFlag() == 0) {
         master->changeStmt(target);
     }
-}
-
-
-std::string JEqStmt::getName() {
-  std::string n = "JEqStmt";
-  return(n);
 }

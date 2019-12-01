@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../Program.h"
 #include "../Statement.h"
 #include "../Variable.h"
 #include "../Operand.h"
@@ -34,6 +33,7 @@
  * of COMP2404.
  *
  **/
+class Program;
 class DeclIntStmt: public Statement {
     public:
         /**
@@ -57,31 +57,6 @@ class DeclIntStmt: public Statement {
          * Function used to execute the compiled state of the instruction
          **/
         void run();
-
-        /**
-         * Getter function used to return the current subclass name
-         **/
-        virtual std::string getName();
-
-        /**
-         * Getter function used to return a pointer to the first operand object associated with the subclass object
-         **/
-        virtual Operand* getOperand1();
-
-        /**
-         * Getter function used to return a pointer to the second operand object associated with the subclass object
-         **/
-        virtual Operand* getOperand2();
-
-        /**
-         * Getter function used to return a pointer to the label object associated with the subclass object
-         **/
-        virtual Label* getLabel();
-
-        /**
-         * Setter function used to set a pointer to the label object associated with the subclass object
-         **/
-        virtual void setLabel(Label *l);
 };
 
 #endif

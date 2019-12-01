@@ -1,4 +1,3 @@
-
 #include "DeclIntStmt.h"
 #include "../Program.h"
 
@@ -26,10 +25,4 @@ void DeclIntStmt::compile(std::string &line) {
 
 void DeclIntStmt::run() {
 
-}
-
-
-std::string DeclIntStmt::getName() {
-  std::string n = "DeclIntStmt";
-  return(n);
 }

@@ -1,4 +1,3 @@
-
 #include "DeclArrStmt.h"
 #include "../Program.h"
 
@@ -33,8 +32,7 @@ void DeclArrStmt::compile(std::string &line){
     // Gets the size of the array in Operand 2
     if(isdigit(line[i+1])) {
         // Literal case
-        int v = std::stoi(line.substr(5, i - 4));
-        Literal *temp = new Literal(v);
+        Literal *temp = new Literal(line.substr(5, i - 4));
         o1 = new Operand(temp);
     }
     else if(line[i+1] == '$') {
@@ -74,9 +72,4 @@ void DeclArrStmt::compile(std::string &line){
 void DeclArrStmt::run(){
     ArrayVariable *temp = (ArrayVariable *) o1->getIDPtr();
     temp->create(o2->getVal());
-} 
-
-std::string DeclArrStmt::getName() {
-  std::string n = "DeclArrStmt";
-  return(n);
 }

@@ -1,5 +1,5 @@
-
 #include "AddStmt.h"
+#include "../Program.h"
 
 AddStmt::AddStmt(Program *m)
 {
@@ -104,9 +104,4 @@ void AddStmt::run() {
     // add  number 2 to 1
     // set the value
     o2->setVal(o1->getVal() + o2->getVal());
-}
-
-std::string AddStmt::getName() {
-  std::string n = "AddStmt";
-  return(n);
 }
