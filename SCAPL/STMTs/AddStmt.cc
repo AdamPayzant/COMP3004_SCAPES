@@ -28,7 +28,7 @@ void AddStmt::compile(std::string &line) {
         }
     }
     if(isdigit(line[4])) {
-        int v = std::stoi(line.substr(5, i - 4));
+        std::string v = line.substr(5, i - 4);
         Literal *temp = new Literal(v);
         o1 = new Operand(temp);
     }

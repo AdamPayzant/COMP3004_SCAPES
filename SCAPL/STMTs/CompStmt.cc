@@ -28,7 +28,7 @@ void CompStmt::compile(std::string &line) {
         }
     }
     if(isdigit(line[4])) {
-        int v = std::stoi(line.substr(5, i - 4));
+        std::string v = line.substr(5, i - 4);
         Literal *temp = new Literal(v);
         o1 = new Operand(temp);
     }
@@ -64,7 +64,12 @@ void CompStmt::compile(std::string &line) {
         }
     }
 
-    if(line[i+1] == '$') {
+    if(isdigit(line[i+1])) {
+        std::string v = line.substr(i+1, line.size() - i - 1);
+        Literal *temp = new Literal(v);
+        o1 = new Operand(temp);
+    }
+    else if(line[i+1] == '$') {
         i++;
         std::string arrName;
         std::string accessName;

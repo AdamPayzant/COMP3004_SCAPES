@@ -18,13 +18,7 @@ void PrintStmt::compile(std::string &line) {
     int i = line.size() - 1;
     std::vector<Identifier*> *ids = master->getIds();
 
-    if(isdigit(line[4])) {
-        // Literal Case
-        int v = std::stoi(line.substr(5, i - 4));
-        Literal *temp = new Literal(v);
-        o1 = new Operand(temp);
-    }
-    else if(line[4] == '\"') {
+    if(line[4] == '\"' || isdigit(line[4])) {
         std::string str = line.substr(5, i - 4);
         Literal *temp = new Literal(str);
         o1 = new Operand(temp);
