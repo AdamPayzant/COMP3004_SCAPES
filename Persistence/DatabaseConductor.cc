@@ -35,6 +35,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
   QSqlQuery sqlcli;
 
   //DDL
+  sqlcli.exec("DROP TABLE IF EXISTS ARRACCESS");
   sqlcli.exec("DROP TABLE IF EXISTS ARRAY_CONTAIN_VAR;");
   sqlcli.exec("DROP TABLE IF EXISTS OPERAND;");
   sqlcli.exec("DROP TABLE IF EXISTS STATEMENT;");
@@ -55,7 +56,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
   sqlcli.exec("CREATE TABLE IF NOT EXISTS IDENTIFIER ("
     "NAME VARCHAR2(64) PRIMARY KEY,"
     "SUBTYPE NUMBER(2) NOT NULL,"
-    "VALUE NUMBER(10),"
+    "VALUE VARCHAR2(64),"
     "FOREIGN KEY(SUBTYPE) REFERENCES IDENTIFIER_TYPE(ITID)"
     ");");
 
@@ -75,6 +76,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
     "PRIMARY KEY(SID, IDENTIFIER_NAME)"
     ");");
 
+  /*
   sqlcli.exec("CREATE TABLE IF NOT EXISTS ARRAY_CONTAIN_VAR ("
     "CONTAINER_NAME VARCHAR2(64),"
     "ELEMENT_NAME VARCHAR2(64),"
@@ -84,6 +86,14 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
     "PRIMARY KEY(CONTAINER_NAME, ELEMENT_NAME),"
     "CHECK(CONTAINER_NAME != ELEMENT_NAME)"
     ");");
+   */
+
+  sqlcli.exec("CREATE TABLE IF NOT EXISTS ARRACCESS ("
+    "ARRAY_NAME VARCHAR2(64),"
+    "ACCESS_STRING VARCHAR2(64),"
+    "PRIMARY KEY(ARRAY_NAME, ACCESS_STRING),"
+    "FOREIGN KEY(ARRAY_NAME) REFERENCES IDENTIFIER(NAME)"
+    ");");
 
   //Initial DML
   sqlcli.exec("INSERT INTO IDENTIFIER_TYPE VALUES (0, 'IDENTIFIER');");
@@ -91,6 +101,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
   sqlcli.exec("INSERT INTO IDENTIFIER_TYPE VALUES (2, 'VARIABLE');");
   sqlcli.exec("INSERT INTO IDENTIFIER_TYPE VALUES (3, 'INTEGERVARIABLE');");
   sqlcli.exec("INSERT INTO IDENTIFIER_TYPE VALUES (4, 'ARRAYVARIABLE');");
+  sqlcli.exec("INSERT INTO IDENTIFIER_TYPE VALUES (5, 'LITERAL');");
 
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (0, 'STATEMENT');");
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (1, 'READSTMT');");
@@ -107,7 +118,7 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (12, 'ENDSTMT');");
 
   this->persistIdentifiers();
-  this->persistStatements();
+  //this->persistStatements();
   
   this->connector->disconnect();
   delete this->connector;
@@ -310,7 +321,6 @@ void DatabaseConductor::setFilename(string newFilename)
 bool DatabaseConductor::persistIdentifiers()
 {
     int i;
-    int tempInt;
     char identifierName[64];
     char identifierValue[12];
     char sqlstmt[128];
@@ -319,26 +329,40 @@ bool DatabaseConductor::persistIdentifiers()
     QSqlQuery sqlcli;
 
     for(i=0; i< this->identifier_vector->size(); i++){
+        if(this->identifier_vector->at(i) == nullptr){
+            continue;
+        }
         sqlstmt[0]='\0';
-        this->identifier_vector->at(i)->getName(tempName);
-        snprintf(identifierName, 63, "%s", tempName.data());
-        identifierName[63]='\0';
         //this->identifier_vector->at(i)->getSubtype(identifierSubtype);
-        //identifierSubtype = this->identifier_vector->at(i)->getSubtype();
+        identifierSubtype = this->identifier_vector->at(i)->getSubtype();
+        identifierValue[0] = 'N';
+        identifierValue[1] = 'U';
+        identifierValue[2] = 'L';
+        identifierValue[3] = 'L';
+        identifierValue[4] = '\0';
+
+        if(identifierSubtype.compare("Literal") == 0){
+            snprintf(identifierName, 63, "%s%d", "_LITERAL_", i);
+            identifierSubtype = "5";
+            sprintf(identifierValue, "%s", ((Literal*) (this->identifier_vector->at(i)))->getOut().data());
+        }
+        else{
+            this->identifier_vector->at(i)->getName(tempName);
+            snprintf(identifierName, 63, "%s", tempName.data());
+        }
+        identifierName[63]='\0';
 
         if(identifierSubtype.compare("Label") == 0){
             identifierSubtype = "1";
-            identifierValue[0] = 'N';
-            identifierValue[1] = 'U';
-            identifierValue[2] = 'L';
-            identifierValue[3] = 'L';
-            identifierValue[4] = '\0';
         }
 
-        if(identifierSubtype.compare("Variable") == 0){
-            identifierSubtype = "2";
-            ((Variable*) (this->identifier_vector->at(i)))->getVal(tempInt);
-            sprintf(identifierValue, "%d", tempInt);
+        if(identifierSubtype.compare("IntegerVariable") == 0){
+            identifierSubtype = "3";
+            sprintf(identifierValue, "%d", ((IntegerVariable*) (this->identifier_vector->at(i)))->getVal());
+        }
+
+        if(identifierSubtype.compare("ArrayVariable") == 0){
+            identifierSubtype = "4";
         }
         sprintf(sqlstmt, "INSERT INTO IDENTIFIER VALUES('%s', %s, %s);", identifierName, identifierSubtype.data(), identifierValue);
         sqlcli.exec(sqlstmt);
@@ -352,255 +376,104 @@ bool DatabaseConductor::persistStatements()
     char identifierName[64];
     char sqlstmt[128];
     string tempName;
-    string compiledStatementSubtype;
+    string statementSubtype;
     QSqlQuery sqlcli;
-    Identifier* idPtr;
+    Identifier* labelPtr;
 
     for(i=0; i<this->statement_vector->size(); i++){
-        sqlstmt[0]='\0';
-        identifierName[0]='\0';
-        snprintf(identifierName, 63, tempName.data());
-        identifierName[63]='\0';
-        compiledStatementSubtype = this->statement_vector->at(i)->getName();
-
-        if(compiledStatementSubtype.compare("DeclIntStmt") == 0 ||
-                compiledStatementSubtype.compare("ReadStmt") == 0 ||
-                compiledStatementSubtype.compare("PrintStmt") == 0 ||
-                compiledStatementSubtype.compare("CompStmt") == 0 ||
-                compiledStatementSubtype.compare("EndStmt") == 0){
-            identifierName[0] = 'N';
-            identifierName[1] = 'U';
-            identifierName[2] = 'L';
-            identifierName[3] = 'L';
-            identifierName[4] = '\0';
+        if(this->statement_vector->at(i) == nullptr){
+            continue;
         }
-        else{
-            idPtr = this->statement_vector->at(i)->getLabel();
-            if(idPtr != nullptr){
-                idPtr->getName(tempName);
+        sqlstmt[0]='\0';
+        identifierName[63]='\0';
+        statementSubtype = this->statement_vector->at(i)->getName();
+        identifierName[0] = 'N';
+        identifierName[1] = 'U';
+        identifierName[2] = 'L';
+        identifierName[3] = 'L';
+        identifierName[4] = '\0';
+        labelPtr = this->statement_vector->at(i)->getLabel();
+        if(labelPtr != nullptr){
+            labelPtr->getName(tempName);
+            if(!tempName.empty()){
                 snprintf(identifierName, 63, "%s", tempName.data());
                 identifierName[63]='\0';
             }
-            else{
-                identifierName[0] = 'N';
-                identifierName[1] = 'U';
-                identifierName[2] = 'L';
-                identifierName[3] = 'L';
-                identifierName[4] = '\0';
-            }
         }
 
-        if(compiledStatementSubtype.compare("ReadStmt") == 0){
-            compiledStatementSubtype = "1";
+        if(statementSubtype.compare("ReadStmt") == 0){
+            statementSubtype = "1";
         }
 
-
-        if(compiledStatementSubtype.compare("PrintStmt") == 0){
-            compiledStatementSubtype = "2";
+        if(statementSubtype.compare("PrintStmt") == 0){
+            statementSubtype = "2";
         }
 
-        if(compiledStatementSubtype.compare("DeclIntStmt") == 0){
-            compiledStatementSubtype = "3";
+        if(statementSubtype.compare("DeclIntStmt") == 0){
+            statementSubtype = "3";
         }
 
-
-        if(compiledStatementSubtype.compare("CompStmt") == 0){
-            compiledStatementSubtype = "7";
+        if(statementSubtype.compare("DeclArrStmt") == 0){
+            statementSubtype = "4";
         }
 
-
-        if(compiledStatementSubtype.compare("JMoreStmt") == 0){
-            compiledStatementSubtype = "9";
+        if(statementSubtype.compare("MovStmt") == 0){
+            statementSubtype = "5";
         }
 
-
-        if(compiledStatementSubtype.compare("JumpStmt") == 0){
-            compiledStatementSubtype = "11";
+        if(statementSubtype.compare("AddStmt") == 0){
+            statementSubtype = "6";
         }
 
-
-        if(compiledStatementSubtype.compare("EndStmt") == 0){
-            compiledStatementSubtype = "12";
+        if(statementSubtype.compare("CompStmt") == 0){
+            statementSubtype = "7";
         }
 
-        sprintf(sqlstmt, "INSERT INTO STATEMENT VALUES(%d, %s, %s);", i, compiledStatementSubtype.data(), identifierName);
+        if(statementSubtype.compare("JLessStmt") == 0){
+            statementSubtype = "8";
+        }
+
+        if(statementSubtype.compare("JMoreStmt") == 0){
+            statementSubtype = "9";
+        }
+
+        if(statementSubtype.compare("JEqStmt") == 0){
+            statementSubtype = "";
+        }
+
+        if(statementSubtype.compare("JumpStmt") == 0){
+            statementSubtype = "11";
+        }
+
+        if(statementSubtype.compare("EndStmt") == 0){
+            statementSubtype = "12";
+        }
+
+        sprintf(sqlstmt, "INSERT INTO STATEMENT VALUES(%d, %s, %s);", i, statementSubtype.data(), identifierName);
         sqlcli.exec(sqlstmt);
-        sqlstmt[0]='\0';
-        identifierName[0]='\0';
     }
     return true;
 }
 
 bool DatabaseConductor::persistOperands()
 {
-    int i;
-    char identifierName[64];
-    char sqlstmt[128];
-    std::string tempName;
-    QSqlQuery sqlcli;
-    Identifier* idPtr;
 
-    for(i=0; i<this->statement_vector->size(); i++){
-        sqlstmt[0]='\0';
-        identifierName[0]='\0';
-
-        if(this->statement_vector->at(i)->getOperand1() != nullptr){
-            this->statement_vector->at(i)->getOperand1()->getID(idPtr);
-            if(idPtr){
-                try {
-                    idPtr->getName(tempName);
-                    snprintf(identifierName, 63, "%s", tempName.data());
-                    identifierName[63]='\0';
-                    int example1 = 1;
-                    int example2 = 1;
-                    sprintf(sqlstmt, "INSERT INTO OPERAND VALUES(%d, %s, %d);", i, identifierName, 1);
-                    sqlcli.exec(sqlstmt);
-                    sqlstmt[0]='\0';
-                }
-                catch (int exception)
-                {
-                }
-            }
-        }
-
-        if(this->statement_vector->at(i)->getOperand2() != nullptr){
-            this->statement_vector->at(i)->getOperand2()->getID(idPtr);
-            if(idPtr != nullptr){
-                tempName = idPtr->getNameValue();
-                snprintf(identifierName, 63, "%s", tempName.data());
-                identifierName[63]='\0';
-                sprintf(sqlstmt, "INSERT INTO OPERAND VALUES(%d, %s, %d);", i, idPtr->getNameValue().data(), 2);
-                sqlcli.exec(sqlstmt);
-                sqlstmt[0]='\0';
-            }
-        }
-
-    }
     return true;
 }
 
 bool DatabaseConductor::restoreIdentifiers()
 {
-    /**
-     *
-     **/
-    QSqlQuery sqlcli;
 
-    sqlcli.exec("SELECT NAME, SUBTYPE, VALUE FROM IDENTIFIER;");
-    if(sqlcli.first()){
-        do{
-            std::string name = sqlcli.value(0).toString().toStdString();
-            Identifier* newIdentifierPtr = nullptr;
-            if(sqlcli.value(1).toInt()==1){
-                newIdentifierPtr = new Label(name);
-            }
-            else if(sqlcli.value(1).toInt()==2){
-                newIdentifierPtr = new Variable(name);
-            }
-            if(newIdentifierPtr != nullptr){
-                identifier_vector->push_back(newIdentifierPtr);
-            }
-        }while(sqlcli.next());
-    }
     return true;
 }
 
 bool DatabaseConductor::restoreStatements()
 {
-    /**
-     *
-     **/
-    QSqlQuery sqlcli;
-    int i;
-
-    sqlcli.exec("SELECT SID, SUBTYPE, LABEL FROM STATEMENT;");
-    if(sqlcli.first()){
-        do{
-            Statement* newStatementPtr = nullptr;
-            if(sqlcli.value(1).toInt()==1){
-                newStatementPtr = new ReadStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==2){
-                newStatementPtr = new PrintStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==3){
-                newStatementPtr = new DeclIntStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==4){
-                newStatementPtr = new DeclArrStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==5){
-                newStatementPtr = new MovStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==6){
-                newStatementPtr = new AddStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==7){
-                newStatementPtr = new CompStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==8){
-                newStatementPtr = new JLessStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==9){
-                newStatementPtr = new JMoreStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==10){
-                newStatementPtr = new JEqStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==11){
-                newStatementPtr = new JumpStmt(this->program);
-            }
-            else if(sqlcli.value(1).toInt()==12){
-                newStatementPtr = new EndStmt(this->program);
-            }
-            if(newStatementPtr != nullptr){
-                if(!sqlcli.value(2).isNull()){
-                    for(i=0; i< this->identifier_vector->size(); i++){
-                        if(this->identifier_vector->at(i)->getNameValue().compare(sqlcli.value(2).toString().toStdString()) == 0){
-                            newStatementPtr->setLabel((Label *) this->identifier_vector->at(i));
-                        }
-                    }
-                }
-                this->statement_vector->push_back(newStatementPtr);
-            }
-        }while(sqlcli.next());
-        return true;
-    }
-    else{
-        return false;
-    }
+    return true;
 }
 
 bool DatabaseConductor::restoreOperands()
 {
-    /**
-     *
-     **/
-    QSqlQuery sqlcli;
-    int i;
 
-    sqlcli.exec("SELECT SID, IDENTIFIER_NAME, OPERNUM FROM OPERAND;");
-    if(sqlcli.first()){
-        do{
-            Statement* statementPtr = nullptr;
-            if(!sqlcli.value(0).isNull() && this->statement_vector->at(sqlcli.value(0).toInt()) != nullptr){
-                statementPtr = this->statement_vector->at(sqlcli.value(0).toInt());
-            }
-            if(statementPtr != nullptr){
-                if(!sqlcli.value(1).isNull() && !sqlcli.value(2).isNull()){
-                    for(i=0; i< this->identifier_vector->size(); i++){
-                        if(this->identifier_vector->at(i)->getNameValue().compare(sqlcli.value(1).toString().toStdString()) == 0){
-                            if(sqlcli.value(2).value<int>() == 1){
-                                statementPtr->setOperand1(new Operand(this->identifier_vector->at(i)));
-                            }
-                            else if(sqlcli.value(2).value<int>() == 2){
-                                statementPtr->setOperand2(new Operand(this->identifier_vector->at(i)));
-                            }
-                        }
-                    }
-                }
-            }
-        }while(sqlcli.next());
-    }
     return true;
 }
