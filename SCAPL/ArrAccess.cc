@@ -1,4 +1,5 @@
 #include "ArrAccess.h"
+#include "Program.h"
 
 ArrAccess::ArrAccess(ArrayVariable *a, std::string acc, Program *m) {
     arr = a;
@@ -27,6 +28,10 @@ IntegerVariable * ArrAccess::getVar() {
     Literal *lv;
     ArrAccess *av;
     IntegerVariable *iv;
+
+    lv = nullptr;
+    av = nullptr;
+    iv = nullptr;
 
     // TODO: Go through access value 
     if(std::isdigit(access[0])) {
