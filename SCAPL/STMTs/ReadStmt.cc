@@ -1,4 +1,3 @@
-
 #include "ReadStmt.h"
 #include "../Program.h"
 
@@ -57,9 +56,4 @@ void ReadStmt::run() {
  //  std:;in stuff
  // set it to the value
 
-}
-
-std::string ReadStmt::getName() {
-  std::string n = "ReadStmt";
-  return(n);
 }

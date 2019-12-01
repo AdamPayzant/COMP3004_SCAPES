@@ -1,4 +1,3 @@
-
 #include "EndStmt.h"
 #include "../Program.h"
 
@@ -21,9 +20,4 @@ void EndStmt::compile(std::string &name) {
 
 void EndStmt::run() {
 
-}
-
-std::string EndStmt::getName() {
-  std::string n = "EndStmt";
-  return(n);
 }

@@ -1,4 +1,3 @@
-
 #include "JMoreStmt.h"
 #include "../Program.h"
 
@@ -23,9 +22,4 @@ void JMoreStmt::run() {
     if(master->getCFlag() == 1) {
         master->changeStmt(target);
     }
-}
-
-std::string JMoreStmt::getName() {
-  std::string n = "JMoreStmt";
-  return(n);
 }

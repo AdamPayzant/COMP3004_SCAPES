@@ -1,4 +1,3 @@
-
 #include "JumpStmt.h"
 #include "../Program.h"
 
@@ -24,9 +23,4 @@ void JumpStmt::compile(std::string &line) {
 
 void JumpStmt::run() {
     master->changeStmt(target);
-}
-
-std::string JumpStmt::getName() {
-  std::string n = "JumpStmt";
-  return(n);
 }

@@ -1,4 +1,3 @@
-
 #include "PrintStmt.h"
 #include "../Program.h"
 
@@ -60,15 +59,8 @@ void PrintStmt::compile(std::string &line) {
 void PrintStmt::run() {
     /*
     Std::String s;
-
     s=std::to_string(o1.getValue());
     master->addPrint(s);
     */
     master->addPrint(o1->getOut());
-}
-
-
-std::string PrintStmt::getName() {
-  std::string n = "PrintStmt";
-  return(n);
 }
