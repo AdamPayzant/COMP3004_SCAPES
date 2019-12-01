@@ -117,8 +117,49 @@ bool DatabaseConductor::persistProgramObjects(std::vector<Identifier*>* identifi
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (11, 'JUMPSTMT');");
   sqlcli.exec("INSERT INTO STATEMENT_TYPE VALUES (12, 'ENDSTMT');");
 
+  std::string variable_name = "a";
+  this->identifier_vector->push_back(new IntegerVariable(variable_name));
+  this->statement_vector->push_back(new DeclIntStmt(this->program));
+  this->statement_vector->at(0)->setOperand1(new Operand(this->identifier_vector->at(0)));
+
+  variable_name = "b";
+  this->identifier_vector->push_back(new IntegerVariable(variable_name));
+  this->statement_vector->push_back(new DeclIntStmt(this->program));
+  this->statement_vector->at(1)->setOperand1(new Operand(this->identifier_vector->at(1)));
+
+  this->statement_vector->push_back(new ReadStmt(this->program));
+  this->statement_vector->at(2)->setOperand1(new Operand(this->identifier_vector->at(0)));
+
+  this->statement_vector->push_back(new ReadStmt(this->program));
+  this->statement_vector->at(3)->setOperand1(new Operand(this->identifier_vector->at(1)));
+
+  this->statement_vector->push_back(new CompStmt(this->program));
+  this->statement_vector->at(4)->setOperand1(new Operand(this->identifier_vector->at(0)));
+  this->statement_vector->at(4)->setOperand1(new Operand(this->identifier_vector->at(1)));
+
+  variable_name = "L1";
+  this->identifier_vector->push_back(new Label(variable_name));
+  this->statement_vector->push_back(new JMoreStmt(this->program));
+  this->statement_vector->at(5)->setOperand1(new Operand(this->identifier_vector->at(2)));
+
+  this->statement_vector->push_back(new PrintStmt(this->program));
+  this->statement_vector->at(6)->setOperand1(new Operand(this->identifier_vector->at(1)));
+
+  variable_name = "L2";
+  this->identifier_vector->push_back(new Label(variable_name));
+  this->statement_vector->push_back(new JumpStmt(this->program));
+  this->statement_vector->at(7)->setOperand1(new Operand(this->identifier_vector->at(3)));
+
+  this->statement_vector->push_back(new PrintStmt(this->program));
+  this->statement_vector->at(8)->setOperand1(new Operand(this->identifier_vector->at(0)));
+  this->statement_vector->at(8)->setLabel((Label *) this->identifier_vector->at(2));
+
+  this->statement_vector->push_back(new EndStmt(this->program));
+  this->statement_vector->at(9)->setLabel((Label *) this->identifier_vector->at(3));
+
+
   this->persistIdentifiers();
-  //this->persistStatements();
+  this->persistStatements();
   
   this->connector->disconnect();
   delete this->connector;
@@ -438,7 +479,7 @@ bool DatabaseConductor::persistStatements()
         }
 
         if(statementSubtype.compare("JEqStmt") == 0){
-            statementSubtype = "";
+            statementSubtype = "10";
         }
 
         if(statementSubtype.compare("JumpStmt") == 0){
@@ -449,7 +490,7 @@ bool DatabaseConductor::persistStatements()
             statementSubtype = "12";
         }
 
-        sprintf(sqlstmt, "INSERT INTO STATEMENT VALUES(%d, %s, %s);", i, statementSubtype.data(), identifierName);
+        sprintf(sqlstmt, "INSERT INTO STATEMENT VALUES(%d, %s, '%s');", i, statementSubtype.data(), identifierName);
         sqlcli.exec(sqlstmt);
     }
     return true;
@@ -476,4 +517,10 @@ bool DatabaseConductor::restoreOperands()
 {
 
     return true;
+}
+
+
+//TEMPORARY FOR TESTING
+void DatabaseConductor::setProgram(Program* program){
+    this->program = program;
 }

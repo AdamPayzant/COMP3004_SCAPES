@@ -148,6 +148,10 @@ class DatabaseConductor
      **/
     void setFilename(string);
 
+
+    //TEMPORARY FOR TESTING
+    void setProgram(Program*);
+
   private:
     /**
      * Pointer to object used to establish and maintain the connection the SQLite Database.
