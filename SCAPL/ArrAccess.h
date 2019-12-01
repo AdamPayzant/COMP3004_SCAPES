@@ -22,6 +22,8 @@ class ArrAccess: public Identifier, public Value {
         int getVal();
         std::string getOut();
         void setVal(int);
+        ArrayVariable* getParent();
+        std::string getAccess();
     private:
         IntegerVariable* getVar();
         ArrayVariable* arr;
