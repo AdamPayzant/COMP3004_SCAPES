@@ -24,6 +24,14 @@ void ArrAccess::setVal(int v) {
     getVar()->setVal(v);
 }
 
+ArrayVariable* ArrAccess::getParent(){
+    return arr;
+}
+
+std::string ArrAccess::getAccess(){
+    return access;
+}
+
 IntegerVariable * ArrAccess::getVar() {
     Literal *lv;
     ArrAccess *av;

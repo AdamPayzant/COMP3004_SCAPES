@@ -12,16 +12,16 @@ Operand::~Operand() {
     }
 }
 
-void Operand::getID(Identifier *i) {
-    i = id;
+void Operand::getID(Identifier** i) {
+    *i = id;
 }
 
 Identifier* Operand::getIDPtr() {
     return id;
 }
 
-void Operand::setID(Identifier *i) {
-    id = i;
+void Operand::setID(Identifier* i) {
+    i = id;
 }
 
 int Operand::getVal() {
