@@ -8,11 +8,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "Program.h"
 #include "Value.h"
 #include "ArrayVariable.h"
 #include "Identifier.h"
+#include "IntegerVariable.h"
+#include "Literal.h"
 
+class Program;
 class ArrAccess: public Identifier, public Value {
     public:
         ArrAccess(ArrayVariable *, std::string, Program *);

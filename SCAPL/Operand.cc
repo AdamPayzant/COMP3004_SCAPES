@@ -1,4 +1,3 @@
-
 #include "Operand.h"
 
 Operand::Operand(Identifier *i) {

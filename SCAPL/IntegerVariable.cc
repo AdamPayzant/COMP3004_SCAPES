@@ -1,6 +1,6 @@
 #include "IntegerVariable.h"
 
-IntegerVariable::IntegerVariable() {
+IntegerVariable::IntegerVariable(){
     subtype = "ANONIntegerVariable";
     val = 0;
 }

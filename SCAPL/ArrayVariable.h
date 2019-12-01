@@ -6,9 +6,9 @@
 #include "Variable.h"
 #include "Value.h"
 #include "Literal.h"
-#include "ArrAccess.h"
 #include "IntegerVariable.h"
 
+class ArrAccess;
 class ArrayVariable: public Variable {
     public:
         ArrayVariable(std::string &);
