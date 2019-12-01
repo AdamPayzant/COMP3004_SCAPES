@@ -2,11 +2,12 @@
 
 Literal::Literal(int v) {
     val = v;
-    subtype = "Literal";
+    subtype = "LiteralInt";
 }
 
 Literal::Literal(std::string s) {
     str = s;
+    subtype = "LiteralString";
 }
 
 Literal::~Literal() {
