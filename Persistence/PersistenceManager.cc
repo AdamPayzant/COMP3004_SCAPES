@@ -30,3 +30,10 @@ bool PersistenceManager::loadFromFile(string& editorText, string& filename)
 {
   return this->fileSupervisor.loadFromFile(editorText, filename);
 }
+
+
+
+//TEMPORARY FOR TESTING
+void PersistenceManager::setDBCProgram(Program* program){
+    this->databaseConductor.setProgram(program);
+}

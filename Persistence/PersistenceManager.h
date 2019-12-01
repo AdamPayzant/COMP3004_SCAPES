@@ -68,6 +68,10 @@ class PersistenceManager
      **/
     bool loadFromFile(string&, string&);
 
+
+    //TEMPORARY FOR TESTING
+    void setDBCProgram(Program*);
+
   private:
     /**
      * Object used to manage operations relating to object persistence in the database
