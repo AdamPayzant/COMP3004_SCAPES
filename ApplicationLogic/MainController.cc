@@ -63,7 +63,8 @@ void MainController::loadSourceCode()
 void MainController::compileSourceCode()
 {
     this->program = new Program(mainWindow->getProgramFilename());
-    program->compile();
+    //program->compile();
+    this->persistenceManager->setDBCProgram(this->program);
     this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
 }
 
