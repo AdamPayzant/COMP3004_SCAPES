@@ -15,6 +15,10 @@ int ArrAccess::getVal() {
     return(getVar()->getVal());
 }
 
+std::string ArrAccess::getOut() {
+    return(std::to_string(getVar()->getVal()));
+}
+
 void ArrAccess::setVal(int v) {
     getVar()->setVal(v);
 }

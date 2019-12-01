@@ -24,6 +24,11 @@ void PrintStmt::compile(std::string &line) {
         Literal *temp = new Literal(v);
         o1 = new Operand(temp);
     }
+    else if(line[4] == '\"') {
+        std::string str = line.substr(5, i - 4);
+        Literal *temp = new Literal(str);
+        o1 = new Operand(temp);
+    }
     else if(line[4] == '$') {
         // Array Case
         std::string arrName;
@@ -64,8 +69,7 @@ void PrintStmt::run() {
     s=std::to_string(o1.getValue());
     master->addPrint(s);
     */
-    std::string val = std::to_string(o1->getVal());
-    master->addPrint(val);
+    master->addPrint(o1->getOut());
 }
 
 

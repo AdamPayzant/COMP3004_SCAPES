@@ -12,6 +12,7 @@ class IntegerVariable: public Variable, public Value {
         IntegerVariable();
         ~IntegerVariable();
         int getVal();
+        std::string getOut();
         void setVal(int);
     private:
         int val;

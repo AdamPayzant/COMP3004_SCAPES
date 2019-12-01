@@ -54,6 +54,7 @@ class Operand {
         void setID(Identifier *);
 
         int getVal();
+        std::string getOut();
         void setVal(int);
         
     private:

@@ -30,6 +30,11 @@ int Operand::getVal() {
     return(temp->getVal());
 }
 
+std::string Operand::getOut() {
+    Value *temp = (Value *) id;
+    return(temp->getOut());
+}
+
 void Operand::setVal(int v) {
     Value *temp = (Value *) id;
     temp->setVal(v);

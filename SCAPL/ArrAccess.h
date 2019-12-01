@@ -18,6 +18,7 @@ class ArrAccess: public Identifier, public Value {
         ArrAccess(ArrayVariable *, std::string, Program *);
         ~ArrAccess();
         int getVal();
+        std::string getOut();
         void setVal(int);
     private:
         IntegerVariable* getVar();
