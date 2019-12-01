@@ -12,6 +12,14 @@ ArrAccess::~ArrAccess() {
 }
 
 int ArrAccess::getVal() {
+    return(getVar()->getVal());
+}
+
+void ArrAccess::setVal(int v) {
+    getVar()->setVal(v);
+}
+
+IntegerVariable * ArrAccess::getVar() {
     Literal *lv;
     ArrAccess *av;
     IntegerVariable *iv;
@@ -19,14 +27,26 @@ int ArrAccess::getVal() {
     // TODO: Go through access value 
     if(std::isdigit(access[0])) {
         // Literal access
-        Literal val(std::stoi(access));
+        lv = new Literal(std::stoi(access));
     }
     else if(access[0] == '$') {
         // OH GOD CASCADING ARRAYS
         std::vector<Identifier*> *ids = master->getIds();
-        int i;
-        for(i = 2; i < access.size(); i++) {
-            if(access[i] == '+') {
+        std::string arrName;
+        std::string accessName;
+        int j;
+        for(j = 2; j < access.size(); j++) {
+            if(access.at(j) == '+') {
+                arrName = access.substr(1, j - 1);
+            }
+        }
+        accessName = access.substr(j + 1, access.size() - 1 - j);
+        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
+            std::string an;
+            (*iter)->getName(an);
+            if(an.compare(arrName) == 0) {
+                ArrayVariable *downcast = (ArrayVariable *) (*iter);
+                av = new ArrAccess(downcast, accessName, master);
                 break;
             }
         }
@@ -45,15 +65,15 @@ int ArrAccess::getVal() {
     IntegerVariable* temp;
     if(lv != nullptr) {
         temp = (IntegerVariable *) arr->getAt(lv->getVal());
+        delete(lv);
     }
     else if(iv != nullptr) {
         temp = (IntegerVariable *) arr->getAt(iv->getVal());
+        // Don't delete iv because it's shared with the main identifiers
     }
     else {
         temp = (IntegerVariable *) arr->getAt(av->getVal());
+        delete(av);
     }
-}
-
-void ArrAccess::setVal(int v) {
-    
+    return temp;
 }

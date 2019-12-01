@@ -20,6 +20,7 @@ class ArrAccess: public Identifier, public Value {
         int getVal();
         void setVal(int);
     private:
+        IntegerVariable* getVar();
         ArrayVariable* arr;
         std::string access;
         Program *master;
