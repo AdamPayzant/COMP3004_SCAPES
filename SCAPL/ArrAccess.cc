@@ -31,7 +31,7 @@ IntegerVariable * ArrAccess::getVar() {
     // TODO: Go through access value 
     if(std::isdigit(access[0])) {
         // Literal access
-        lv = new Literal(std::stoi(access));
+        lv = new Literal(access);
     }
     else if(access[0] == '$') {
         // OH GOD CASCADING ARRAYS
