@@ -35,6 +35,10 @@ IntegerVariable * ArrAccess::getVar() {
     }
     else if(access[0] == '$') {
         // OH GOD CASCADING ARRAYS
+        /*
+        I, Edward Adam Payzant, take sole responsibility for the following nightmare of code.
+        The rest of the group is innocent, and unaware of this creation. I accept any potential execution that may be punishment for this mess
+        */
         std::vector<Identifier*> *ids = master->getIds();
         std::string arrName;
         std::string accessName;

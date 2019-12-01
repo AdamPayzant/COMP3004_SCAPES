@@ -72,6 +72,7 @@ void MovStmt::compile(std::string &line) {
             if(an.compare(arrName) == 0) {
                 ArrayVariable *downcast = (ArrayVariable *) (*iter);
                 ArrAccess *temp = new ArrAccess(downcast, accessName, master);
+                o1 = new Operand(temp);
                 break;
             }
         }
@@ -103,6 +104,7 @@ void MovStmt::compile(std::string &line) {
             if(an.compare(arrName) == 0) {
                 ArrayVariable *downcast = (ArrayVariable *) (*iter);
                 ArrAccess *temp = new ArrAccess(downcast, accessName, master);
+                o2 = new Operand(temp);
                 break;
             }
         }
