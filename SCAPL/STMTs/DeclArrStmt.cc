@@ -1,4 +1,3 @@
-
 #include "DeclArrStmt.h"
 #include "../Program.h"
 
@@ -11,72 +10,67 @@ DeclArrStmt::DeclArrStmt(Program *m)
     subtype = "DeclArrStmt";
 }
 
-std::string DeclArrStmt::getName() {
-  std::string n = "DeclArrStmt";
-  return(n);
-}
-
-Operand* DeclArrStmt::getOperand1()
-{
-    return this->o1;
-}
-
-
-Operand* DeclArrStmt::getOperand2()
-{
-    return this->o2;
-}
-
-Label* DeclArrStmt::getLabel()
-{
-    return this->label;
-}
-
-
-void DeclArrStmt::setLabel(Label *l) {
-  label = l;
-};
 void DeclArrStmt::compile(std::string &line){
-  // TODO: REDO
-  // Syntax: dca <Name> <Size>
-  // O1 is going to store the array, it's gross I know but it will make things more effecient
-  // O2 stores the size
-  /*
-  std::string name = line.substr(4, line.size()-4);
-  std::vector<Identifier*> *ids;
-  ids = master->getIds();
-  ids->push_back(new ArrayVariable(name));
-  */
-
+    // TODO
+    // Syntax dca <name> <size>
     int i;
-    std::vector<Identifier*> *ids = master->getIds();
-
     for(i = 5; i < line.size(); i++) {
         if(line[i] == ' ') {
             break;
         }
     }
-    std::string name = line.substr(3, i - 4);
-    ArrayVariable *temp;
-    ids->push_back(temp);
-    o1 = new Operand(temp);
 
-    if(std::isdigit(line[i+1])) {
-        o2 = new Operand(stoi(line.substr(i, line.size() - 1 - i)));
+    // Creates the array in Operand 1
+    std::string name = line.substr(4, i - 5);
+    
+    std::vector<Identifier*> *ids;
+    ids = master->getIds();
+    ArrayVariable *temp = new ArrayVariable(name);
+    o1 = new Operand(temp);
+    ids->push_back(temp);
+
+    // Gets the size of the array in Operand 2
+    if(isdigit(line[i+1])) {
+        // Literal case
+        Literal *temp = new Literal(line.substr(5, i - 4));
+        o1 = new Operand(temp);
+    }
+    else if(line[i+1] == '$') {
+        // Array case
+        i++;
+        std::string arrName;
+        std::string accessName;
+        int j;
+        for(j = i; j < line.size(); j++) {
+            if(line.at(j) == '+') {
+                arrName = line.substr(i + 1, j - i - 1);
+                break;
+            }
+        }
+        accessName = line.substr(j + 1, line.size() - 1 - j);
+        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
+            std::string an;
+            (*iter)->getName(an);
+            if(an.compare(arrName) == 0) {
+                ArrayVariable *downcast = (ArrayVariable *) (*iter);
+                ArrAccess *temp = new ArrAccess(downcast, accessName, master);
+                break;
+            }
+        }
     }
     else {
+        // Variable
         for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
             std::string temp;
             (*iter)->getName(temp);
-            if(temp.compare(line.substr(i, line.size() - i - 1)) == 0) {
+            if(temp.compare(line.substr(i + 1, line.size() - i - 1)) == 0) {
                 o2 = new Operand(*iter);
             }
         }
     }
 }
 
-
 void DeclArrStmt::run(){
     ArrayVariable *temp = (ArrayVariable *) o1->getIDPtr();
     temp->create(o2->getVal());
-} 
+}
