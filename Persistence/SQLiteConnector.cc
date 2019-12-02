@@ -22,6 +22,12 @@ void SQLiteConnector::connect()
 void SQLiteConnector::disconnect()
 {
   if(database.isOpen()){
+    database.commit();
     database.close();
+    QSqlDatabase::removeDatabase("SQLITE");
   }
+}
+
+QSqlDatabase& SQLiteConnector::getSQLiteDatabase(){
+    return database;
 }
