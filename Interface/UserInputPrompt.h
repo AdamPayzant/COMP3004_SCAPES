@@ -1,14 +1,14 @@
-#ifndef SAVEWINDOW_H
-#define SAVEWINDOW_H
+#ifndef USERINPUTPROMPT_H
+#define USERINPUTPROMPT_H
 
 #include <QDialog>
 
-#include "ui_SaveWindow.h"
+#include "ui_UserInputPrompt.h"
 
 using namespace std;
 
 namespace Ui {
-    class SaveWindow;
+    class UserInputPrompt;
 }
 /**
  * Program: School of Computer Science Assembly Programming Environment System
@@ -23,7 +23,12 @@ namespace Ui {
  * Version 2.0:
  * File: SaveWindow.h
  * Author: Mathieu Leblanc
- * Date 12/11/2019
+ * Date: 12/11/2019
+ *
+ * Version 3.0:
+ * File: UserInputPrompt
+ * Author: Mathieu Leblanc
+ * Date: 05/12/2019
  *
  * File Purpose: Used to create a save window where the user can specify the filename
  * they'd like to use for the file that will store their source code in secondary memory.
@@ -91,7 +96,7 @@ namespace Ui {
  *
  *
  **/
-class SaveWindow : public QDialog
+class UserInputPrompt : public QDialog
 {
     Q_OBJECT
 
@@ -102,30 +107,30 @@ class SaveWindow : public QDialog
          * - Pointer to QWidget object corresponding to the Widget that
          * contains the object
          **/
-        explicit SaveWindow(QWidget* parent = nullptr);
+        explicit UserInputPrompt(QWidget* parent = nullptr, std::string = "Placeholder Text");
 
         /**
          * Destructor
          **/
-        ~SaveWindow();
+        ~UserInputPrompt();
 
     private slots:
         /**
          * Handler function used to delegate save operation once accepted.
          **/
-        void on_confirmationBar_accepted();
+        void on_userPromptConfirmationBar_accepted();
 
         /**
          * Handler function used to discard save operation once rejected.
          **/
-        void on_confirmationBar_rejected();
+        void on_userPromptConfirmationBar_rejected();
 
     private:
         /**
          * Pointer to the user interface model bound to the current SaveWindow object through
          * the namespace Ui
          **/
-        Ui::SaveWindow* ui;
+        Ui::UserInputPrompt* ui;
 };
 
 #endif

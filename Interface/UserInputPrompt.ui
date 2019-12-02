@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SaveWindow</class>
- <widget class="QDialog" name="SaveWindow">
+ <class>UserInputPrompt</class>
+ <widget class="QDialog" name="UserInputPrompt">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="confirmationBar">
+  <widget class="QDialogButtonBox" name="userPromptConfirmationBar">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -29,7 +29,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QTextEdit" name="filenameTextEdit">
+  <widget class="QTextEdit" name="userPromptTextEdit">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -39,7 +39,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="saveWindowInst">
+  <widget class="QLabel" name="userPromptLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Please provide the filename you'd like to use to store the source code.</string>
+    <string>Placeholder Text: Specific text will prompt for input.</string>
    </property>
    <property name="wordWrap">
     <bool>true</bool>

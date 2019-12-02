@@ -8,10 +8,11 @@
 #include <QInputDialog>
 #include <QFile>
 #include <iostream>
+#include <stdio.h>
 
 #include "./../ui_MainWindow.h"
 #include "./../ApplicationLogic/MainController.h"
-#include "SaveWindow.h"
+#include "UserInputPrompt.h"
 using namespace std;
 
 namespace Ui {
@@ -122,12 +123,14 @@ class MainWindow : public QMainWindow
          *
          * Function used to retrieve the text from the Editor textbox
          **/
-        string getEditorText();
+        string& getEditorText();
+
+        void setEditorText(std::string&);
 
         /**
          * Function used to set the text for the Editor textbox
          **/
-        void setEditorText(string text);
+        void refreshEditorText();
 
         /**
          * Function used to set the text for the feedback textbox
@@ -153,6 +156,12 @@ class MainWindow : public QMainWindow
          * Setter function for the program filename
          **/
         void setProgramFilename(string);
+
+        string& getTempUserInput();
+
+        void setTempUserInput(string&);
+
+        void prepareLoadedWindowState();
 
     private slots:
         /**
@@ -227,6 +236,10 @@ class MainWindow : public QMainWindow
          * Function used to set the MainWindow to its initial state.
          **/
         void prepareInitialWindowState();
+
+        string editorSnapshot;
+
+        string tempUserInput;
 
 };
 
