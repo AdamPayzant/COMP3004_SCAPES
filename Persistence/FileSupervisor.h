@@ -2,10 +2,8 @@
 #define FILESUPERVISOR_H
 
 #include <ios>
-#include <iostream>
 #include <fstream>
 #include <string>
-#include <exception>
 
 using namespace std;
 
@@ -29,8 +27,6 @@ using namespace std;
  * of COMP2404.
  * File operations based on descriptions and examples presented on specific pages
  * found on cplusplus.com[1][2][3].
- * Exception operations based on descriptions and examples presented on specific pages
- * found on cplusplus.com[4]
  * All rights and credit remain with referenced definitions and samples from original authors.
  * References:
  * [1] cplusplus.com.(2019).Input/output with files.[online]
@@ -42,9 +38,6 @@ using namespace std;
  * [3] cplusplus.com.(2019).std::ifstream.[online]
  *      Available at: http://www.cplusplus.com/reference/fstream/ifstream/ 
  *      [Accessed 12 Nov. 2019].
- * [4] cplusplus.com.(2019).std::exception.[online]
- *      Available at: http://www.cplusplus.com/reference/exception/exception/
- *      [Accessed 02 Dec. 2019].
  **/
 class FileSupervisor
 {
@@ -67,7 +60,7 @@ class FileSupervisor
      * - string value correlating to either the filename or path of the file that will
      *   be saved to secondary memory containing the contents of parameter 1.
      **/
-    bool saveToFile(string&, string&);
+    bool saveToFile(string&, string);
 
     /**
      * Function used to load the contents of a file into the referenced string (parameter 1).
@@ -76,7 +69,7 @@ class FileSupervisor
      *   filename or path is provided as parameter 2.
      * - Filename or path to the file whose contents we'd like to load into the referenced string (parameter 1).
      **/
-    bool loadFromFile(string&, string&);
+    bool loadFromFile(string&, string);
 };
 
 #endif

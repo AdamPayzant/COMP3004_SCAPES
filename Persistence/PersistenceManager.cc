@@ -20,19 +20,13 @@ bool PersistenceManager::restoreProgramObjects(Program* program, std::vector<Ide
   return this->databaseConductor.restoreProgramObjects(program, identifier_vector, statement_vector, filename);
 }
 
-bool PersistenceManager::saveToFile(string& editorSnapshot, string& filename)
+bool PersistenceManager::saveToFile(string editorText, string& filename)
 {
-  return this->fileSupervisor.saveToFile(editorSnapshot, filename);
+  sourceCodeSnapshot=editorText;
+  return this->fileSupervisor.saveToFile(sourceCodeSnapshot, filename);
 }
 
-bool PersistenceManager::loadFromFile(string& editorSnapshot, string& filename)
+bool PersistenceManager::loadFromFile(string& editorText, string& filename)
 {
-  return this->fileSupervisor.loadFromFile(editorSnapshot, filename);
-}
-
-
-
-//TEMPORARY FOR TESTING
-void PersistenceManager::setDBCProgram(Program* program){
-    this->databaseConductor.setProgram(program);
+  return this->fileSupervisor.loadFromFile(editorText, filename);
 }

@@ -6,13 +6,11 @@
 
 class Literal: public Identifier, public Value {
     public:
-        Literal(std::string);
+        Literal(int);
         ~Literal();
         int getVal();
-        std::string getOut();
-        void setVal(int);
     private:
-        std::string str;
+        int val;
 };
 
 #endif

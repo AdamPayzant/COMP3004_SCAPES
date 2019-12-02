@@ -1,3 +1,4 @@
+
 #include "DeclIntStmt.h"
 #include "../Program.h"
 
@@ -16,13 +17,42 @@ DeclIntStmt::~DeclIntStmt() {
 
 void DeclIntStmt::compile(std::string &line) {
     std::string name = line.substr(4, line.size()-4);
-
+    while(name.at(0) == ' ') {
+        line.erase(name.begin());
+    }
     std::vector<Identifier*> *ids;
     ids = master->getIds();
-    ids->push_back(new IntegerVariable(name));
+    ids->push_back(new Variable(name));
 }
 
 
 void DeclIntStmt::run() {
 
 }
+
+
+std::string DeclIntStmt::getName() {
+  std::string n = "DeclIntStmt";
+  return(n);
+}
+
+Operand* DeclIntStmt::getOperand1()
+{
+    return this->o1;
+}
+
+
+Operand* DeclIntStmt::getOperand2()
+{
+    return this->o2;
+}
+
+Label* DeclIntStmt::getLabel()
+{
+    return this->label;
+}
+
+
+void DeclIntStmt::setLabel(Label *l) {
+  label = l;
+};
