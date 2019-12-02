@@ -17,14 +17,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-string MainWindow::getEditorText()
+string& MainWindow::getEditorText()
 {
-    return (ui->sourceTextWindow->toPlainText()).toUtf8().constData();
+    this->editorSnapshot = (ui->sourceTextWindow->toPlainText()).toUtf8().constData();
+    return editorSnapshot;
 }
 
-void MainWindow::setEditorText(string text)
+void MainWindow::setEditorText(std::string& newSnapshot)
 {
-    ui->sourceTextWindow->setText(QString::fromStdString(text));
+    this->editorSnapshot = newSnapshot;
+}
+
+void MainWindow::refreshEditorText()
+{
+    ui->sourceTextWindow->setText(QString::fromStdString(this->editorSnapshot));
 }
 
 void MainWindow::setFeedbackText(string text)
@@ -52,6 +58,16 @@ void MainWindow:: setProgramFilename(string newFilename)
     this->programFilename = newFilename;
 }
 
+string& MainWindow::getTempUserInput()
+{
+    return this->tempUserInput;
+}
+
+void MainWindow::setTempUserInput(string& tempInput)
+{
+    this->tempUserInput = tempInput;
+}
+
 void MainWindow::on_menuButtonNewOption_triggered()
 {
     ui->sourceTextWindow->setReadOnly(false);
@@ -73,35 +89,28 @@ void MainWindow::on_menuButtonNewOption_triggered()
 
 void MainWindow::on_menuButtonOpenOption_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("txt files (*.txt)"));
-    programFilename = fileName.toUtf8().constData();
-    mainController->clientRequestHandler("load");
-
-    ui->sourceTextWindow->setReadOnly(false);
-    ui->sourceTextWindow->setText("");
-    ui->sourceTextWindow->show();
-    QPalette feedbackPalette;
-    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
-    ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
-                                "To save your source file, please use the 'Save' menu option.\n"
-                                "To compile your source file, please use the 'Compile' menu option.\n"
-                                "Clarifications on program details or functionality can be found under the "
-                                "'Help' menu option of the menu bar.\n\n"
-                                "Please note that creating a new source file using the 'New' menu option without "
-                                "saving your current source file will result in the loss of any unsaved changes.");
-    ui->feedbackWindow->setPalette(feedbackPalette);
-    ui->menuButtonSaveOption->setEnabled(true);
-    ui->menuButtonCloseOption->setEnabled(true);
-    ui->menuButtonCompileOption->setEnabled(true);
-    ui->menuButtonRunOption->setEnabled(true);
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) of the source file you'd like to open:");
+    tempUserInput = "##_NOTVALID_##";
+    userInputPrompt->exec();
+    if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
+        ui->feedbackWindow->setText("Filename not provided or invalid.");
+    }else{
+        this->setProgramFilename(this->tempUserInput);
+        this->mainController->clientRequestHandler("load");
+    }
 }
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
-    SaveWindow* saveWindow = new SaveWindow(this);
-    ui->menuButtonCompileOption->setEnabled(true);
-    ui->menuButtonRunOption->setEnabled(true);
-    saveWindow->show();
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) to be used for the source file:");
+    tempUserInput = "##_NOTVALID_##";
+    userInputPrompt->exec();
+    if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
+        ui->feedbackWindow->setText("Filename not provided or invalid.");
+    }else{
+        this->setProgramFilename(this->tempUserInput);
+        this->mainController->clientRequestHandler("save");
+    }
 }
 
 void MainWindow::on_menuButtonCloseOption_triggered()
@@ -142,4 +151,17 @@ void MainWindow::prepareInitialWindowState()
     ui->menuButtonCloseOption->setEnabled(false);
     ui->menuButtonCompileOption->setEnabled(false);
     ui->menuButtonRunOption->setEnabled(false);
+}
+
+void MainWindow::prepareLoadedWindowState()
+{
+    ui->sourceTextWindow->setReadOnly(false);
+    ui->sourceTextWindow->show();
+    QPalette feedbackPalette;
+    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
+    ui->feedbackWindow->setPalette(feedbackPalette);
+    ui->menuButtonSaveOption->setEnabled(true);
+    ui->menuButtonCloseOption->setEnabled(true);
+    ui->menuButtonCompileOption->setEnabled(true);
+    ui->menuButtonRunOption->setEnabled(true);
 }
