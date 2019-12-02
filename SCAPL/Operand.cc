@@ -1,4 +1,3 @@
-
 #include "Operand.h"
 
 Operand::Operand(Identifier *i) {
@@ -13,19 +12,29 @@ Operand::~Operand() {
     }
 }
 
-void Operand::getID(Identifier *i) {
-    i = id;
+void Operand::getID(Identifier** i) {
+    *i = id;
 }
 
 Identifier* Operand::getIDPtr() {
     return id;
 }
 
-void Operand::setID(Identifier *i) {
-    id = i;
+void Operand::setID(Identifier* i) {
+    i = id;
 }
 
 int Operand::getVal() {
     Value *temp = (Value *) id;
     return(temp->getVal());
+}
+
+std::string Operand::getOut() {
+    Value *temp = (Value *) id;
+    return(temp->getOut());
+}
+
+void Operand::setVal(int v) {
+    Value *temp = (Value *) id;
+    temp->setVal(v);
 }
