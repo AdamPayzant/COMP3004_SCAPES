@@ -1,4 +1,5 @@
 #include "DeclArrStmt.h"
+#include "../Program.h"
 
 DeclArrStmt::DeclArrStmt(Program *m)
 {

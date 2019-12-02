@@ -1,4 +1,5 @@
 #include "AddStmt.h"
+#include "../Program.h"
 
 AddStmt::AddStmt(Program *m)
 {

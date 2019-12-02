@@ -20,15 +20,14 @@ bool PersistenceManager::restoreProgramObjects(Program* program, std::vector<Ide
   return this->databaseConductor.restoreProgramObjects(program, identifier_vector, statement_vector, filename);
 }
 
-bool PersistenceManager::saveToFile(string editorText, string& filename)
+bool PersistenceManager::saveToFile(string& editorSnapshot, string& filename)
 {
-  sourceCodeSnapshot=editorText;
-  return this->fileSupervisor.saveToFile(sourceCodeSnapshot, filename);
+  return this->fileSupervisor.saveToFile(editorSnapshot, filename);
 }
 
-bool PersistenceManager::loadFromFile(string& editorText, string& filename)
+bool PersistenceManager::loadFromFile(string& editorSnapshot, string& filename)
 {
-  return this->fileSupervisor.loadFromFile(editorText, filename);
+  return this->fileSupervisor.loadFromFile(editorSnapshot, filename);
 }
 
 

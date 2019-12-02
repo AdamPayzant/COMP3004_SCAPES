@@ -1,4 +1,5 @@
 #include "JMoreStmt.h"
+#include "../Program.h"
 
 JMoreStmt::JMoreStmt(Program *p) {
     o1 = nullptr;

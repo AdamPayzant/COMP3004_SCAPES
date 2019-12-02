@@ -53,11 +53,31 @@ void MainController::clientRequestHandler(string command)
 
 void MainController::saveSourceCode()
 {
-    persistenceManager->saveToFile(mainWindow->getEditorText(), mainWindow->getProgramFilename());
+    if(persistenceManager->saveToFile(this->mainWindow->getEditorText(), mainWindow->getProgramFilename())){
+        string tempString = "";
+        tempString.append("Save operation successful.\nFile ");
+        tempString.append(this->mainWindow->getProgramFilename().data());
+        tempString.append(".scapl saved to default directory.");
+        this->mainWindow->setFeedbackText(tempString);
+        this->mainWindow->prepareLoadedWindowState();
+    }else{
+        this->mainWindow->setFeedbackText("An Error occurred during the save operation.");
+    }
 }
 
 void MainController::loadSourceCode()
 {
+    if(persistenceManager->loadFromFile(this->editorSnapshot, mainWindow->getProgramFilename())){
+        this->mainWindow->refreshEditorText();
+        string tempString = "";
+        tempString.append("Open operation successful.\nFile ");
+        tempString.append(this->mainWindow->getProgramFilename().data());
+        tempString.append(".scapl opened from default directory.");
+        this->mainWindow->setFeedbackText(tempString);
+        this->mainWindow->prepareLoadedWindowState();
+    }else{
+        this->mainWindow->setFeedbackText("An Error occurred during the open operation.");
+    }
 }
 
 void MainController::compileSourceCode()

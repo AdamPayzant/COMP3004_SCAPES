@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <QTextEdit>
 using namespace std;
 
 #include "DatabaseConductor.h"
@@ -60,7 +61,7 @@ class PersistenceManager
      * Function used to delegate the operations required to save the contents of the editor textbox
      * into secondary memory as a SCAPL source file.
      **/
-    bool saveToFile(string, string&);
+    bool saveToFile(string&, string&);
 
     /**
      * Function used to delegate the operations required to load the contents of a SCAPL source file

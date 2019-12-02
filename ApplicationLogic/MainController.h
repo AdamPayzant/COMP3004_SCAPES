@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string.h>
 #include <string>
+#include <stdio.h>
 #include <vector>
 
 using namespace std;
@@ -104,6 +105,8 @@ class MainController
          * either compilation or execution.
          **/
         Program* program;
+
+        std::string editorSnapshot;
 };
 
 #endif
