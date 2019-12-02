@@ -12,18 +12,22 @@ jmp L1
 L1: dci a 1
 dca b 1
 mov a 1
-rdi $b1
+rdi $b+1
 # loop start adds 1 each time
 L2: add a 1
 prt "jumped to loop"
-cmp a $b1
+cmp a $b+1
 jls L2
 # if equal move to L3
 jeq L3
 L3: add a 1
 cmp a b
 jmr L4
+jls L5
 L4: prt "a is greater than b"
-prt a
+jmp L6
+L5: prt "a is smaller than b"
+jmp L6
+L6: prt a
 prt b
 end
