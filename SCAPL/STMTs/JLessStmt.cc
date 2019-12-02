@@ -1,4 +1,5 @@
 #include "JLessStmt.h"
+#include "../Program.h"
 
 JLessStmt::JLessStmt(Program *m)
 {

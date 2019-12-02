@@ -1,4 +1,5 @@
 #include "CompStmt.h"
+#include "../Program.h"
 
 CompStmt::CompStmt(Program *p) {
     o1 = nullptr;

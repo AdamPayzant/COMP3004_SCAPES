@@ -1,4 +1,5 @@
 #include "MovStmt.h"
+#include "../Program.h"
 
 MovStmt::MovStmt(Program *m)
 {
