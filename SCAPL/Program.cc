@@ -1,10 +1,18 @@
 
 #include "Program.h"
+#include "./../ApplicationLogic/MainController.h"
 
 Program::Program(std::string &f) {
     filename = f;
     stmts = new std::vector<Statement*>();
     ids = new std::vector<Identifier*>();
+}
+
+Program::Program(std::string &f, MainController* controllerPtr) {
+    filename = f;
+    stmts = new std::vector<Statement*>();
+    ids = new std::vector<Identifier*>();
+    this->controller = controllerPtr;
 }
 
 Program::~Program() {
@@ -319,4 +327,8 @@ int Program::getCFlag() {
 
 void Program::setCFlag(int v) {
     comparisonFlag = v;
+}
+
+std::string& Program::getUserInput(){
+    return this->controller->promptUserForInput();
 }
