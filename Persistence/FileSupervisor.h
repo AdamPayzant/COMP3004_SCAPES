@@ -60,7 +60,7 @@ class FileSupervisor
      * - string value correlating to either the filename or path of the file that will
      *   be saved to secondary memory containing the contents of parameter 1.
      **/
-    bool saveToFile(string&, string);
+    bool saveToFile(string&, string&);
 
     /**
      * Function used to load the contents of a file into the referenced string (parameter 1).
@@ -69,7 +69,7 @@ class FileSupervisor
      *   filename or path is provided as parameter 2.
      * - Filename or path to the file whose contents we'd like to load into the referenced string (parameter 1).
      **/
-    bool loadFromFile(string&, string);
+    bool loadFromFile(string&, string&);
 };
 
 #endif

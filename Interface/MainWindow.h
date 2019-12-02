@@ -8,6 +8,7 @@
 #include <QInputDialog>
 #include <QFile>
 #include <iostream>
+#include <stdio.h>
 
 #include "./../ui_MainWindow.h"
 #include "./../ApplicationLogic/MainController.h"
@@ -123,6 +124,8 @@ class MainWindow : public QMainWindow
          * Function used to retrieve the text from the Editor textbox
          **/
         string getEditorText();
+
+        void setEditorText(std::string&);
 
         /**
          * Function used to set the text for the Editor textbox
