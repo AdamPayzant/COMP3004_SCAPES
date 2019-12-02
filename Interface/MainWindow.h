@@ -163,6 +163,8 @@ class MainWindow : public QMainWindow
 
         void prepareLoadedWindowState();
 
+        void promptUserForInput(std::string);
+
     private slots:
         /**
          * Handler function called when "New" menu option is clicked.

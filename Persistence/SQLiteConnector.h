@@ -110,6 +110,8 @@ class SQLiteConnector
      * Function used to terminate the connect to the local SQLite Database.
      **/
     void disconnect();
+
+    QSqlDatabase& getSQLiteDatabase();
   
   private:
     /**

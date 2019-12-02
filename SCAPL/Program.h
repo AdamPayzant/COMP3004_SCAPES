@@ -48,6 +48,7 @@
  * of COMP2404.
  *
  **/
+class MainController;
 class Program {
     public:
         /**
@@ -56,6 +57,8 @@ class Program {
          * - Filename of the source file to be compiled or restored.
          **/
         Program(std::string &);
+
+        Program(std::string &, MainController*);
   
         /**
          * Destructor
@@ -99,6 +102,8 @@ class Program {
 
         void addPrint(std::string);
 
+        std::string& getUserInput();
+
     private:
         /**
          * String variable used to hold the program's filename
@@ -123,6 +128,8 @@ class Program {
         int stmtPos;
 
         std::vector<std::string> output;
+
+        MainController* controller;
 };
 
 #endif

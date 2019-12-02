@@ -114,6 +114,8 @@ class UserInputPrompt : public QDialog
          **/
         ~UserInputPrompt();
 
+        void setLabel(std::string text);
+
     private slots:
         /**
          * Handler function used to delegate save operation once accepted.

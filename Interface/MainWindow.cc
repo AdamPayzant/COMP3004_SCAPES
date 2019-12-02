@@ -68,6 +68,13 @@ void MainWindow::setTempUserInput(string& tempInput)
     this->tempUserInput = tempInput;
 }
 
+void MainWindow::promptUserForInput(std::string labelText)
+{
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, labelText);
+    this->tempUserInput = "##_NOTVALID_##";
+    userInputPrompt->exec();
+}
+
 void MainWindow::on_menuButtonNewOption_triggered()
 {
     ui->sourceTextWindow->setReadOnly(false);
@@ -89,9 +96,7 @@ void MainWindow::on_menuButtonNewOption_triggered()
 
 void MainWindow::on_menuButtonOpenOption_triggered()
 {
-    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) of the source file you'd like to open:");
-    tempUserInput = "##_NOTVALID_##";
-    userInputPrompt->exec();
+    this->promptUserForInput("Please provide the filename (without extension) of the source file you'd like to open:");
     if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
         ui->feedbackWindow->setText("Filename not provided or invalid.");
     }else{
@@ -102,9 +107,7 @@ void MainWindow::on_menuButtonOpenOption_triggered()
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
-    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) to be used for the source file:");
-    tempUserInput = "##_NOTVALID_##";
-    userInputPrompt->exec();
+    this->promptUserForInput("Please provide the filename (without extension) to be used for the source file:");
     if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
         ui->feedbackWindow->setText("Filename not provided or invalid.");
     }else{
@@ -121,11 +124,12 @@ void MainWindow::on_menuButtonCloseOption_triggered()
 void MainWindow::on_menuButtonCompileOption_triggered()
 {
     mainController->clientRequestHandler("compile");
-    ui->feedbackWindow->setText("Compilation Attempted. Run Functionality is not implemented.");
+    ui->feedbackWindow->setText("Compilation Attempted.");
 }
 
 void MainWindow::on_menuButtonRunOption_triggered()
 {
+    mainController->clientRequestHandler("run");
 }
 
 void MainWindow::on_menuButtonFuncDescOption_triggered()
