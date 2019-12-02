@@ -1,10 +1,10 @@
-dci a
-dci b
-rdi a
-rdi b
-cmp a b
-jmr L1
-prt b
-jmp L2
-L1: prt a
-L2: end
+dci i
+mov 1 i
+dca arr1 i
+mov 5 $arr1+0
+mov $arr1+0 $arr1+1
+add i $arr1+1
+cmp $arr+0 $arr+1
+jls L1
+prt "Error"
+L1:end
