@@ -67,7 +67,7 @@ void MainController::saveSourceCode()
 
 void MainController::loadSourceCode()
 {
-    if(persistenceManager->loadFromFile(this->editorSnapshot, mainWindow->getProgramFilename())){
+    if(persistenceManager->loadFromFile(this->mainWindow->getEditorText(), mainWindow->getProgramFilename())){
         this->mainWindow->refreshEditorText();
         string tempString = "";
         tempString.append("Open operation successful.\nFile ");
