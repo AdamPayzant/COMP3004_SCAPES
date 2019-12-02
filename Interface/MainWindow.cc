@@ -23,9 +23,14 @@ string& MainWindow::getEditorText()
     return editorSnapshot;
 }
 
+void MainWindow::setEditorText(std::string& newSnapshot)
+{
+    this->editorSnapshot = newSnapshot;
+}
+
 void MainWindow::refreshEditorText()
 {
-    ui->sourceTextWindow->setText(QString::fromStdString(editorSnapshot));
+    ui->sourceTextWindow->setText(QString::fromStdString(this->editorSnapshot));
 }
 
 void MainWindow::setFeedbackText(string text)
@@ -84,25 +89,20 @@ void MainWindow::on_menuButtonNewOption_triggered()
 
 void MainWindow::on_menuButtonOpenOption_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("txt files (*.txt)"));
-    programFilename = fileName.toUtf8().constData();
-    mainController->clientRequestHandler("load");
-
-    ui->sourceTextWindow->setReadOnly(false);
-    ui->sourceTextWindow->setText("");
-    ui->sourceTextWindow->show();
-    QPalette feedbackPalette;
-    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
-    ui->feedbackWindow->setPalette(feedbackPalette);
-    ui->menuButtonSaveOption->setEnabled(true);
-    ui->menuButtonCloseOption->setEnabled(true);
-    ui->menuButtonCompileOption->setEnabled(true);
-    ui->menuButtonRunOption->setEnabled(true);
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) of the source file you'd like to open:");
+    tempUserInput = "##_NOTVALID_##";
+    userInputPrompt->exec();
+    if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
+        ui->feedbackWindow->setText("Filename not provided or invalid.");
+    }else{
+        this->setProgramFilename(this->tempUserInput);
+        this->mainController->clientRequestHandler("load");
+    }
 }
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
-    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename to be used for the source file:", "SaveSource");
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename (without extension) to be used for the source file:");
     tempUserInput = "##_NOTVALID_##";
     userInputPrompt->exec();
     if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){

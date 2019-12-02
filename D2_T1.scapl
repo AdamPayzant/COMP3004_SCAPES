@@ -20,7 +20,7 @@ cmp a $b1
 jls L2
 # if equal move to L3
 jeq L3
-l3: add a 1
+L3: add a 1
 cmp a b
 jmr L4
 L4: prt "a is greater than b"

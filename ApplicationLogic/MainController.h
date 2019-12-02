@@ -105,8 +105,6 @@ class MainController
          * either compilation or execution.
          **/
         Program* program;
-
-        std::string editorSnapshot;
 };
 
 #endif

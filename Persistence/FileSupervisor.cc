@@ -9,12 +9,14 @@ FileSupervisor::~FileSupervisor()
 {
 }
 
-bool FileSupervisor::saveToFile(string& editorText, string filename)
+bool FileSupervisor::saveToFile(string& editorText, string& filename)
 {
     try{
         ofstream outputFile;
-        filename += ".scapl";
-        outputFile.open(filename);
+        string formattedFilename = "";
+        formattedFilename.append(filename);
+        formattedFilename.append(".scapl");
+        outputFile.open(formattedFilename);
         if(!outputFile.is_open()){
             return false;
         }
@@ -26,11 +28,15 @@ bool FileSupervisor::saveToFile(string& editorText, string filename)
     }
 }
 
-bool FileSupervisor::loadFromFile(string& editorText, string filename)
+bool FileSupervisor::loadFromFile(string& editorText, string& filename)
 {
     try{
         ifstream inputFile;
-        inputFile.open(filename);
+        string formattedFilename = "";
+        formattedFilename.append(filename);
+        formattedFilename.append(".scapl");
+
+        inputFile.open(formattedFilename);
         if(!inputFile.is_open()){
           return false;
         }
