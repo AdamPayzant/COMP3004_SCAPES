@@ -31,3 +31,10 @@ void UserInputPrompt::on_userPromptConfirmationBar_rejected()
 {
     this->close();
 }
+
+void UserInputPrompt::setLabel(std::string text)
+{
+    if(!text.empty()){
+        this->ui->userPromptLabel->setText(text.data());
+    }
+}
