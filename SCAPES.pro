@@ -33,20 +33,30 @@ SOURCES += \
          ./Interface/*.cc \
          ./Persistence/*.cc \
          ./SCAPL/*.cc \
-         ./SCAPL/STMTs/*.cc
+         ./SCAPL/STMTs/*.cc \
+         userinputdialog.cpp
 
 HEADERS += \
          ./ApplicationLogic/*.h \
          ./Interface/*.h \
          ./Persistence/*.h \
          ./SCAPL/*.h \
-         ./SCAPL/STMTs/*.h
+         ./SCAPL/STMTs/*.h \
+         userinputdialog.h
 
 FORMS += \
-        ./Interface/*.ui
+        ./Interface/*.ui \
+        readinput.ui \
+        userinputdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+#DISTFILES += \
+#    ./Interface/Save.qml \
+#    ./Interface/SaveForm.ui.qml \
+#    ./Interface/SavewindowForm.ui.qml
 

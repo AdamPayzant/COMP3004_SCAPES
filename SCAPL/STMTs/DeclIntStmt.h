@@ -2,17 +2,10 @@
 #define DECLINTSTMT_H
 
 #include <string>
-#include <vector>
-#include <iterator>
-#include <sstream>
-#include <stdlib.h>
-#include <stdio.h>
 
 #include "../Statement.h"
+#include "../Identifier.h"
 #include "../Variable.h"
-#include "../Operand.h"
-#include "../ArrAccess.h"
-#include "../Literal.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
@@ -33,7 +26,6 @@
  * of COMP2404.
  *
  **/
-class Program;
 class DeclIntStmt: public Statement {
     public:
         /**
@@ -57,6 +49,31 @@ class DeclIntStmt: public Statement {
          * Function used to execute the compiled state of the instruction
          **/
         void run();
+
+        /**
+         * Getter function used to return the current subclass name
+         **/
+        virtual std::string getName();
+
+        /**
+         * Getter function used to return a pointer to the first operand object associated with the subclass object
+         **/
+        virtual Operand* getOperand1();
+
+        /**
+         * Getter function used to return a pointer to the second operand object associated with the subclass object
+         **/
+        virtual Operand* getOperand2();
+
+        /**
+         * Getter function used to return a pointer to the label object associated with the subclass object
+         **/
+        virtual Label* getLabel();
+
+        /**
+         * Setter function used to set a pointer to the label object associated with the subclass object
+         **/
+        virtual void setLabel(Label *l);
 };
 
 #endif

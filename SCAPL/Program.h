@@ -1,3 +1,7 @@
+
+
+
+
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
@@ -11,16 +15,11 @@
 #include "Statement.h"
 #include "Identifier.h"
 
-#include "STMTs/AddStmt.h"
 #include "STMTs/CompStmt.h"
-#include "STMTs/DeclArrStmt.h"
 #include "STMTs/DeclIntStmt.h"
 #include "STMTs/EndStmt.h"
-#include "STMTs/JEqStmt.h"
-#include "STMTs/JLessStmt.h"
 #include "STMTs/JMoreStmt.h"
 #include "STMTs/JumpStmt.h"
-#include "STMTs/MovStmt.h"
 #include "STMTs/PrintStmt.h"
 #include "STMTs/ReadStmt.h"
 
@@ -93,11 +92,7 @@ class Program {
          **/
         int getCFlag();
 
-        void setCFlag(int);
-
         void changeStmt(std::string);
-
-        void addPrint(std::string);
 
     private:
         /**
@@ -120,9 +115,8 @@ class Program {
          **/
         std::vector<Statement*> *stmts;
 
+        Statement *curStmt;
         int stmtPos;
-
-        std::vector<std::string> output;
 };
 
 #endif
