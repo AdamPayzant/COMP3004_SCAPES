@@ -107,7 +107,7 @@ class UserInputPrompt : public QDialog
          * - Pointer to QWidget object corresponding to the Widget that
          * contains the object
          **/
-        explicit UserInputPrompt(QWidget* parent = nullptr, std::string = "Placeholder Text", std::string = "tempInput");
+        explicit UserInputPrompt(QWidget* parent = nullptr, std::string = "Placeholder Text");
 
         /**
          * Destructor
@@ -131,8 +131,6 @@ class UserInputPrompt : public QDialog
          * the namespace Ui
          **/
         Ui::UserInputPrompt* ui;
-
-        std::string operation;
 };
 
 #endif

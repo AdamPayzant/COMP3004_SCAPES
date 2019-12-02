@@ -2,14 +2,13 @@
 #include "UserInputPrompt.h"
 #include "MainWindow.h"
 
-UserInputPrompt::UserInputPrompt(QWidget *parent, std::string labelText, std::string operation) :
+UserInputPrompt::UserInputPrompt(QWidget *parent, std::string labelText) :
     QDialog(parent),
     ui(new Ui::UserInputPrompt)
 {
     ui->setupUi(this);
     if(!labelText.empty())
     ui->userPromptLabel->setText(labelText.data());
-    this->operation = operation;
 }
 
 UserInputPrompt::~UserInputPrompt()
