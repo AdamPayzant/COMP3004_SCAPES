@@ -25,6 +25,7 @@ void ReadStmt::compile(std::string &line) {
         for(j = 6; j < line.size(); j++) {
             if(line.at(j) == '+') {
                 arrName = line.substr(5, j - 5);
+                break;
             }
         }
         accessName = line.substr(j + 1, i - j - 1);

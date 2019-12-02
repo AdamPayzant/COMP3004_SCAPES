@@ -44,6 +44,7 @@ void DeclArrStmt::compile(std::string &line){
         for(j = i; j < line.size(); j++) {
             if(line.at(j) == '+') {
                 arrName = line.substr(i + 1, j - i - 1);
+                break;
             }
         }
         accessName = line.substr(j + 1, line.size() - 1 - j);
