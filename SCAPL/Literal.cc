@@ -1,7 +1,8 @@
 #include "Literal.h"
 
-Literal::Literal(int v) {
-    val = v;
+
+Literal::Literal(std::string s) {
+    str = s;
     subtype = "Literal";
 }
 
@@ -10,5 +11,13 @@ Literal::~Literal() {
 }
 
 int Literal::getVal() {
-    return(val);
+    return(std::stoi(str));
+}
+
+std::string Literal::getOut() {
+    return(str);
+}
+
+void Literal::setVal(int i) {
+    return;
 }
