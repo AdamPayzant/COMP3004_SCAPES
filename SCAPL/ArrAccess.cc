@@ -1,5 +1,4 @@
 #include "ArrAccess.h"
-#include "Program.h"
 
 ArrAccess::ArrAccess(ArrayVariable *a, std::string acc, Program *m) {
     arr = a;

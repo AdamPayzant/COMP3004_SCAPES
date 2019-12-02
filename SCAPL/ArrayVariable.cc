@@ -1,5 +1,4 @@
 #include "ArrayVariable.h"
-#include "ArrAccess.h"
 
 ArrayVariable::ArrayVariable(std::string &n) : Variable(n) {
     subtype = "ArrayVariable";

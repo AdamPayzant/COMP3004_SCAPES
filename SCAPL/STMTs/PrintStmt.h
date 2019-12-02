@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../Program.h"
 #include "../Statement.h"
 #include "../Variable.h"
 #include "../Operand.h"

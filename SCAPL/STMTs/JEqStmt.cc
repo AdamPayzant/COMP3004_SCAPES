@@ -1,5 +1,4 @@
 #include "JEqStmt.h"
-#include "../Program.h"
 
 
 JEqStmt::JEqStmt(Program *m)

@@ -1,5 +1,4 @@
 #include "DeclIntStmt.h"
-#include "../Program.h"
 
 DeclIntStmt::DeclIntStmt(Program *p) {
     o1 = nullptr;
