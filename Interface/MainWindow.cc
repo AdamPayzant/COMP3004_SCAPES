@@ -17,14 +17,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-string MainWindow::getEditorText()
+string& MainWindow::getEditorText()
 {
-    return (ui->sourceTextWindow->toPlainText()).toUtf8().constData();
+    this->editorSnapshot = (ui->sourceTextWindow->toPlainText()).toUtf8().constData();
+    return editorSnapshot;
 }
 
-void MainWindow::setEditorText(string text)
+void MainWindow::refreshEditorText()
 {
-    ui->sourceTextWindow->setText(QString::fromStdString(text));
+    ui->sourceTextWindow->setText(QString::fromStdString(editorSnapshot));
 }
 
 void MainWindow::setFeedbackText(string text)
@@ -50,6 +51,16 @@ string& MainWindow::getProgramFilename()
 void MainWindow:: setProgramFilename(string newFilename)
 {
     this->programFilename = newFilename;
+}
+
+string& MainWindow::getTempUserInput()
+{
+    return this->tempUserInput;
+}
+
+void MainWindow::setTempUserInput(string& tempInput)
+{
+    this->tempUserInput = tempInput;
 }
 
 void MainWindow::on_menuButtonNewOption_triggered()
@@ -82,13 +93,6 @@ void MainWindow::on_menuButtonOpenOption_triggered()
     ui->sourceTextWindow->show();
     QPalette feedbackPalette;
     feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
-    ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
-                                "To save your source file, please use the 'Save' menu option.\n"
-                                "To compile your source file, please use the 'Compile' menu option.\n"
-                                "Clarifications on program details or functionality can be found under the "
-                                "'Help' menu option of the menu bar.\n\n"
-                                "Please note that creating a new source file using the 'New' menu option without "
-                                "saving your current source file will result in the loss of any unsaved changes.");
     ui->feedbackWindow->setPalette(feedbackPalette);
     ui->menuButtonSaveOption->setEnabled(true);
     ui->menuButtonCloseOption->setEnabled(true);
@@ -98,10 +102,15 @@ void MainWindow::on_menuButtonOpenOption_triggered()
 
 void MainWindow::on_menuButtonSaveOption_triggered()
 {
-    SaveWindow* saveWindow = new SaveWindow(this);
-    ui->menuButtonCompileOption->setEnabled(true);
-    ui->menuButtonRunOption->setEnabled(true);
-    saveWindow->show();
+    UserInputPrompt* userInputPrompt = new UserInputPrompt(this, "Please provide the filename to be used for the source file:", "SaveSource");
+    tempUserInput = "##_NOTVALID_##";
+    userInputPrompt->exec();
+    if(tempUserInput.empty() || tempUserInput.compare("##_NOTVALID_##")==0){
+        ui->feedbackWindow->setText("Filename not provided or invalid.");
+    }else{
+        this->setProgramFilename(this->tempUserInput);
+        this->mainController->clientRequestHandler("save");
+    }
 }
 
 void MainWindow::on_menuButtonCloseOption_triggered()
@@ -142,4 +151,17 @@ void MainWindow::prepareInitialWindowState()
     ui->menuButtonCloseOption->setEnabled(false);
     ui->menuButtonCompileOption->setEnabled(false);
     ui->menuButtonRunOption->setEnabled(false);
+}
+
+void MainWindow::prepareLoadedWindowState()
+{
+    ui->sourceTextWindow->setReadOnly(false);
+    ui->sourceTextWindow->show();
+    QPalette feedbackPalette;
+    feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
+    ui->feedbackWindow->setPalette(feedbackPalette);
+    ui->menuButtonSaveOption->setEnabled(true);
+    ui->menuButtonCloseOption->setEnabled(true);
+    ui->menuButtonCompileOption->setEnabled(true);
+    ui->menuButtonRunOption->setEnabled(true);
 }
