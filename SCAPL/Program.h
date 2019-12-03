@@ -98,9 +98,13 @@ class Program {
 
         void setCFlag(int);
 
-        void changeStmt(std::string);
+        Identifier* getID(std::string);
+
+        void changeStmt(Label *);
 
         void addPrint(std::string);
+
+        void end();
 
         std::string& getUserInput();
 

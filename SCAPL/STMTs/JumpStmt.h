@@ -57,8 +57,6 @@ class JumpStmt: public Statement {
          * Function used to execute the compiled state of the instruction
          **/
         void run();
-    private:
-        std::string target;
 };
 
 #endif
