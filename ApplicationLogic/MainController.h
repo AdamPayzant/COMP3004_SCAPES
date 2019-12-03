@@ -85,6 +85,8 @@ class MainController
          **/
         void runCompiledProgram();
 
+        string& getUserInput();
+
 
     private:
         /**

@@ -91,3 +91,7 @@ void MainController::compileSourceCode()
 void MainController::runCompiledProgram()
 {
 }
+string& MainController::getUserInput(){
+this->mainWindow->getTempUserInput();
+
+}

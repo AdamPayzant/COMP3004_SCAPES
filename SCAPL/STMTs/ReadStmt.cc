@@ -53,8 +53,7 @@ void ReadStmt::compile(std::string &line) {
 }
 
 void ReadStmt::run() {
- // get varible 
- //  std:;in stuff
- // set it to the value
-
+string s= master->getUserInput();
+int input = std::stoi( s )
+o2->setVal();
 }
