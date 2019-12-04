@@ -102,8 +102,5 @@ void AddStmt::compile(std::string &line) {
 
 
 void AddStmt::run() {
-    // get operands
-    // add  number 2 to 1
-    // set the value
     o2->setVal(o1->getVal() + o2->getVal());
 }

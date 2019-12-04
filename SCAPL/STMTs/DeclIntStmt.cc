@@ -24,5 +24,5 @@ void DeclIntStmt::compile(std::string &line) {
 
 
 void DeclIntStmt::run() {
-
+    //integers declared during compiliation
 }

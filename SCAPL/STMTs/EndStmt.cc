@@ -19,5 +19,5 @@ void EndStmt::compile(std::string &name) {
 }
 
 void EndStmt::run() {
-
+    master->end();
 }
