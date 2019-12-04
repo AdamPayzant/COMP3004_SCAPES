@@ -59,7 +59,7 @@ class Program {
         Program(std::string &);
 
         Program(std::string &, MainController*);
-
+  
         /**
          * Destructor
          **/
@@ -101,12 +101,20 @@ class Program {
         Identifier* getID(std::string);
 
         void changeStmt(Label *);
-        
+
         void addPrint(std::string);
 
         void end();
 
         std::string& getUserInput();
+
+        void setCompileValidityStatus(bool);
+
+        int removeLeadingWhitespace(std::string&);
+
+        int parseNextArg(std::string&, std::string&);
+
+        int removeNextArg(std::string&);
 
     private:
         /**
@@ -134,6 +142,8 @@ class Program {
         std::vector<std::string> output;
 
         MainController* controller;
+
+        bool compileValidityStatus;
 };
 
 #endif
