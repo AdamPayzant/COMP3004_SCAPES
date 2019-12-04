@@ -287,11 +287,13 @@ void Program::execute() {
     Statement *curStmt = stmts->at(0);
     stmtPos = 0;
     while(true) {
+    std::cout<<"this is stmt#"<<stmtPos<<endl;
         if(stmtPos >= stmts->size()) {
             break;
         }
         else {
             stmtPos++;
+            curStmt->run();
             curStmt = stmts->at(stmtPos);
         }
     }
