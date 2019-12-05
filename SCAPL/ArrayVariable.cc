@@ -36,3 +36,11 @@ void ArrayVariable::setAt(int loc, int val) {
 Variable* ArrayVariable::getAt(int pos) {
     return(arr[pos]);
 }
+
+void ArrayVariable::print(std::string& formattedString){
+    for(int i = 0; i < size; i++) {
+        if(this->arr[i] != nullptr){
+            arr[i]->print(formattedString);
+        }
+    }
+}
