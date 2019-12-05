@@ -174,7 +174,7 @@ void AddStmt::compile(std::string &line) {
         for(i = 0; i < nextArg2.size(); ++i){
             if(nextArg2[i]<48 || (nextArg2[i]>90 && nextArg2[i]<97)){
                 this->master->setCompileValidityStatus(false);
-                errorText = "Move instruction destination operand contains invalid characters";
+                errorText = "Add instruction destination operand contains invalid characters";
                 this->master->setCompileError(errorText);
                 return;
             }
@@ -196,7 +196,7 @@ void AddStmt::compile(std::string &line) {
     }
     if(!argumentFound){
         this->master->setCompileValidityStatus(false);
-        errorText = "Move instruction destination operand either contains erroneous characters or is an incorrect variable name";
+        errorText = "Add instruction destination operand either contains erroneous characters or is an incorrect variable name";
         this->master->setCompileError(errorText);
         return;
     }
