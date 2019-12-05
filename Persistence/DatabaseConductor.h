@@ -54,11 +54,17 @@ using namespace std;
  * of COMP2404.
  * Connection management operations initially based off example "tablemodel"[1] 
  * from Qt Documentation.
+ * Exception operations based on descriptions and examples presented on specific pages
+ * found on cplusplus.com[2]
+ * All rights and credit remain with referenced definitions and samples from original authors.
  * 
  * References:
  * [1] Qt.(2019).Table Model Example.[online] 
  *      Available at: https://doc.qt.io/qt-5/qtsql-tablemodel-example.html 
  *      [Accessed 12 Nov. 2019].
+ * [2] cplusplus.com.(2019).std::exception.[online]
+ *      Available at: http://www.cplusplus.com/reference/exception/exception/
+ *      [Accessed 02 Dec. 2019].
  * 
  * Original Copyright information for the QT Example:
  ** Copyright (C) 2016 The Qt Company Ltd.
