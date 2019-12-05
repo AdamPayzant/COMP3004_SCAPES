@@ -87,6 +87,8 @@ class MainController
 
         string& promptUserForInput();
 
+        void appendToFeedbackText(std::string&);
+
 
     private:
         /**
