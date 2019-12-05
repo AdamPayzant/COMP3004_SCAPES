@@ -53,6 +53,12 @@ class IntegerVariable: public Variable, public Value {
          * Sets the value
          **/
         void setVal(int);
+    
+        /**
+         * Implementation of the function used as behavior for the composite design pattern.
+         * Allows for IntegerVariable to provide its value to a string that could be passed 
+         * through a composite object or only to itself.
+         **/
         virtual void print(std::string&);
     private:
         /**
