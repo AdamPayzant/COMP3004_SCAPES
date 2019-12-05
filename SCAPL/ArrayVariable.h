@@ -61,6 +61,13 @@ class ArrayVariable: public Variable {
          * Resizes the array
          **/
         int setSize(int newSize);
+    
+        /**
+         * Implementation of the function used for the composite design pattern.
+         * Allows for ArrayVariable to call its subelements' print function without
+         * worrying about their type; polymorphism decides what implementation will
+         * take place within the subelement's call.
+         **/
         virtual void print(std::string&);
     private:
         /**
