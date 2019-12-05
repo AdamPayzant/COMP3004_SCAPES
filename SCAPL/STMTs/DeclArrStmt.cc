@@ -116,8 +116,8 @@ void DeclArrStmt::compile(std::string &line){
 
         //Else variable
         }else{
-            for(i = 0; i < nextArg.size(); ++i){
-                if(nextArg[i]<48 || (nextArg[i]>90 && nextArg[i]<97)){
+            for(i = 0; i < nextArg2.size(); ++i){
+                if(nextArg2[i]<48 || (nextArg[i]>90 && nextArg2[i]<97)){
                     this->master->setCompileValidityStatus(false);
                     errorText = "Size operand contains invalid characters";
                     this->master->setCompileError(errorText);
@@ -125,7 +125,7 @@ void DeclArrStmt::compile(std::string &line){
                 }
             }
             for(i = 0; i < ids->size() ; ++i){
-                if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(nextArg) == 0){
+                if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(nextArg2) == 0){
                     if(ids->at(i)->getSubtype().compare("ArrayVariable")==0){
                         this->master->setCompileValidityStatus(false);
                         errorText = "Cannot provide entire array as an operand where a value is expected.";
