@@ -118,8 +118,6 @@ class Program {
 
         int removeNextArg(std::string&);
 
-        void setCompileError(std::string&);
-
     private:
         /**
          * String variable used to hold the program's filename
