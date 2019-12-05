@@ -97,7 +97,7 @@ void Program::compile() {
         j=0;
         for(std::string line ; getline(inputFile, line); ) {
             // Had issues loading in blank lines, this should work around it
-            line = line.substr(0,line.size()-1);
+            //line = line.substr(0,line.size()-1);
             if(line.size() > 0) {
                 if(line[0] != '#') {
                     labelFound = false;
