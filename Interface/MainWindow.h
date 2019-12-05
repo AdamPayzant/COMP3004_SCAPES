@@ -137,6 +137,8 @@ class MainWindow : public QMainWindow
          **/
         void setFeedbackText(string text);
 
+        void appendToFeedbackText(string& text);
+
         /**
          * Getter function returns a pointer to the main controller object of the main window
          **/
