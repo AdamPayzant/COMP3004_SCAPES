@@ -17,6 +17,8 @@ mov 0 $arr+1
 L1: add 1 $arr+0
 add n $arr+1
 cmp n $arr+0
+prt n
+prt $arr+0
 jeq L2
 jmp L1
 
