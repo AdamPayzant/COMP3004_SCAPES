@@ -566,10 +566,29 @@ std::string& Program::getUserInput(){
 }
 
 
+bool Program::getCompileValidityStatus()
+{
+    return this->compileValidityStatus;
+}
+
+
 void Program::setCompileValidityStatus(bool newValue)
 {
     this->compileValidityStatus = newValue;
 }
+
+
+std::string& Program::getCompileError()
+{
+    return this->compileError;
+}
+
+
+void Program::setCompileError(std::string& errorMessage)
+{
+    this->compileError = errorMessage;
+}
+
 
 int Program::removeLeadingWhitespace(std::string& currentLine)
 {
@@ -767,8 +786,3 @@ int Program::removeNextArg(std::string& currentLine)
     return -3;
 }
 */
-
-void Program::setCompileError(std::string& errorMessage)
-{
-    this->compileError = errorMessage;
-}
