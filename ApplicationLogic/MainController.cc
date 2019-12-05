@@ -124,3 +124,9 @@ string& MainController::promptUserForInput(){
     this->mainWindow->promptUserForInput("Please provide a value:");
     return this->mainWindow->getTempUserInput();
 }
+
+void MainController::appendToFeedbackText(std::string& formattedText){
+    if(!formattedText.empty()){
+        this->mainWindow->appendToFeedbackText(formattedText);
+    }
+}
