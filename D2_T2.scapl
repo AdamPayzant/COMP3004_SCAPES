@@ -21,9 +21,10 @@ prt a
 # mov 4 to a
 mov  4 a
 cmp  a 4
-jeq l2
+jeq L2
 #read d
 rdi d
+
 
 #loop  so that c=d a=d
 L2:add 1 c
@@ -31,9 +32,9 @@ prt "entering loop"
 mov  0 a
 L3:add  1 a
 cmp a d
-jls l3
+jls L3
 cmp c d
-jls l2
+jls L2
 prt a
 prt c
 
@@ -45,28 +46,29 @@ rdi con2
 
 # if cont  1 is not 0 incriment a counter
 cmp con1 0
-jmr l4
-l4: add 1 counter
+jmr L4
+L4: add 1 counter
 cmp counter 1
-jls l6
-jmr l6
-jeq l5
-l5: mov a  $arr+0
+jls  L6
+jmr L6
+jeq L5
+L5:mov a  $arr+0
 prt $arr+0
-l6: end
+L6: end
 
 #comp condition 2
 cmp con2 0
-jeq l7
-jls l8
-jmr l8
+jeq L7
+jls L8
+jmr L8
 cmp counter 2
-jls l9
-l9:end
-l8: add 1 counter
+jls L9
+
+L9:end
+L8: add 1 counter
 cmp counter 2
-jeq l10
-l10:mov c  $arr+1
+jeq L10
+L10:mov c  $arr+1
 prt $arr+1
 prt $arr+0
 end
