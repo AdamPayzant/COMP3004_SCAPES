@@ -677,6 +677,7 @@ int Program::removeNextArg(std::string& currentLine)
     return -3;
 }
 
+
 /*
 int Program::parseNextArg(std::string& currentLine, std::string& nextArg)
 {
