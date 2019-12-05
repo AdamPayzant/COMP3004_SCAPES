@@ -45,13 +45,13 @@ int Operand::getVal() {
 std::string Operand::getOut() {
     if(id != nullptr){
         if(id->getSubtype().compare("IntegerVariable") == 0){
-            return to_string(((IntegerVariable*) id)->getVal());
+            return std::to_string(((IntegerVariable*) id)->getVal());
         }
         else if(id->getSubtype().compare("ArrAccess") == 0){
-            return to_string(((ArrAccess*) id)->getVal());
+            return std::to_string(((ArrAccess*) id)->getVal());
         }
         else if(id->getSubtype().compare("Literal") == 0){
-            return to_string(((Literal *) id)->getVal());
+            return std::to_string(((Literal *) id)->getVal());
         }
     }
     return "";
