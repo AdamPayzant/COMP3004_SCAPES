@@ -108,7 +108,11 @@ class Program {
 
         std::string& getUserInput();
 
+        std::string& getCompileError();
+
         void setCompileError(std::string&);
+
+        bool getCompileValidityStatus();
 
         void setCompileValidityStatus(bool);
 

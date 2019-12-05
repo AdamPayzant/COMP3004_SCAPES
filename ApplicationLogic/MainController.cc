@@ -92,102 +92,19 @@ void MainController::compileSourceCode()
     this->program = new Program(mainWindow->getProgramFilename());
     this->program->compile();
 
-    /*
-    std::string variable_name = "L1";
-    this->program->getIds()->push_back(new Label(variable_name));
-    variable_name = "L2";
-    this->program->getIds()->push_back(new Label(variable_name));
-    variable_name = "L3";
-    this->program->getIds()->push_back(new Label(variable_name));
-    variable_name = "L4";
-    this->program->getIds()->push_back(new Label(variable_name));
-    variable_name = "L5";
-    this->program->getIds()->push_back(new Label(variable_name));
-    variable_name = "L6";
-    this->program->getIds()->push_back(new Label(variable_name));
-
-    this->program->getStmts()->push_back(new JumpStmt(this->program));
-    this->program->getStmts()->at(0)->setOperand1(new Operand(this->program->getIds()->at(0)));
-
-    variable_name = "a";
-    this->program->getIds()->push_back(new IntegerVariable(variable_name));
-    this->program->getStmts()->push_back(new DeclIntStmt(this->program));
-    this->program->getStmts()->at(1)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(1)->setOperand2(new Operand(new Literal("1")));
-    this->program->getStmts()->at(1)->setLabel((Label *) this->program->getIds()->at(0));
-
-    variable_name = "b";
-    this->program->getIds()->push_back(new ArrayVariable(variable_name));
-    this->program->getStmts()->push_back(new DeclArrStmt(this->program));
-    this->program->getStmts()->at(2)->setOperand1(new Operand(this->program->getIds()->at(7)));
-    this->program->getStmts()->at(2)->setOperand2(new Operand(new Literal("1")));
-
-    this->program->getStmts()->push_back(new MovStmt(this->program));
-    this->program->getStmts()->at(3)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(3)->setOperand2(new Operand(new Literal("1")));
-
-    this->program->getStmts()->push_back(new ReadStmt(this->program));
-    this->program->getStmts()->at(4)->setOperand1(new Operand(new ArrAccess((ArrayVariable*)this->program->getIds()->at(7), "1", this->program)));
-
-    this->program->getStmts()->push_back(new AddStmt(this->program));
-    this->program->getStmts()->at(5)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(5)->setOperand2(new Operand(new Literal("1")));
-    this->program->getStmts()->at(5)->setLabel((Label *) this->program->getIds()->at(1));
-
-    this->program->getStmts()->push_back(new PrintStmt(this->program));
-    this->program->getStmts()->at(6)->setOperand1(new Operand(new Literal("jumped to loop")));
-
-    this->program->getStmts()->push_back(new CompStmt(this->program));
-    this->program->getStmts()->at(7)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(7)->setOperand2(new Operand(new ArrAccess((ArrayVariable*)this->program->getIds()->at(7), "$b+1", this->program)));
-
-    this->program->getStmts()->push_back(new JLessStmt(this->program));
-    this->program->getStmts()->at(8)->setOperand1(new Operand(this->program->getIds()->at(1)));
-
-    this->program->getStmts()->push_back(new JEqStmt(this->program));
-    this->program->getStmts()->at(9)->setOperand1(new Operand(this->program->getIds()->at(2)));
-
-    this->program->getStmts()->push_back(new AddStmt(this->program));
-    this->program->getStmts()->at(10)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(10)->setOperand2(new Operand(new Literal("1")));
-    this->program->getStmts()->at(10)->setLabel((Label *) this->program->getIds()->at(2));
-
-    this->program->getStmts()->push_back(new CompStmt(this->program));
-    this->program->getStmts()->at(11)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(11)->setOperand2(new Operand(this->program->getIds()->at(7)));
-
-    this->program->getStmts()->push_back(new JMoreStmt(this->program));
-    this->program->getStmts()->at(12)->setOperand1(new Operand(this->program->getIds()->at(3)));
-
-    this->program->getStmts()->push_back(new JLessStmt(this->program));
-    this->program->getStmts()->at(13)->setOperand1(new Operand(this->program->getIds()->at(4)));
-
-    this->program->getStmts()->push_back(new PrintStmt(this->program));
-    this->program->getStmts()->at(14)->setOperand1(new Operand(new Literal("a is greater than b")));
-    this->program->getStmts()->at(14)->setLabel((Label *) this->program->getIds()->at(3));
-
-    this->program->getStmts()->push_back(new JumpStmt(this->program));
-    this->program->getStmts()->at(15)->setOperand1(new Operand(this->program->getIds()->at(5)));
-
-    this->program->getStmts()->push_back(new PrintStmt(this->program));
-    this->program->getStmts()->at(16)->setOperand1(new Operand(new Literal("a is greater than b")));
-    this->program->getStmts()->at(16)->setLabel((Label *) this->program->getIds()->at(4));
-
-    this->program->getStmts()->push_back(new JumpStmt(this->program));
-    this->program->getStmts()->at(17)->setOperand1(new Operand(this->program->getIds()->at(5)));
-
-    this->program->getStmts()->push_back(new PrintStmt(this->program));
-    this->program->getStmts()->at(18)->setOperand1(new Operand(this->program->getIds()->at(6)));
-    this->program->getStmts()->at(18)->setLabel((Label *) this->program->getIds()->at(5));
-
-    this->program->getStmts()->push_back(new PrintStmt(this->program));
-    this->program->getStmts()->at(19)->setOperand1(new Operand(this->program->getIds()->at(7)));
-
-    this->program->getStmts()->push_back(new EndStmt(this->program));
-    */
-
-    this->persistenceManager->setDBCProgram(this->program);
-    this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
+    if(!this->program->getCompileValidityStatus()){
+        string tempString = "";
+        tempString.append("Compile failed to complete during syntax check.\n");
+        tempString.append("Error: ");
+        tempString.append(this->program->getCompileError());
+        this->mainWindow->setFeedbackText(tempString);
+        return;
+    }
+    if(this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename())){
+        string tempString = "Compilation successful. Compiled version successfully saved.";
+        this->mainWindow->setFeedbackText(tempString);
+        return;
+    }
 }
 
 void MainController::runCompiledProgram()
