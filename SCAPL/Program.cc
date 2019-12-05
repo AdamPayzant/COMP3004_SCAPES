@@ -30,98 +30,232 @@ Program::~Program() {
 }
 
 void Program::compile() {
+    string errorText;
+    try{
+        bool labelFound;
+        this->setCompileValidityStatus(true);
+        ifstream inputFile;
+        string formattedFilename = "";
+        formattedFilename.append(filename);
+        formattedFilename.append(".scapl");
 
-    std::ifstream file(filename + ".scapl");
+        inputFile.open(formattedFilename);
+        if(!inputFile.is_open()){
+          this->setCompileValidityStatus(false);
+          errorText = "Error occurred while opening file.";
+          this->setCompileError(errorText);
+          return;
+        }
 
-    // Adds all of the labels to ids
-    string tempString;
-    for(std::string line ; getline(file, line); ) {
-        if(line.size() != 0) {
-            if(line[0] != '#') {
-                tempString = "##_NOTVALID_##";
-                for(int i = 1; i < line.size(); i++) {
-                    if(line.at(i) == ' ') {
-                        if(line.at(i-1) == ':') {
-                            tempString = line.substr(0, i-1);
+        //First loop to parse all source file labels for validity checks in second loop.
+        string tempString;
+        int i;
+        int j;
+        j = 0;
+        for(std::string line ; getline(inputFile, line) && compileValidityStatus; ) {
+            this->removeLeadingWhitespace(line);
+            if(line.size() != 0) {
+                if(line[0] == ':'){
+                    this->setCompileValidityStatus(false);
+                    errorText.clear();
+                    errorText.append("Compilation Error: Invalid label on line ");
+                    errorText.append(to_string(j));
+                    this->setCompileError(errorText);
+                    inputFile.close();
+                    return;
+                }
+                if(line[0] != '#') {
+                    tempString = "##_NOTVALID_##";
+                    for(i = 0; i < line.size(); ++i) {
+                        if(line.at(i) == ' ' || line.at(i) == '\"'){
+                            break;
+                        }
+                        if(line.at(i) == ':') {
+                            tempString = line.substr(0, i);
                             if(tempString.empty() || tempString.compare("##_NOTVALID_##")==0){
-                                continue;
+                                break;
                             }
                             ids->push_back(new Label(tempString));
                         }
                     }
                 }
             }
+            ++j;
         }
-    }
+        inputFile.close();
 
-    // Just a big 'ole map to track statements with their switch options
-    std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
+        // Just a big 'ole map to track statements with their switch options
+        std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
 
-    for(std::string line ; getline(file, line); ) {
-        // Had issues loading in blank lines, this should work around it
-        if(line.size() != 0) {
-            if(line[0] != '#') {
-                // I'd rather change this to a map of lambas, but scoping, so now we just get a map and switch statments
-                int type = stats[line.substr(0,3)];
-                switch (type)
-                {
-                case 1:
-                    stmts->push_back(new DeclIntStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 2:
-                    stmts->push_back(new DeclArrStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 3:
-                    stmts->push_back(new ReadStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 4:
-                    stmts->push_back(new PrintStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 5:
-                    stmts->push_back(new MovStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 6:
-                    stmts->push_back(new AddStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 7:
-                    stmts->push_back(new CompStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 8:
-                    stmts->push_back(new JLessStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 9:
-                    stmts->push_back(new JMoreStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 10:
-                    stmts->push_back(new JEqStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 11:
-                    stmts->push_back(new JumpStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 12:
-                    stmts->push_back(new EndStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                default:
-                    break;
+        inputFile.open(formattedFilename);
+        if(!inputFile.is_open()){
+          this->setCompileValidityStatus(false);
+          errorText = "Error occurred while opening file.";
+          this->setCompileError(errorText);
+          return;
+        }
+
+        j=0;
+        for(std::string line ; getline(inputFile, line); ) {
+            // Had issues loading in blank lines, this should work around it
+            if(line.size() != 0) {
+                if(line[0] != '#') {
+                    this->removeLeadingWhitespace(line);
+                    labelFound = false;
+                    tempString = "##_NOTVALID_##";
+                    for(i = 0; i < line.size(); ++i) {
+                        if(line.at(i) == ' ' || line.at(i) == '\"'){
+                            break;
+                        }
+                        if(line.at(i) == ':') {
+                            tempString = line.substr(0, i);
+                            if(tempString.empty() || tempString.compare("##_NOTVALID_##")==0){
+                                break;
+                            }
+                            labelFound = true;
+                            if(i+1 >= line.size()){
+                                this->setCompileValidityStatus(false);
+                                errorText.clear();
+                                errorText.append("Line ");
+                                errorText.append(to_string(j));
+                                errorText.append(" is empty after its label.");
+                                this->setCompileError(errorText);
+                                inputFile.close();
+                                return;
+                            }
+                            else{
+                                line = line.substr(i+1);
+                            }
+                            break;
+                        }
+                    }
+
+                    this->removeLeadingWhitespace(line);
+                    if(line.size() < 5){
+                        this->setCompileValidityStatus(false);
+                        errorText.clear();
+                        errorText.append("Line ");
+                        errorText.append(to_string(j));
+                        errorText.append(" detected as too small to be a valid statement.");
+                        this->setCompileError(errorText);
+                        inputFile.close();
+                        return;
+                    }
+
+
+                    // I'd rather change this to a map of lambas, but scoping, so now we just get a map and switch statments
+                    int type = stats[line.substr(0,3)];
+                    switch (type)
+                    {
+                    case 1:
+                        stmts->push_back(new DeclIntStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 2:
+                        stmts->push_back(new DeclArrStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 3:
+                        stmts->push_back(new ReadStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 4:
+                        stmts->push_back(new PrintStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 5:
+                        stmts->push_back(new MovStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 6:
+                        stmts->push_back(new AddStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 7:
+                        stmts->push_back(new CompStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 8:
+                        stmts->push_back(new JLessStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 9:
+                        stmts->push_back(new JMoreStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 10:
+                        stmts->push_back(new JEqStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 11:
+                        stmts->push_back(new JumpStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    case 12:
+                        stmts->push_back(new EndStmt(this));
+                        if(labelFound && !tempString.empty()){
+                            stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        break;
+                    default:
+                        this->setCompileValidityStatus(false);
+                        errorText.clear();
+                        errorText.append("Unknown instruction on line ");
+                        errorText.append(to_string(j));
+                        errorText.append(".");
+                        this->setCompileError(errorText);
+                        inputFile.close();
+                        return;
+                    }
                 }
             }
+            ++j;
         }
+        inputFile.close();
+        return;
+    }catch(std::exception& exceptionRef){
+        this->setCompileValidityStatus(false);
+        errorText = "Unexpected compilation error.";
+        this->setCompileError(errorText);
+        return;
     }
-
-
-
+    
+    
+    
     /*
     std::ifstream file(filename + ".scapl");
 
