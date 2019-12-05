@@ -13,7 +13,9 @@ Zacchaeus Leung (101035212)
 
 ## Design Pattern
 
-We implemented the composite design pattern. 
+We implemented the composite design pattern.
+It allows for the cascade of behavior through subclasses and their possible subelements (in the case of containers) 
+without worrying about each object's type as the operation is cascaded.
 This was implemented through the way we implemented arrays, where arrays store pointers to generic variables instead of explicitly Integer Variables, and the use of polymorphism on the implementation of the print function.
 Additionally, this design pattern allows for greater feature potential in the future for what arrays can store, being able to store any Variable subtype, even arrays other should the syntax be added.
 Through this implementation, all subclasses of the Variable class can be called to complete the print function through their own implementation, and cascade that behavior through their elements if they are also a composite (array) type.
@@ -120,9 +122,6 @@ To verify persistence in a human-readable format, please use either sqlite3 term
 - ./SCAPL/STMTs/ReadStmt.h
 
 ## Other Files
-
-- D1_T1.scapl  
-- D1_T2.scapl  
 - D2_T1.scapl
 - D2_T2.scapl  
 - Makefile  
