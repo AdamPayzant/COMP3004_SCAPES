@@ -36,6 +36,7 @@ void JEqStmt::compile(std::string &line) {
             else{
                 Label* tempPtr = (Label*) ids->at(i);
                 o1 = new Operand(tempPtr);
+                break;
             }
         }
     }
