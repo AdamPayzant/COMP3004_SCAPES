@@ -200,6 +200,7 @@ void MainController::runCompiledProgram()
     */
     this->program = new Program(mainWindow->getProgramFilename(), this);
     this->persistenceManager->restoreProgramObjects(this->program, this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
+    this->program->execute();
 }
 
 string& MainController::promptUserForInput(){

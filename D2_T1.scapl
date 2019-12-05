@@ -3,15 +3,15 @@
 # Author: //TODO: Team Name
 # Date: 05/12/2019
 
-# Program 1, meant to showcase the execution of all of the different instructions 
+# Program 1, meant to showcase the execution of all of the different instructions
 # while also implementing a simple loop
 
 # jmp to code
-jmp L1 
-# declare an int and array and gives them values 
+jmp L1
+# declare an int and array and gives them values
 L1: dci a
 dca b 1
-mov a 1
+mov 1 a
 rdi $b+1
 # loop start adds 1 each time
 L2: add a 1

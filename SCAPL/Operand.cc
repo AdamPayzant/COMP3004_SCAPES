@@ -1,5 +1,6 @@
 #include "Operand.h"
 #include "ArrAccess.h"
+#include <iostream>
 
 Operand::Operand(Identifier *i) {
     id = i;
@@ -26,6 +27,7 @@ void Operand::setID(Identifier* i) {
 }
 
 int Operand::getVal() {
+    std::cout<<"this operand is a "<<id->getSubtype()<<std::endl;
     if (id->getSubtype() == "Literal") {
         //cast to Literal
         Literal *temp = (Literal *) id;
@@ -53,6 +55,24 @@ std::string Operand::getOut() {
 }
 
 void Operand::setVal(int v) {
-    Value *temp = (Value *) id;
-    temp->setVal(v);
+    std::cout<<"this operand is a "<<id->getSubtype()<<std::endl;
+    if (id->getSubtype() == "Literal") {
+        //cast to Literal
+        Literal *temp = (Literal *) id;
+        temp->setVal(v);
+    } else if (id->getSubtype() == "Variable") {
+        //cast to IntegerVariable
+        if (((Variable *) id)->getSubtype() == "IntegerVariable") {
+            IntegerVariable *temp = (IntegerVariable *) id;
+            temp->setVal(v);
+        } else {
+            //error case
+        }
+    } else if (id->getSubtype() == "ArrAccess") {
+        //cast to ArrAccess
+        ArrAccess *temp = (ArrAccess *) id;
+        temp->setVal(v);
+    } else {
+        //error case
+    }
 }
