@@ -57,6 +57,7 @@ void DeclIntStmt::compile(std::string &line) {
         return;
     }
     ids->push_back(new IntegerVariable(nextArg));
+    o1 = new Operand(ids->at(ids->size()-1));
 }
 
 
