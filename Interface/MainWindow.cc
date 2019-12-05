@@ -142,14 +142,6 @@ void MainWindow::on_menuButtonRunOption_triggered()
     mainController->clientRequestHandler("run");
 }
 
-void MainWindow::on_menuButtonFuncDescOption_triggered()
-{
-}
-
-void MainWindow::on_menuButtonAboutOption_triggered()
-{
-}
-
 void MainWindow::prepareInitialWindowState()
 {
     ui->sourceTextWindow->setReadOnly(true);
