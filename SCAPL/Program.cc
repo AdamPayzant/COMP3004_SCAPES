@@ -97,7 +97,8 @@ void Program::compile() {
         j=0;
         for(std::string line ; getline(inputFile, line); ) {
             // Had issues loading in blank lines, this should work around it
-            if(line.size() > 1) {
+            line = line.substr(0,line.size()-1);
+            if(line.size() > 0) {
                 if(line[0] != '#') {
                     labelFound = false;
                     tempString = "##_NOTVALID_##";
@@ -129,8 +130,7 @@ void Program::compile() {
                     }
 
                     this->removeLeadingWhitespace(line);
-                    std::string end = "end";
-                    if(line.size() < 5 && (line.substr(0,3).compare(end) != 0)){
+                    if(line.size() < 5 && (line.compare((std::string) "end") != 0)){
                         this->setCompileValidityStatus(false);
                         errorText.clear();
                         errorText.append("Line ");
@@ -151,84 +151,72 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 2:
                         stmts->push_back(new DeclArrStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 3:
                         stmts->push_back(new ReadStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 4:
                         stmts->push_back(new PrintStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 5:
                         stmts->push_back(new MovStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 6:
                         stmts->push_back(new AddStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 7:
                         stmts->push_back(new CompStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 8:
                         stmts->push_back(new JLessStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 9:
                         stmts->push_back(new JMoreStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 10:
                         stmts->push_back(new JEqStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 11:
                         stmts->push_back(new JumpStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     case 12:
                         stmts->push_back(new EndStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
                         break;
                     default:
                         this->setCompileValidityStatus(false);
@@ -240,6 +228,7 @@ void Program::compile() {
                         inputFile.close();
                         return;
                     }
+                    stmts->at(stmts->size()-1)->compile(line);
                 }
             }
             ++j;
