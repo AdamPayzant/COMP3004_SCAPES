@@ -43,19 +43,30 @@ class Operand {
         ~Operand();
 
         /**
-         * Getter method for pointer to the identifier of the Operand.
+         * Getter function for pointer to the identifier of the Operand.
          **/
         void getID(Identifier**);
 
         Identifier* getIDPtr();
 
         /**
-         * Setter method for pointer to the identifier of the Operand.
+         * Setter function for pointer to the identifier of the Operand.
          **/
         void setID(Identifier*);
 
+        /**
+         * Getter function for object value as an int.
+         **/
         int getVal();
+    
+        /**
+         * Getter function for object value as a standard string.
+         **/
         std::string getOut();
+    
+        /**
+         * Setter function for object value as an int.
+         **/
         void setVal(int);
         
     private:
