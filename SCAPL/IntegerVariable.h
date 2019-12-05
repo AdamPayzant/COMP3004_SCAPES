@@ -14,6 +14,7 @@ class IntegerVariable: public Variable, public Value {
         int getVal();
         std::string getOut();
         void setVal(int);
+        virtual void print(std::string&);
     private:
         int val;
 };
