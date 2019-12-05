@@ -73,7 +73,7 @@ void DeclArrStmt::compile(std::string &line){
         int j;
         for(j = 0; j < nextArg2.size(); j++) {
             if(line[j] == '+') {
-                arrayName = nextArg2.substr(1, j);
+                arrayName = nextArg2.substr(1, j-1);
                 nameEndFound = true;
                 break;
             }
@@ -98,6 +98,7 @@ void DeclArrStmt::compile(std::string &line){
                 ArrAccess* tempPtr = new ArrAccess(downcast, accessName, master);
                 o2 = new Operand(tempPtr);
                 sizeFound = true;
+                break;
             }
         }
     }
@@ -133,6 +134,7 @@ void DeclArrStmt::compile(std::string &line){
                     }
                     o2 = new Operand(ids->at(i));
                     sizeFound = true;
+                    break;
                 }
             }
         }
