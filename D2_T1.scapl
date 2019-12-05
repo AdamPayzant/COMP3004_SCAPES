@@ -6,28 +6,26 @@
 # Program 1, meant to showcase the execution of all of the different instructions
 # while also implementing a simple loop
 
-# jmp to code
-jmp L1
-# declare an int and array and gives them values
-L1: dci a
+
+dci a
 dca b 2
 mov 0 a
 rdi $b+0
-# loop start adds 1 each time
-L2: add 1 a
+mov $b+0 $b+1
+L1: add 1 a
 prt "jumped to loop"
-cmp a $b+0
-jls L2
-# if equal move to L3
-jeq L3
-L3: add 1 a
-cmp a b
-jmr L4
-jls L5
-L4: prt "a is greater than b"
-jmp L6
-L5: prt "a is smaller than b"
-jmp L6
-L6: prt a
+add a $b+1
+cmp $b+0 a
+jls L1
+jeq L2
+L2: add 1 a
+cmp a $b+1
+jmr L3
+jls L4
+L3: prt "a is greater than b"
+jmp L5
+L4: prt "a is smaller than b"
+jmp L5
+L5: prt a
 prt b
 end
