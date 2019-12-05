@@ -14,6 +14,125 @@ PrintStmt::~PrintStmt() {
 }
 
 void PrintStmt::compile(std::string &line) {
+    line = line.substr(4);
+    std::string nextArg = "##_NOTVALID_##";
+    std::string errorText;
+    std::vector<Identifier*> *ids;
+    ids = master->getIds();
+    int i;
+
+    this->master->removeLeadingWhitespace(line);
+    if(line.size()==0){
+        this->master->setCompileValidityStatus(false);
+        errorText = "Instruction provided too few operands";
+        this->master->setCompileError(errorText);
+        return;
+    }
+    if(this->master->parseNextArg(line, nextArg) < 1 || nextArg.empty()){
+        this->master->setCompileValidityStatus(false);
+        errorText = "Invalid or non-existent instruction operand provided.";
+        this->master->setCompileError(errorText);
+        return;
+    }
+
+    bool stringFound = false;
+    if(nextArg[0]=='$'){
+        // Array case
+        std::string arrayName;
+        std::string accessName;
+        bool nameEndFound = false;
+        int j;
+        for(j = 0; j < nextArg.size(); j++) {
+            if(line[j] == '+') {
+                arrayName = nextArg.substr(1, j);
+                nameEndFound = true;
+                break;
+            }
+        }
+        if(!nameEndFound || j+1>=nextArg.size()){
+            this->master->setCompileValidityStatus(false);
+            errorText = "Accessing Array elements requires the format $ArrayName+Index.";
+            this->master->setCompileError(errorText);
+            return;
+        }
+        accessName = line.substr(j+1);
+
+        for(i = 0; i < ids->size() ; ++i){
+            if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(arrayName) == 0){
+                if(ids->at(i)->getSubtype().compare("ArrayVariable")!=0){
+                    this->master->setCompileValidityStatus(false);
+                    errorText = "Must provide valid Array variable to access Array elements.";
+                    this->master->setCompileError(errorText);
+                    return;
+                }
+                ArrayVariable* downcast = (ArrayVariable*) ids->at(i);
+                ArrAccess* tempPtr = new ArrAccess(downcast, accessName, master);
+                o1 = new Operand(tempPtr);
+                stringFound = true;
+            }
+        }
+    }
+    else{
+        if(nextArg[0]=='\"'){
+            if(nextArg[nextArg.size()-1]=='\"'){
+                for(i = 1;i<nextArg.size()-1;++i){
+                    if(nextArg[i]=='\"'){
+                        this->master->setCompileValidityStatus(false);
+                        errorText = "Invalid literal format.";
+                        this->master->setCompileError(errorText);
+                        return;
+                    }
+                }
+                Literal* tempPtr = new Literal(nextArg);
+                o1 = new Operand(tempPtr);
+                stringFound = true;
+            }
+            else{
+                this->master->setCompileValidityStatus(false);
+                errorText = "Invalid literal format.";
+                this->master->setCompileError(errorText);
+                return;
+            }
+
+        //Else variable
+        }else{
+            for(i = 0; i < nextArg.size(); ++i){
+                if(nextArg[i]<48 || (nextArg[i]>90 && nextArg[i]<97)){
+                    this->master->setCompileValidityStatus(false);
+                    errorText = "Print instruction operand contains invalid characters";
+                    this->master->setCompileError(errorText);
+                    return;
+                }
+            }
+            for(i = 0; i < ids->size() ; ++i){
+                if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(nextArg) == 0){
+                    o1 = new Operand(ids->at(i));
+                    stringFound = true;
+                }
+            }
+        }
+
+    }
+    if(!stringFound){
+        this->master->setCompileValidityStatus(false);
+        errorText = "Array size operand either contains erroneous characters or is an incorrect variable name";
+        this->master->setCompileError(errorText);
+        return;
+    }
+
+
+    this->master->removeNextArg(line);
+    this->master->removeLeadingWhitespace(line);
+    if(line.size()>0){
+        this->master->setCompileValidityStatus(false);
+        errorText = "Instruction provided too many operands";
+        this->master->setCompileError(errorText);
+        return;
+    }
+}
+
+/*
+void PrintStmt::compile(std::string &line) {
     int i = line.size() - 1;
     std::vector<Identifier*> *ids = master->getIds();
 
@@ -56,6 +175,7 @@ void PrintStmt::compile(std::string &line) {
         }
     }
 }
+*/
 
 void PrintStmt::run() {
     /*
