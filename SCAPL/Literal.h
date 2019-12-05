@@ -36,20 +36,20 @@ class Literal: public Identifier, public Value {
          **/
         ~Literal();
         /**
-         * Returns the value of the literal converted to a string
+         * Getter function for the value of the literal converted to an int
          **/
         int getVal();
         /**
-         * Returns the string of the literal
+         * Getter function for the value of the string of the literal
          **/
         std::string getOut();
         /**
-         * Setter for value. Doesn't actually do anything
+         * Setter function for value. Doesn't actually do anything
          **/
         void setVal(int);
     private:
         /**
-         * The value it stores
+         * The value the literal stores
          **/
         std::string str;
 };
