@@ -55,7 +55,7 @@ void PrintStmt::compile(std::string &line) {
             this->master->setCompileError(errorText);
             return;
         }
-        accessName = line.substr(j+1);
+        accessName = nextArg.substr(j+1);
 
         for(i = 0; i < ids->size() ; ++i){
             if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(arrayName) == 0){
@@ -131,6 +131,7 @@ void PrintStmt::compile(std::string &line) {
         return;
     }
 }
+
 
 void PrintStmt::run() {
     if(o1 != nullptr && o1->getIDPtr()!=nullptr){
