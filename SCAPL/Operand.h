@@ -5,6 +5,7 @@
 #include "Variable.h"
 #include "IntegerVariable.h"
 #include "ArrayVariable.h"
+#include "ArrAccess.h"
 #include "Value.h"
 
 /**
@@ -56,7 +57,7 @@ class Operand {
         int getVal();
         std::string getOut();
         void setVal(int);
-        
+
     private:
         /**
          * Pointer to the Identifier serving as the Operand of a statement.

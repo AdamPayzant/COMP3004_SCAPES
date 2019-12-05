@@ -40,9 +40,9 @@ DISTNAME      = SCAPES1.0.0
 DISTDIR = /home/student/Desktop/COMP3004_SCAPES/.tmp/SCAPES1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/student/Qt/5.13.0/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/student/Qt/5.13.0/gcc_64/lib/libQt5Widgets.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Gui.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Sql.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/student/Qt/5.13.0/gcc_64/lib/libQt5Widgets.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Gui.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Sql.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread
 AR            = ar cqs
-RANLIB        = 
+RANLIB        =
 SED           = sed
 STRIP         = strip
 
@@ -365,14 +365,14 @@ DIST          = ../../Qt/5.13.0/gcc_64/mkspecs/features/spec_pre.prf \
 		SCAPL/STMTs/PrintStmt.cc \
 		SCAPL/STMTs/ReadStmt.cc
 QMAKE_TARGET  = SCAPES
-DESTDIR       = 
+DESTDIR       =
 TARGET        = SCAPES
 
 
 first: all
 ####### Build rules
 
-SCAPES: ui_MainWindow.h ui_UserInputPrompt.h $(OBJECTS)  
+SCAPES: ui_MainWindow.h ui_UserInputPrompt.h $(OBJECTS)
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: SCAPES.pro ../../Qt/5.13.0/gcc_64/mkspecs/linux-g++/qmake.conf ../../Qt/5.13.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -778,13 +778,13 @@ distdir: FORCE
 	$(COPY_FILE) --parents Interface/MainWindow.ui Interface/UserInputPrompt.ui $(DISTDIR)/
 
 
-clean: compiler_clean 
+clean: compiler_clean
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
 
 
-distclean: clean 
-	-$(DEL_FILE) $(TARGET) 
+distclean: clean
+	-$(DEL_FILE) $(TARGET)
 	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
@@ -1329,7 +1329,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
@@ -3940,10 +3940,10 @@ ReadStmt.o: SCAPL/STMTs/ReadStmt.cc SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ReadStmt.o SCAPL/STMTs/ReadStmt.cc
 
-moc_MainWindow.o: moc_MainWindow.cpp 
+moc_MainWindow.o: moc_MainWindow.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
-moc_UserInputPrompt.o: moc_UserInputPrompt.cpp 
+moc_UserInputPrompt.o: moc_UserInputPrompt.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_UserInputPrompt.o moc_UserInputPrompt.cpp
 
 ####### Install
@@ -3954,7 +3954,7 @@ install_target: first FORCE
 
 uninstall_target: FORCE
 	-$(DEL_FILE) $(INSTALL_ROOT)/opt/SCAPES/bin/$(QMAKE_TARGET)
-	-$(DEL_DIR) $(INSTALL_ROOT)/opt/SCAPES/bin/ 
+	-$(DEL_DIR) $(INSTALL_ROOT)/opt/SCAPES/bin/
 
 
 install: install_target  FORCE
@@ -3962,4 +3962,3 @@ install: install_target  FORCE
 uninstall: uninstall_target  FORCE
 
 FORCE:
-

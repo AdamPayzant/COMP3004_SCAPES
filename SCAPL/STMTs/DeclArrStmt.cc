@@ -22,7 +22,7 @@ void DeclArrStmt::compile(std::string &line){
 
     // Creates the array in Operand 1
     std::string name = line.substr(4, i - 5);
-    
+
     std::vector<Identifier*> *ids;
     ids = master->getIds();
     ArrayVariable *temp = new ArrayVariable(name);
@@ -33,7 +33,7 @@ void DeclArrStmt::compile(std::string &line){
     if(isdigit(line[i+1])) {
         // Literal case
         Literal *temp = new Literal(line.substr(5, i - 4));
-        o1 = new Operand(temp);
+        o2 = new Operand(temp);
     }
     else if(line[i+1] == '$') {
         // Array case
@@ -54,6 +54,7 @@ void DeclArrStmt::compile(std::string &line){
             if(an.compare(arrName) == 0) {
                 ArrayVariable *downcast = (ArrayVariable *) (*iter);
                 ArrAccess *temp = new ArrAccess(downcast, accessName, master);
+                o2 = new Operand(temp);
                 break;
             }
         }
@@ -71,6 +72,10 @@ void DeclArrStmt::compile(std::string &line){
 }
 
 void DeclArrStmt::run(){
+    std::cout<<"hi"<<std::endl;
     ArrayVariable *temp = (ArrayVariable *) o1->getIDPtr();
+    std::cout<<o2->getOut()<<std::endl;
+    std::cout<<"beep"<<std::endl;
     temp->create(o2->getVal());
+    std::cout<<"bye"<<std::endl;
 }

@@ -194,15 +194,19 @@ void Program::compile() {
 
 
 void Program::execute() {
+    std::cout<<"there are "<<stmts->size()<<" stmts"<<endl;
     Statement *curStmt = stmts->at(0);
     stmtPos = 0;
     while(true) {
+    std::cout<<"this is stmt#"<<stmtPos<<endl;
         if(stmtPos >= stmts->size()) {
             break;
         }
         else {
+            std::cout<<"running stmt#"<<stmtPos<<endl;
             stmtPos++;
             curStmt->run();
+            std::cout<<"stmt ran successfully"<<endl;
             curStmt = stmts->at(stmtPos);
         }
     }
