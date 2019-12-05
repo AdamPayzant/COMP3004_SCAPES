@@ -354,7 +354,6 @@ void Program::execute() {
     Statement* curStmt = stmts->at(0);
     stmtPos = 0;
     while(true) {
-        std::cout<<"this is stmt#"<<stmtPos<<endl;
         stmtPos++;
         curStmt->run();
         if(stmtPos >= stmts->size()) {
@@ -363,16 +362,6 @@ void Program::execute() {
         curStmt = stmts->at(stmtPos);
     }
 }
-
-void Program::print() {
-
-}
-
-/*
-void Program::addPrint(std::string o) {
-    output.push_back(o);
-}
-*/
 
 void Program::pushToWindow(std::string& formattedText){
     if(!formattedText.empty()){
