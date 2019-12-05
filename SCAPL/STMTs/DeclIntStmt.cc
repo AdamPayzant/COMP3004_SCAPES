@@ -20,7 +20,7 @@ void DeclIntStmt::compile(std::string &line) {
     this->master->removeLeadingWhitespace(line);
     if(this->master->parseNextArg(line, nextArg) < 1 || nextArg.empty()){
         this->master->setCompileValidityStatus(false);
-        errorText = "Invalid or non-existent instruction operation provided.";
+        errorText = "Invalid or non-existent instruction operand provided.";
         this->master->setCompileError(errorText);
         return;
     }
