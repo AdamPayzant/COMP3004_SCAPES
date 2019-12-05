@@ -102,8 +102,12 @@ class Program {
 
         void changeStmt(Label *);
 
+        /*
         void addPrint(std::string);
-
+        */
+    
+        void pushToWindow(std::string&);
+    
         void end();
 
         std::string& getUserInput();
@@ -145,7 +149,7 @@ class Program {
 
         int stmtPos;
 
-        std::vector<std::string> output;
+        std::string output;
 
         MainController* controller;
 
