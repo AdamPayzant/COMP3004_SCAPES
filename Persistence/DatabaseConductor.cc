@@ -639,9 +639,3 @@ bool DatabaseConductor::restoreOperands()
     }
     return true;
 }
-
-
-//TEMPORARY FOR TESTING
-void DatabaseConductor::setProgram(Program* program){
-    this->program = program;
-}
