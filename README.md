@@ -7,7 +7,7 @@ To provide to the user an IDE capable of creating and managing SCAPL source code
 Mathieu Leblanc (101092676)  
 Edward Adam Payzant (101082175)  
 William So (101070267)  
-Zacchaeus Lok-kun Liang (101035212)
+Zacchaeus Leung(101035212)
 
 **Date:** 05/12/2019
 
