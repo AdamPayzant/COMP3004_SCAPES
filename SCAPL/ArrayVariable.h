@@ -16,6 +16,8 @@ class ArrayVariable: public Variable {
         void create(int);
         void setAt(int, int);
         Variable* getAt(int);
+        int getSize();
+        int setSize(int newSize);
     private:
         Variable** arr;
         int size;
