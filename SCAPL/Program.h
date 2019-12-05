@@ -91,11 +91,6 @@ class Program {
         void execute();
 
         /**
-         * Function used to print for testing purposes in D2
-         **/
-        void print();
-
-        /**
          * Getter function that returns a pointer to the vector of Identifiers of the program
          **/
         std::vector<Identifier*>* getIds();
@@ -124,10 +119,6 @@ class Program {
          * Takes a label, searches for the statement linked with it, then sets stmtPos to the found statement
          **/
         void changeStmt(Label *);
-
-        /*
-        void addPrint(std::string);
-        */
     
         /**
          * Takes a string and adds it to the output
