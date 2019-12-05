@@ -35,6 +35,12 @@ class Variable: public Identifier {
          **/
         Variable(std::string &);
         Variable();
+    
+        /**
+         * Pure virtual function declared in order to implement the composite design pattern.
+         * Implementation of the function is found in both the IntegerVariable and ArrayVariable subclasses.
+         * The design pattern allows us to call and cascade behavior without having to worry about subclass cases;
+         * each subclass will automatically handle the call to the function and cascade to elements as necessary.
         virtual void print(std::string&)=0;
 };
 
