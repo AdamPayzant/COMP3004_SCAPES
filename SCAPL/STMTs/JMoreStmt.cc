@@ -52,15 +52,6 @@ void JMoreStmt::compile(std::string &line) {
     }
 }
 
-
-/*
-void JMoreStmt::compile(std::string &line) {
-    // Syntax: "jmr <destination label>"
-    std::string target = line.substr(3, line.size() - 4);
-    o1 = new Operand(master->getID(target));
-}
-*/
-
 void JMoreStmt::run() {
     if(master->getCFlag() == 1) {
         master->changeStmt((Label *) o1->getIDPtr());
