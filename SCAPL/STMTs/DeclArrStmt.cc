@@ -67,26 +67,37 @@ void DeclArrStmt::compile(std::string &line){
     bool sizeFound = false;
     if(nextArg2[0]=='$'){
         // Array case
-        i++;
-        std::string arrName;
+        std::string arrayName;
         std::string accessName;
+        bool nameEndFound = false;
         int j;
-        for(j = i; j < line.size(); j++) {
-            if(line.at(j) == '+') {
-                arrName = line.substr(i + 1, j - i - 1);
+        for(j = 0; j < nextArg2.size(); j++) {
+            if(line[j] == '+') {
+                arrayName = nextArg2.substr(1, j);
+                nameEndFound = true;
                 break;
             }
         }
-        accessName = line.substr(j + 1, line.size() - 1 - j);
-        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-            std::string an;
-            (*iter)->getName(an);
-            if(an.compare(arrName) == 0) {
-                ArrayVariable *downcast = (ArrayVariable *) (*iter);
-                ArrAccess *temp = new ArrAccess(downcast, accessName, master);
-                o2 = new Operand(temp);
+        if(!nameEndFound || j+1>=nextArg2.size()){
+            this->master->setCompileValidityStatus(false);
+            errorText = "Accessing Array elements requires the format $ArrayName+Index.";
+            this->master->setCompileError(errorText);
+            return;
+        }
+        accessName = line.substr(j+1);
 
-                break;
+        for(i = 0; i < ids->size() ; ++i){
+            if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(arrayName) == 0){
+                if(ids->at(i)->getSubtype().compare("ArrayVariable")!=0){
+                    this->master->setCompileValidityStatus(false);
+                    errorText = "Must provide valid Array variable to access Array elements.";
+                    this->master->setCompileError(errorText);
+                    return;
+                }
+                ArrayVariable* downcast = (ArrayVariable*) ids->at(i);
+                ArrAccess* tempPtr = new ArrAccess(downcast, accessName, master);
+                o2 = new Operand(tempPtr);
+                sizeFound = true;
             }
         }
     }
