@@ -54,14 +54,6 @@ void JumpStmt::compile(std::string &line) {
     }
 }
 
-/*
-void JumpStmt::compile(std::string &line) {
-    // Syntax: "jmp <Destination Label>"
-    std::string target = line.substr(3, line.size() - 4);
-    o1 = new Operand(master->getID(target));
-}
-*/
-
 
 void JumpStmt::run() {
     master->changeStmt((Label *) o1->getIDPtr());
