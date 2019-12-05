@@ -23,5 +23,5 @@ void IntegerVariable::setVal(int v) {
 }
 
 void IntegerVariable::print(std::string& formattedString){
-    formattedString.append(to_string(val));
+    formattedString.append(std::to_string(val));
 }
