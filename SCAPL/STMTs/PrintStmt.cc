@@ -179,10 +179,15 @@ void PrintStmt::compile(std::string &line) {
 */
 
 void PrintStmt::run() {
-    /*
-    Std::String s;
-    s=std::to_string(o1.getValue());
-    master->addPrint(s);
-    */
-    master->addPrint(o1->getOut());
+    if(o1 != nullptr && o1->getIDPtr()!=nullptr){
+        std::string formattedString;
+        if(o1->getIDPtr()->getSubtype().compare("Literal")==0){
+            formattedString = ((Literal *) o1->getIDPtr())->getOut();
+        }
+        else{
+            ((Variable*) o1->getIDPtr())->print(formattedString);
+        }
+        formattedString.append("\n");
+        this->master->addPrint(formattedString);
+    }
 }
