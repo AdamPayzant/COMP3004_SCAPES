@@ -1,6 +1,5 @@
 #include "ReadStmt.h"
 #include "../Program.h"
-#include <iostream>
 
 ReadStmt::ReadStmt(Program *p) {
     o1 = nullptr;
