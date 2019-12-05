@@ -28,8 +28,17 @@
  **/
 class Value {
     public:
+        /**
+         * Pure virtual getter function for retrieving object value as an int.
+         **/
         virtual int getVal() = 0;
+        /**
+         * Pure virtual getter function for retrieving object value as a standard string. 
+         **/
         virtual std::string getOut() = 0;
+        /**
+         * Pure virtual setter function for specifying object value as an int.
+         **/
         virtual void setVal(int) = 0;
 };
 
