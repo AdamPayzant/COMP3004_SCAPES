@@ -95,9 +95,7 @@ void MainWindow::on_menuButtonNewOption_triggered()
     feedbackPalette.setColor(QPalette::Base, QColor(255,255,255));
     ui->feedbackWindow->setText("Editor window cleared for new source file.\n"
                                 "To save your source file, please use the 'Save' menu option.\n"
-                                "To compile your source file, please use the 'Compile' menu option.\n"
-                                "Clarifications on program details or functionality can be found under the "
-                                "'Help' menu option of the menu bar.\n\n"
+                                "To compile your source file, please use the 'Compile' menu option.\n\n"
                                 "Please note that creating a new source file using the 'New' menu option without "
                                 "saving your current source file will result in the loss of any unsaved changes.");
     ui->feedbackWindow->setPalette(feedbackPalette);
