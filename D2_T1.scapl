@@ -10,17 +10,17 @@
 jmp L1
 # declare an int and array and gives them values
 L1: dci a
-dca b 1
-mov 1 a
-rdi $b+1
+dca b 2
+mov 0 a
+rdi $b+0
 # loop start adds 1 each time
-L2: add a 1
+L2: add 1 a
 prt "jumped to loop"
-cmp a $b+1
+cmp a $b+0
 jls L2
 # if equal move to L3
 jeq L3
-L3: add a 1
+L3: add 1 a
 cmp a b
 jmr L4
 jls L5

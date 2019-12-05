@@ -56,11 +56,7 @@ std::string Operand::getOut() {
 
 void Operand::setVal(int v) {
     std::cout<<"this operand is a "<<id->getSubtype()<<std::endl;
-    if (id->getSubtype() == "Literal") {
-        //cast to Literal
-        Literal *temp = (Literal *) id;
-        temp->setVal(v);
-    } else if (id->getSubtype() == "Variable") {
+    if (id->getSubtype() == "Variable") {
         //cast to IntegerVariable
         if (((Variable *) id)->getSubtype() == "IntegerVariable") {
             IntegerVariable *temp = (IntegerVariable *) id;

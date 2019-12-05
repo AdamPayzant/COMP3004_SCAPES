@@ -1,5 +1,6 @@
 #include "ReadStmt.h"
 #include "../Program.h"
+#include <iostream>
 
 ReadStmt::ReadStmt(Program *p) {
     o1 = nullptr;
@@ -53,7 +54,13 @@ void ReadStmt::compile(std::string &line) {
 }
 
 void ReadStmt::run() {
-  std::string s= master->getUserInput();
-  int input = std::stoi(s);
-  o2->setVal(input);
+    std::cout<<"beginning of run stmt"<<std::endl;
+    std::string s = master->getUserInput();
+    std::cout<<"user inputted: "<<s<<std::endl;
+    int input = std::stoi(s);
+    std::cout<<"to int: "<<input<<std::endl;
+    std::cout<<"subtype: "<<o2->getIDPtr()->getSubtype()<<std::endl;
+    o2->setVal(8);
+    std::cout<<"o2 value: "<<o2->getVal()<<std::endl;
+    std::cout<<"end of run stmt"<<std::endl;
 }
