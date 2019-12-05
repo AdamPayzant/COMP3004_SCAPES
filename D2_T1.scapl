@@ -4,13 +4,16 @@
 # Date: 05/12/2019
 
 # This program takes an integer n from the user and compares
-# its double (2n) to its square (n^2). Based on the result of
-# this comparison, it is possible to deduce whether
+# its double (2n) to its square (n^2). The resulting output
+# is based on the result of this comparison.
+
+prt "Square vs Double Program"
 
 # variable declarations and initializations
 dci n
 prt "input int value for n"
 rdi n
+prt "2n will be compared to n^2"
 prt "n ="
 prt n
 dca arr 2
@@ -39,14 +42,15 @@ out: add n $arr+0
 # compare results
 cmp $arr+0 $arr+1
 prt "results:"
-jmr L3
-jls L4
+jmr more
+jls less
 prt "n^2 = 2n --> n=2 OR n=0"
-jmp L5
-L3: prt "n^2 < 2n --> n=1"
-jmp L5
-L4: prt "n^2 > 2n -> n>2"
+jmp exit
+more: prt "n^2 < 2n --> n=1"
+jmp exit
+less: prt "n^2 > 2n -> n>2"
 
-L5: prt n
+# final values
+exit: prt n
 prt arr
 end

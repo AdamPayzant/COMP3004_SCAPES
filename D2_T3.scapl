@@ -1,0 +1,66 @@
+# File: D2_T3.scapl
+# Version 1.0
+# Author: //TODO: Team Name
+# Date: 05/12/2019
+
+# This program takes 3 integers as input, and prints: the
+# maximum value, and, if they are in ascending order, the
+# product.
+
+#variable declarations and initializations
+dca nums 3
+rdi $nums+0
+rdi $nums+1
+rdi $nums+2
+dci max
+
+jmp compfirst
+
+next: prt "numbers not in ascending order"
+prt "max ="
+prt max
+end
+
+multiply: prt "multiply numbers using looping addition"
+dci product
+dci i
+dci j
+mov 0 product
+mov 0 i
+mov 0 j
+
+jmp in
+
+loop1: prt "enter outer loop"
+add 1 i
+
+loop2: prt "enter inner loop"
+add 1 j
+
+add $nums+0 product
+
+cmp j $nums+2
+jeq xloop2
+jmp loop2
+
+xloop2: prt "exit inner loop"
+cmp i $nums+1
+jeq xloop1
+jmp loop1
+
+xloop1: prt "exit outer loop"
+prt "product ="
+prt product
+jmp next
+
+compfirst: prt "compare first 2 nums"
+cmp $nums+0 $nums+1
+jls complast
+mov $nums+0 max
+jmp next
+
+complast: prt "compare last 2 nums"
+cmp $nums+2 $nums+1
+jmr multiply
+mov $nums+1 max
+jmp next

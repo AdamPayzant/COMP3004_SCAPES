@@ -1,6 +1,11 @@
+# File: D2_T2.scapl
+# Version 1.0
+# Author: //TODO: Team Name
+# Date: 05/12/2019
+
 jmp start
 #declare all variables
-start:dci a
+start:Dci a
 dci b
 dci c
 dci d
@@ -9,32 +14,38 @@ dci counter
 #make array
 dca arr 2
 #init all varibles
-mov    1 c
-mov    1 c
-mov    1 c
+mov   c 1
+mov   b 1
+mov   a 1
 #loop a
-L1:add 1 a
+L1:add a 1
 cmp a b
-jls L1
+Jls L1
 prt a
 
 # mov 4 to a
-mov  4 a
-cmp  a 4
-jeq L2
+mov a 4
+cmp a 4
+jeq l2
 #read d
 rdi d
 
+#use unconditional jumps to loop
+dci ct
+mov  0 e1
+e1:add ct 1
+cmp ct 7
+jmp e1
 
 #loop  so that c=d a=d
-L2:add 1 c
+L2:add c 1
 prt "entering loop"
-mov  0 a
-L3:add  1 a
+mov a 0
+L3:add a 1
 cmp a d
-jls L3
+jls l3
 cmp c d
-jls L2
+jls: l2
 prt a
 prt c
 
@@ -46,29 +57,28 @@ rdi con2
 
 # if cont  1 is not 0 incriment a counter
 cmp con1 0
-jmr L4
-L4: add 1 counter
+jmr l4
+l4: add counter 1
 cmp counter 1
-jls  L6
-jmr L6
-jeq L5
-L5:mov a  $arr+0
+jls: l6
+jmr:l6
+jeq l5
+l5:mov a $arr+0
 prt $arr+0
-L6: end
+l6: end
 
 #comp condition 2
 cmp con2 0
-jeq L7
-jls L8
-jmr L8
+jeq:l7
+Jls:l8
+jmr:l8
 cmp counter 2
-jls L9
-
-L9:end
-L8: add 1 counter
+jls l9
+l9:end
+l8: add counter 1
 cmp counter 2
-jeq L10
-L10:mov c  $arr+1
+Jeq l10
+l10:mov c  $arr+1
 prt $arr+1
 prt $arr+0
 end
