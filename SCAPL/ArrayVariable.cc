@@ -20,6 +20,14 @@ void ArrayVariable::create(int s) {
     }
 }
 
+int ArrayVariable::getSize(){
+    return this->size;
+}
+
+int ArrayVariable::setSize(int newSize){
+    this->size = newSize;
+}
+
 void ArrayVariable::setAt(int loc, int val) {
     IntegerVariable *cur = (IntegerVariable *) arr[loc];
     cur->setVal(val);
