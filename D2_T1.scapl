@@ -7,25 +7,29 @@
 # while also implementing a simple loop
 
 
-dci a
-dca b 2
-mov 0 a
-rdi $b+0
-mov $b+0 $b+1
-L1: add 1 a
-prt "jumped to loop"
-add a $b+1
-cmp $b+0 a
-jls L1
+dci n
+prt "input int value for n"
+rdi n
+dca arr 2
+mov 0 $arr+0
+mov 0 $arr+1
+
+L1: add 1 $arr+0
+add n $arr+1
+cmp n $arr+0
 jeq L2
-L2: add 1 a
-cmp a $b+1
+jmp L1
+
+L2: add n $arr+0
+cmp $arr+0 $arr+1
 jmr L3
 jls L4
-L3: prt "a is greater than b"
+prt "n^2 = 2n --> n=2"
 jmp L5
-L4: prt "a is smaller than b"
+L3: prt "n^2 < 2n --> n=1"
 jmp L5
-L5: prt a
-prt b
+L4: prt "n^2 > 2n -> n>2"
+
+L5: prt n
+prt arr
 end
