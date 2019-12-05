@@ -676,6 +676,7 @@ int Program::removeNextArg(std::string& currentLine)
     return -3;
 }
 
-void Program::setCompileError(std::string& err){
-
+void Program::setCompileError(std::string& errorMessage)
+{
+    this->compileError = errorMessage;
 }
