@@ -21,3 +21,7 @@ std::string IntegerVariable::getOut() {
 void IntegerVariable::setVal(int v) {
     val = v;
 }
+
+void IntegerVariable::print(std::string& formattedString){
+    formattedString.append(to_string(val));
+}
