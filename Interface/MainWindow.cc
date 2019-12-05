@@ -38,6 +38,17 @@ void MainWindow::setFeedbackText(string text)
     ui->feedbackWindow->setText(QString::fromStdString(text));
 }
 
+void MainWindow::appendToFeedbackText(string& text){
+    if(ui->feedbackWindow->toPlainText().size() == 0){
+        this->setFeedbackText(text);
+    }
+    else{
+        string tempString = ui->feedbackWindow->toPlainText().toUtf8().constData();
+        tempString.append(text);
+        this->setFeedbackText(tempString);
+    }
+}
+
 MainController* MainWindow::getMainController()
 {
     return this->mainController;
