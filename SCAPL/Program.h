@@ -146,6 +146,8 @@ class Program {
         MainController* controller;
 
         bool compileValidityStatus;
+
+        std::string compileError;
 };
 
 #endif

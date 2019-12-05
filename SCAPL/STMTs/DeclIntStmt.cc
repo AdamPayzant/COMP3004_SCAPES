@@ -13,6 +13,7 @@ DeclIntStmt::~DeclIntStmt() {
 
 }
 
+
 void DeclIntStmt::compile(std::string &line) {
     line = line.substr(4);
     std::string nextArg = "##_NOTVALID_##";
