@@ -69,9 +69,15 @@ class ArrAccess: public Identifier, public Value {
          * Gets the access parameters
          **/
         std::string getAccess();
+        
+        /**
+         * Print function implemented to allow for the easy implementation of an additional 
+         * type to the composite design pattern if deemed necessary.
+         * Allows for the value of the element in the array to be printed to the GUI for the user.
+         **/
         void print(std::string&);
-    private:
     
+    private:
         /**
          * Private getter to retrieve the variable associated to this association instance.
          **/
