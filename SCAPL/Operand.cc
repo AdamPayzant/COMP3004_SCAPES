@@ -1,6 +1,5 @@
 #include "Operand.h"
-#include <cstdlib>
-#include <iostream>
+#include "ArrAccess.h"
 
 Operand::Operand(Identifier *i) {
     id = i;
@@ -27,7 +26,6 @@ void Operand::setID(Identifier* i) {
 }
 
 int Operand::getVal() {
-    std::cout<<id->getSubtype()<<std::endl;
     if (id->getSubtype() == "Literal") {
         //cast to Literal
         Literal *temp = (Literal *) id;
