@@ -151,11 +151,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 2:
                         stmts->push_back(new DeclArrStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     case 3:
@@ -163,11 +179,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 4:
                         stmts->push_back(new PrintStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     case 5:
@@ -175,11 +207,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 6:
                         stmts->push_back(new AddStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     case 7:
@@ -187,11 +235,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 8:
                         stmts->push_back(new JLessStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     case 9:
@@ -199,11 +263,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 10:
                         stmts->push_back(new JEqStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     case 11:
@@ -211,11 +291,27 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
+                        }
                         break;
                     case 12:
                         stmts->push_back(new EndStmt(this));
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
+                        }
+                        //stmts->at(stmts->size()-1)->compile(line);
+                        if(!compileValidityStatus){
+                            errorText = compileError;
+                            errorText.append("\nError occurred on line ");
+                            errorText.append(to_string(j));
+                            inputFile.close();
+                            return;
                         }
                         break;
                     default:
@@ -228,7 +324,6 @@ void Program::compile() {
                         inputFile.close();
                         return;
                     }
-                    stmts->at(stmts->size()-1)->compile(line);
                 }
             }
             ++j;
