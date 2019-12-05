@@ -28,6 +28,53 @@ void Operand::setID(Identifier* i) {
 
 int Operand::getVal() {
     std::cout<<"val: this operand is a "<<id->getSubtype()<<std::endl;
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            return ((IntegerVariable*) id)->getVal();
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            return ((ArrAccess*) id)->getVal();
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            return ((Literal *) id)->getVal();
+        }
+    }
+    return -1;
+}
+
+std::string Operand::getOut() {
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            return to_string(((IntegerVariable*) id)->getVal());
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            return to_string(((ArrAccess*) id)->getVal());
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            return to_string(((Literal *) id)->getVal());
+        }
+    }
+    return "";
+}
+
+void Operand::setVal(int v) {
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            ((IntegerVariable*) id)->setVal(v);
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            ((ArrAccess*) id)->setVal(v);
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            ((Literal *) id)->setVal(v);
+        }
+    }
+    return;
+}
+
+/*
+int Operand::getVal() {
+    std::cout<<"val: this operand is a "<<id->getSubtype()<<std::endl;
     if (id->getSubtype() == "Literal") {
         //cast to Literal
         Literal *temp = (Literal *) id;
@@ -90,3 +137,4 @@ void Operand::setVal(int v) {
         //error case
     }
 }
+*/
