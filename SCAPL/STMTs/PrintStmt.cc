@@ -44,7 +44,7 @@ void PrintStmt::compile(std::string &line) {
         int j;
         for(j = 0; j < nextArg.size(); j++) {
             if(line[j] == '+') {
-                arrayName = nextArg.substr(1, j);
+                arrayName = nextArg.substr(1, j-1);
                 nameEndFound = true;
                 break;
             }
