@@ -205,20 +205,6 @@ class MainWindow : public QMainWindow
          **/
         void on_menuButtonRunOption_triggered();
 
-        /**
-         * Handler function called when "Functionality Description" menu option is clicked.
-         * When implemented, will allow for an informative window to appear to inform the
-         * user on SCAPES functionality.
-         **/
-        void on_menuButtonFuncDescOption_triggered();
-
-        /**
-         * Handler function called when "About" menu option is clicked.
-         * When implemented, will allow for an informative window to appear to inform the
-         * user about the program in general (most likely copy of readme)
-         **/
-        void on_menuButtonAboutOption_triggered();
-
     private:
         /**
          * Pointer to the user interface model bound to the current MainWindow object through
