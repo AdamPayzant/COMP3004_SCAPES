@@ -110,6 +110,8 @@ class Program {
 
         void setCompileError(std::string&);
 
+        bool getCompileValidityStatus();
+
         void setCompileValidityStatus(bool);
 
         int removeLeadingWhitespace(std::string&);
