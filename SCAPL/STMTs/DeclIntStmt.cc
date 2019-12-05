@@ -9,6 +9,7 @@ DeclIntStmt::DeclIntStmt(Program *p) {
     subtype = "DeclIntStmt";
 }
 
+
 DeclIntStmt::~DeclIntStmt() {
 
 }
