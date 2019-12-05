@@ -7,13 +7,17 @@ To provide to the user an IDE capable of creating and managing SCAPL source code
 Mathieu Leblanc (101092676)  
 Edward Adam Payzant (101082175)  
 William So (101070267)  
-Zacchaeus Leung(101035212)
+Zacchaeus Leung (101035212)
 
 **Date:** 05/12/2019
 
 ## Design Pattern
 
-We Implemented the composite design pattern. This was implemented through the way we implemented arrays, where arrays store generic variables instead of explicitly Integer Variables. This allows for greater feature potential in the future for what arrays can store, being able to store any Variable subtype, even arrays other should the syntax be added.
+We implemented the composite design pattern. 
+This was implemented through the way we implemented arrays, where arrays store pointers to generic variables instead of explicitly Integer Variables, and the use of polymorphism on the implementation of the print function.
+Additionally, this design pattern allows for greater feature potential in the future for what arrays can store, being able to store any Variable subtype, even arrays other should the syntax be added.
+Through this implementation, all subclasses of the Variable class can be called to complete the print function through their own implementation, and cascade that behavior through their elements if they are also a composite (array) type.
+
 
 ## Compilation
 
@@ -39,8 +43,13 @@ A new window will appear. Provide the name of the filename you'd like to save yo
 under.
 Accept the dialog after putting in your filename to save the file.
 
-As required by the Deliverable specifications, the functionalityof compiling a program can be reached by selecting Program>Compile. To verify persistence in a human-readable format, please use either sqlite3 terminal command on the database file created in the directory, or SQLite DB Browser.  
-COMP3004 Forums clarify that this format is permitted.
+As required by the Deliverable specifications, the functionality of compiling a program can be reached by selecting Program>Compile, and the functionality of running a program can be reached by selecting Program>Run. 
+
+Note that we have also implemented load source file functionality, which can be reached by selecting File>Open.
+
+To verify persistence in a human-readable format, please use either sqlite3 terminal command on the database file created in the directory, or SQLite DB Browser.  
+/////COMP3004 Forums clarify that this format is permitted.////////
+
 
 ---
 
@@ -59,7 +68,7 @@ COMP3004 Forums clarify that this format is permitted.
 - ./SCAPL/Identifier.cc  
 - ./SCAPL/IntegerVariable.cc  
 - ./SCAPL/Label.cc  
-- ./SCAPL/Liter.cc  
+- ./SCAPL/Literal.cc  
 - ./SCAPL/Operand.cc  
 - ./SCAPL/Program.cc  
 - ./SCAPL/Statement.cc  
@@ -91,7 +100,7 @@ COMP3004 Forums clarify that this format is permitted.
 - ./SCAPL/Identifier.h
 - ./SCAPL/IntegerVariable.h
 - ./SCAPL/Label.h
-- ./SCAPL/Liter.h
+- ./SCAPL/Literal.h
 - ./SCAPL/Operand.h
 - ./SCAPL/Program.h
 - ./SCAPL/Statement.h
