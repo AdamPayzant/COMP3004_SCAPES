@@ -71,6 +71,10 @@ class ArrAccess: public Identifier, public Value {
         std::string getAccess();
         void print(std::string&);
     private:
+    
+        /**
+         * Private getter to retrieve the variable associated to this association instance.
+         **/
         IntegerVariable* getVar();
         /**
          * ArrayVariable it's accessing
