@@ -83,12 +83,6 @@ void MainController::loadSourceCode()
 
 void MainController::compileSourceCode()
 {
-    /*
-    if(this->program != nullptr){
-        delete this->program;
-    }
-    this->program = nullptr;
-    */
     this->program = new Program(mainWindow->getProgramFilename());
     this->program->compile();
 
@@ -109,14 +103,12 @@ void MainController::compileSourceCode()
 
 void MainController::runCompiledProgram()
 {
-    /*
-    if(this->program != nullptr){
-        delete this->program;
-    }
-    this->program = nullptr;
-    */
     this->program = new Program(mainWindow->getProgramFilename(), this);
-    this->persistenceManager->restoreProgramObjects(this->program, this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
+    if(!this->persistenceManager->restoreProgramObjects(this->program, this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename())){
+        string tempString = "Run failed due to failed state restoration; state could potentially not exist.\n";
+        this->mainWindow->setFeedbackText(tempString);
+        return;
+    }
     this->program->execute();
 }
 
