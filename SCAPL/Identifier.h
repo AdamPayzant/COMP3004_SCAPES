@@ -45,8 +45,6 @@ class Identifier {
          **/
         std::string getSubtype();
 
-        virtual void print(std::string&);
-
     protected:
         /**
          * String variable that stores the name of the identifier
