@@ -95,7 +95,7 @@ void MainController::compileSourceCode()
         return;
     }
     if(this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename())){
-        string tempString = "Compilation successful. Compiled version successfully saved.";
+        string tempString = "Compilation successful. Compiled version successfully saved.\n";
         this->mainWindow->setFeedbackText(tempString);
         return;
     }
