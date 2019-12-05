@@ -179,7 +179,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -193,7 +193,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -207,7 +207,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -221,7 +221,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -235,7 +235,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -249,7 +249,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -263,7 +263,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -277,7 +277,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -291,7 +291,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
@@ -305,7 +305,7 @@ void Program::compile() {
                         if(labelFound && !tempString.empty()){
                             stmts->at(stmts->size()-1)->setLabel(new Label(tempString));
                         }
-                        //stmts->at(stmts->size()-1)->compile(line);
+                        stmts->at(stmts->size()-1)->compile(line);
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
