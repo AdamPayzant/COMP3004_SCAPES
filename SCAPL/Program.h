@@ -96,17 +96,75 @@ class Program {
          **/
         int getCFlag();
 
+        /**
+         * Setter functions that will change the current comparison flag
+         **/
         void setCFlag(int);
 
+        /**
+         * Getter that finds and returns the identifier named
+         **/
         Identifier* getID(std::string);
 
+        /**
+         * Takes a label, searches for the statement linked with it, then sets stmtPos to the found statement
+         **/
         void changeStmt(Label *);
 
+        /*
         void addPrint(std::string);
+        */
+    
+        /**
+         * Takes a string and adds it to the output
+         **/
+        void pushToWindow(std::string&);
 
+        /**
+         * Sets stmtPos to higher than stmts->size() so execution will end
+         **/
         void end();
 
+        /**
+         * Gets user input from the main controller
+         **/
         std::string& getUserInput();
+
+        /**
+         * Returns the last compile error
+         **/
+        std::string& getCompileError();
+
+        /**
+         * Sets the compile error
+         **/
+        void setCompileError(std::string&);
+
+        /**
+         * Checks if there has been been a compile error
+         * Returns compileValidityStatus
+         **/
+        bool getCompileValidityStatus();
+
+        /**
+         * Setter for compileValidityStatus
+         **/
+        void setCompileValidityStatus(bool);
+
+        /**
+         * removes the whitespace at the start of a string
+         **/
+        int removeLeadingWhitespace(std::string&);
+
+        /**
+         * Gets the next argument in a statement call
+         **/
+        int parseNextArg(std::string&, std::string&);
+
+        /**
+         * Removes the next argument from a string
+         **/
+        int removeNextArg(std::string&);
 
     private:
         /**
@@ -129,11 +187,31 @@ class Program {
          **/
         std::vector<Statement*> *stmts;
 
+        /**
+         * Tracks the current statement position for execution, 
+         * outside of the execution function so that jump statements and end can modify it
+         **/
         int stmtPos;
 
-        std::vector<std::string> output;
+        /**
+         * string for tracking output
+         **/
+        std::string output;
 
+        /**
+         * The maincontroller handling program
+         **/
         MainController* controller;
+
+        /**
+         * Tracks compile status
+         **/
+        bool compileValidityStatus;
+
+        /**
+         * Stores the last compile error output
+         **/
+        std::string compileError;
 };
 
 #endif

@@ -171,11 +171,16 @@ bool DatabaseConductor::restoreProgramObjects(Program* program, std::vector<Iden
    **/
   QSqlQuery sqlcli(this->connector->getSQLiteDatabase());
 
-  this->restoreIdentifiers();
-  this->restoreStatements();
-  this->restoreOperands();
+  if(!this->restoreIdentifiers()){
+      return false;
+  }
+  if(!this->restoreStatements()){
+      return false;
+  }
+  if(!this->restoreOperands()){
+      return false;
+  }
 
-  //char* tempString;
   if(this->statement_vector != nullptr){
       for(i=0; i< this->statement_vector->size(); i++){
           if(this->statement_vector->at(i) != nullptr){
@@ -464,34 +469,38 @@ bool DatabaseConductor::persistOperands()
 
 bool DatabaseConductor::restoreIdentifiers()
 {
-    /**
-     *
-     **/
-    QSqlQuery sqlcli(this->connector->getSQLiteDatabase());
+    try{
+        /**
+         *
+         **/
+        QSqlQuery sqlcli(this->connector->getSQLiteDatabase());
 
-    sqlcli.exec("SELECT NAME, SUBTYPE, VALUE FROM IDENTIFIER;");
-    if(sqlcli.first()){
-        do{
-            std::string name = sqlcli.value(0).toString().toStdString();
-            Identifier* newIdentifierPtr = nullptr;
-            if(sqlcli.value(1).toInt()==1){
-                newIdentifierPtr = new Label(name);
-            }
-            else if(sqlcli.value(1).toInt()==3){
-                newIdentifierPtr = new IntegerVariable(name);
-                if(!sqlcli.value(2).isNull()){
-                    ((IntegerVariable*) newIdentifierPtr)->setVal(sqlcli.value(2).toInt());
+        sqlcli.exec("SELECT NAME, SUBTYPE, VALUE FROM IDENTIFIER;");
+        if(sqlcli.first()){
+            do{
+                std::string name = sqlcli.value(0).toString().toStdString();
+                Identifier* newIdentifierPtr = nullptr;
+                if(sqlcli.value(1).toInt()==1){
+                    newIdentifierPtr = new Label(name);
                 }
-            }
-            else if(sqlcli.value(1).toInt()==4){
-                newIdentifierPtr = new ArrayVariable(name);
-            }
-            if(newIdentifierPtr != nullptr){
-                identifier_vector->push_back(newIdentifierPtr);
-            }
-        }while(sqlcli.next());
+                else if(sqlcli.value(1).toInt()==3){
+                    newIdentifierPtr = new IntegerVariable(name);
+                    if(!sqlcli.value(2).isNull()){
+                        ((IntegerVariable*) newIdentifierPtr)->setVal(sqlcli.value(2).toInt());
+                    }
+                }
+                else if(sqlcli.value(1).toInt()==4){
+                    newIdentifierPtr = new ArrayVariable(name);
+                }
+                if(newIdentifierPtr != nullptr){
+                    identifier_vector->push_back(newIdentifierPtr);
+                }
+            }while(sqlcli.next());
+        }
+        return true;
+    }catch(std::exception& exceptionRef){
+        return false;
     }
-    return true;
 }
 
 bool DatabaseConductor::restoreStatements()
@@ -638,10 +647,4 @@ bool DatabaseConductor::restoreOperands()
         }while(sqlcli.next());
     }
     return true;
-}
-
-
-//TEMPORARY FOR TESTING
-void DatabaseConductor::setProgram(Program* program){
-    this->program = program;
 }

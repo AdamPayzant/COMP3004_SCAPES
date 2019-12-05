@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = SCAPES1.0.0
-DISTDIR = /home/student/Documents/D2/SCAPES/.tmp/SCAPES1.0.0
+DISTDIR = /home/student/Desktop/COMP3004/COMP3004_SCAPES/.tmp/SCAPES1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/student/Qt/5.13.0/gcc_64/lib
 LIBS          = $(SUBLIBS) /home/student/Qt/5.13.0/gcc_64/lib/libQt5Widgets.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Gui.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Sql.so /home/student/Qt/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
@@ -1153,15 +1153,31 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		ApplicationLogic/MainController.h \
 		Interface/MainWindow.h \
 		Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
 		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
 		Persistence/PersistenceManager.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -1171,7 +1187,6 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		SCAPL/Identifier.h \
 		SCAPL/Label.h \
@@ -1182,8 +1197,8 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -1199,7 +1214,7 @@ moc_MainWindow.cpp: Interface/MainWindow.h \
 		SCAPL/Program.h \
 		moc_predefs.h \
 		../../../Qt/5.13.0/gcc_64/bin/moc
-	/home/student/Qt/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/student/Documents/D2/SCAPES/moc_predefs.h -I/home/student/Qt/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/student/Documents/D2/SCAPES -I/home/student/Qt/5.13.0/gcc_64/include -I/home/student/Qt/5.13.0/gcc_64/include/QtWidgets -I/home/student/Qt/5.13.0/gcc_64/include/QtGui -I/home/student/Qt/5.13.0/gcc_64/include/QtSql -I/home/student/Qt/5.13.0/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Interface/MainWindow.h -o moc_MainWindow.cpp
+	/home/student/Qt/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/student/Desktop/COMP3004/COMP3004_SCAPES/moc_predefs.h -I/home/student/Qt/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/student/Desktop/COMP3004/COMP3004_SCAPES -I/home/student/Qt/5.13.0/gcc_64/include -I/home/student/Qt/5.13.0/gcc_64/include/QtWidgets -I/home/student/Qt/5.13.0/gcc_64/include/QtGui -I/home/student/Qt/5.13.0/gcc_64/include/QtSql -I/home/student/Qt/5.13.0/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Interface/MainWindow.h -o moc_MainWindow.cpp
 
 moc_UserInputPrompt.cpp: Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
@@ -1307,9 +1322,30 @@ moc_UserInputPrompt.cpp: Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qpen.h \
 		moc_predefs.h \
 		../../../Qt/5.13.0/gcc_64/bin/moc
-	/home/student/Qt/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/student/Documents/D2/SCAPES/moc_predefs.h -I/home/student/Qt/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/student/Documents/D2/SCAPES -I/home/student/Qt/5.13.0/gcc_64/include -I/home/student/Qt/5.13.0/gcc_64/include/QtWidgets -I/home/student/Qt/5.13.0/gcc_64/include/QtGui -I/home/student/Qt/5.13.0/gcc_64/include/QtSql -I/home/student/Qt/5.13.0/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Interface/UserInputPrompt.h -o moc_UserInputPrompt.cpp
+	/home/student/Qt/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/student/Desktop/COMP3004/COMP3004_SCAPES/moc_predefs.h -I/home/student/Qt/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/student/Desktop/COMP3004/COMP3004_SCAPES -I/home/student/Qt/5.13.0/gcc_64/include -I/home/student/Qt/5.13.0/gcc_64/include/QtWidgets -I/home/student/Qt/5.13.0/gcc_64/include/QtGui -I/home/student/Qt/5.13.0/gcc_64/include/QtSql -I/home/student/Qt/5.13.0/gcc_64/include/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Interface/UserInputPrompt.h -o moc_UserInputPrompt.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1677,13 +1713,29 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
-		Interface/UserInputPrompt.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
-		ui_UserInputPrompt.h \
-		Persistence/PersistenceManager.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
+		Interface/UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
+		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		Persistence/PersistenceManager.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -1693,7 +1745,6 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		SCAPL/Identifier.h \
 		SCAPL/Label.h \
@@ -1704,8 +1755,8 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -1718,10 +1769,7 @@ main.o: main.cc ApplicationLogic/MainController.h \
 		SCAPL/STMTs/JumpStmt.h \
 		SCAPL/STMTs/EndStmt.h \
 		Persistence/FileSupervisor.h \
-		SCAPL/Program.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h
+		SCAPL/Program.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cc
 
 MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainController.h \
@@ -2065,13 +2113,29 @@ MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainContro
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
-		Interface/UserInputPrompt.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
-		ui_UserInputPrompt.h \
-		Persistence/PersistenceManager.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
+		Interface/UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
+		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		Persistence/PersistenceManager.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -2081,7 +2145,6 @@ MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainContro
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		SCAPL/Identifier.h \
 		SCAPL/Label.h \
@@ -2092,8 +2155,8 @@ MainController.o: ApplicationLogic/MainController.cc ApplicationLogic/MainContro
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -2449,11 +2512,23 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
-		ApplicationLogic/MainController.h \
-		Persistence/PersistenceManager.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
+		ApplicationLogic/MainController.h \
+		Persistence/PersistenceManager.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -2463,7 +2538,6 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		SCAPL/Identifier.h \
 		SCAPL/Label.h \
@@ -2474,8 +2548,8 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -2491,7 +2565,11 @@ MainWindow.o: Interface/MainWindow.cc Interface/MainWindow.h \
 		SCAPL/Program.h \
 		Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
-		ui_UserInputPrompt.h
+		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o Interface/MainWindow.cc
 
 UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
@@ -2600,6 +2678,27 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.13.0/gcc_64/include/QtGui/qpen.h \
 		Interface/MainWindow.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -2611,7 +2710,6 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QtCoreDepends \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qabstractanimation.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qabstractproxymodel.h \
@@ -2637,7 +2735,6 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qcollator.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qcommandlineoption.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qcommandlineparser.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qconcatenatetablesproxymodel.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qcryptographichash.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qdeadlinetimer.h \
@@ -2732,14 +2829,9 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/qtcoreversion.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextlayout.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qglyphrun.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qrawfont.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qfontdatabase.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qtextdocument.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qaccessible.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qaccessiblebridge.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qaccessibleobject.h \
@@ -2758,8 +2850,6 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qgenericmatrix.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qgenericplugin.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qgenericpluginfactory.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qiconengine.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qiconengineplugin.h \
 		../../../Qt/5.13.0/gcc_64/include/QtGui/qimageiohandler.h \
@@ -2834,14 +2924,18 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		ApplicationLogic/MainController.h \
 		Persistence/PersistenceManager.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -2851,7 +2945,6 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		SCAPL/Identifier.h \
 		SCAPL/Label.h \
@@ -2862,8 +2955,8 @@ UserInputPrompt.o: Interface/UserInputPrompt.cc Interface/UserInputPrompt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -2962,8 +3055,8 @@ DatabaseConductor.o: Persistence/DatabaseConductor.cc Persistence/DatabaseConduc
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -3112,8 +3205,8 @@ PersistenceManager.o: Persistence/PersistenceManager.cc Persistence/PersistenceM
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/STMTs/ReadStmt.h \
 		SCAPL/STMTs/PrintStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -3226,7 +3319,8 @@ Operand.o: SCAPL/Operand.cc SCAPL/Operand.h \
 		SCAPL/IntegerVariable.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
-		SCAPL/Literal.h
+		SCAPL/Literal.h \
+		SCAPL/ArrAccess.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Operand.o SCAPL/Operand.cc
 
 Program.o: SCAPL/Program.cc SCAPL/Program.h \
@@ -3238,9 +3332,9 @@ Program.o: SCAPL/Program.cc SCAPL/Program.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
+		SCAPL/ArrAccess.h \
 		SCAPL/Label.h \
 		SCAPL/STMTs/AddStmt.h \
-		SCAPL/ArrAccess.h \
 		SCAPL/STMTs/CompStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
@@ -3593,13 +3687,29 @@ Program.o: SCAPL/Program.cc SCAPL/Program.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.13.0/gcc_64/include/QtCore/QFile \
 		ui_MainWindow.h \
-		Interface/UserInputPrompt.h \
-		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
-		ui_UserInputPrompt.h \
-		Persistence/PersistenceManager.h \
+		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenu \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qtextedit.h \
 		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QWidget \
+		Interface/UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialog \
+		ui_UserInputPrompt.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		Persistence/PersistenceManager.h \
 		Persistence/DatabaseConductor.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlDatabase \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqldatabase.h \
@@ -3609,7 +3719,6 @@ Program.o: SCAPL/Program.cc SCAPL/Program.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlquery.h \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/QSqlError \
 		../../../Qt/5.13.0/gcc_64/include/QtSql/qsqlerror.h \
-		../../../Qt/5.13.0/gcc_64/include/QtCore/QVariant \
 		Persistence/SQLiteConnector.h \
 		Persistence/FileSupervisor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Program.o SCAPL/Program.cc
@@ -3622,10 +3731,10 @@ Statement.o: SCAPL/Statement.cc SCAPL/Statement.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
+		SCAPL/ArrAccess.h \
 		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
-		SCAPL/ArrAccess.h \
 		SCAPL/STMTs/CompStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
 		SCAPL/STMTs/DeclIntStmt.h \
@@ -3652,8 +3761,8 @@ AddStmt.o: SCAPL/STMTs/AddStmt.cc SCAPL/STMTs/AddStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/CompStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -3677,8 +3786,8 @@ CompStmt.o: SCAPL/STMTs/CompStmt.cc SCAPL/STMTs/CompStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/DeclArrStmt.h \
@@ -3702,8 +3811,8 @@ DeclArrStmt.o: SCAPL/STMTs/DeclArrStmt.cc SCAPL/STMTs/DeclArrStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3727,8 +3836,8 @@ DeclIntStmt.o: SCAPL/STMTs/DeclIntStmt.cc SCAPL/STMTs/DeclIntStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3752,8 +3861,8 @@ EndStmt.o: SCAPL/STMTs/EndStmt.cc SCAPL/STMTs/EndStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3777,8 +3886,8 @@ JEqStmt.o: SCAPL/STMTs/JEqStmt.cc SCAPL/STMTs/JEqStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3802,8 +3911,8 @@ JLessStmt.o: SCAPL/STMTs/JLessStmt.cc SCAPL/STMTs/JLessStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3827,8 +3936,8 @@ JMoreStmt.o: SCAPL/STMTs/JMoreStmt.cc SCAPL/STMTs/JMoreStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3852,8 +3961,8 @@ JumpStmt.o: SCAPL/STMTs/JumpStmt.cc SCAPL/STMTs/JumpStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3877,8 +3986,8 @@ MovStmt.o: SCAPL/STMTs/MovStmt.cc SCAPL/STMTs/MovStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3902,8 +4011,8 @@ PrintStmt.o: SCAPL/STMTs/PrintStmt.cc SCAPL/STMTs/PrintStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \
@@ -3927,8 +4036,8 @@ ReadStmt.o: SCAPL/STMTs/ReadStmt.cc SCAPL/STMTs/ReadStmt.h \
 		SCAPL/Value.h \
 		SCAPL/ArrayVariable.h \
 		SCAPL/Literal.h \
-		SCAPL/Label.h \
 		SCAPL/ArrAccess.h \
+		SCAPL/Label.h \
 		SCAPL/Program.h \
 		SCAPL/STMTs/AddStmt.h \
 		SCAPL/STMTs/CompStmt.h \

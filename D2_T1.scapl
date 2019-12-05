@@ -3,31 +3,35 @@
 # Author: //TODO: Team Name
 # Date: 05/12/2019
 
-# Program 1, meant to showcase the execution of all of the different instructions 
+# Program 1, meant to showcase the execution of all of the different instructions
 # while also implementing a simple loop
 
-# jmp to code
-jmp L1 
-# declare an int and array and gives them values 
-L1: dci a 1
-dca b 1
-mov a 1
-rdi $b+1
-# loop start adds 1 each time
-L2: add a 1
-prt "jumped to loop"
-cmp a $b+1
-jls L2
-# if equal move to L3
-jeq L3
-L3: add a 1
-cmp a b
-jmr L4
-jls L5
-L4: prt "a is greater than b"
-jmp L6
-L5: prt "a is smaller than b"
-jmp L6
-L6: prt a
-prt b
+
+dci n
+prt "input int value for n"
+rdi n
+dca arr 2
+mov 0 $arr+0
+mov 0 $arr+1
+
+L1: add 1 $arr+0
+add n $arr+1
+cmp n $arr+0
+prt n
+prt $arr+0
+jeq L2
+jmp L1
+
+L2: add n $arr+0
+cmp $arr+0 $arr+1
+jmr L3
+jls L4
+prt "n^2 = 2n --> n=2"
+jmp L5
+L3: prt "n^2 < 2n --> n=1"
+jmp L5
+L4: prt "n^2 > 2n -> n>2"
+
+L5: prt n
+prt arr
 end

@@ -35,6 +35,7 @@ class Variable: public Identifier {
          **/
         Variable(std::string &);
         Variable();
+        virtual void print(std::string&)=0;
 };
 
 #endif

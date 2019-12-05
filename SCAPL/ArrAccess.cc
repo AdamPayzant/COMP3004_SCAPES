@@ -13,7 +13,12 @@ ArrAccess::~ArrAccess() {
 }
 
 int ArrAccess::getVal() {
-    return(getVar()->getVal());
+    if(getVar()!=nullptr){
+        getVar()->getVal();
+    }
+    else{
+        return -1;
+    }
 }
 
 std::string ArrAccess::getOut() {
@@ -21,7 +26,9 @@ std::string ArrAccess::getOut() {
 }
 
 void ArrAccess::setVal(int v) {
-    getVar()->setVal(v);
+    if(getVar()!=nullptr){
+        getVar()->setVal(v);
+    }
 }
 
 ArrayVariable* ArrAccess::getParent(){
@@ -41,60 +48,21 @@ IntegerVariable * ArrAccess::getVar() {
     av = nullptr;
     iv = nullptr;
 
-    // TODO: Go through access value 
-    if(std::isdigit(access[0])) {
-        // Literal access
-        lv = new Literal(access);
-    }
-    else if(access[0] == '$') {
-        // OH GOD CASCADING ARRAYS
-        /*
-        I, Edward Adam Payzant, take sole responsibility for the following nightmare of code.
-        The rest of the group is innocent, and unaware of this creation. I accept any potential execution that may be punishment for this mess
-        */
-        std::vector<Identifier*> *ids = master->getIds();
-        std::string arrName;
-        std::string accessName;
-        int j;
-        for(j = 2; j < access.size(); j++) {
-            if(access.at(j) == '+') {
-                arrName = access.substr(1, j - 1);
-            }
-        }
-        accessName = access.substr(j + 1, access.size() - 1 - j);
-        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-            std::string an;
-            (*iter)->getName(an);
-            if(an.compare(arrName) == 0) {
-                ArrayVariable *downcast = (ArrayVariable *) (*iter);
-                av = new ArrAccess(downcast, accessName, master);
-                break;
-            }
+
+    for (int i=0; i<access.size(); ++i) {
+        if(access[i]<48 || access[i]>57){
+            return nullptr;
         }
     }
-    else {
-        // Variable access
-        std::vector<Identifier*> *ids = master->getIds();
-        for(auto iter = ids->begin(); iter != ids->end(); ++iter) {
-            std::string tempName;
-            (*iter)->getName(tempName);
-            if(tempName.compare(access) == 0) {
-                iv = (IntegerVariable *) (*iter);
-            }
-        }
+    if(std::stoi(access) >= this->arr->getSize()) return nullptr;
+    return (IntegerVariable*)this->arr->getAt(std::stoi(access));
+}
+
+void ArrAccess::print(std::string& formattedString){
+    if(getVar()==nullptr){
+        formattedString.append("NULL");
     }
-    IntegerVariable* temp;
-    if(lv != nullptr) {
-        temp = (IntegerVariable *) arr->getAt(lv->getVal());
-        delete(lv);
+    else{
+        formattedString.append(getOut());
     }
-    else if(iv != nullptr) {
-        temp = (IntegerVariable *) arr->getAt(iv->getVal());
-        // Don't delete iv because it's shared with the main identifiers
-    }
-    else {
-        temp = (IntegerVariable *) arr->getAt(av->getVal());
-        delete(av);
-    }
-    return temp;
 }

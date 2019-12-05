@@ -1,0 +1,74 @@
+jmp start
+#declare all variables
+start:dci a
+dci b
+dci c
+dci d
+dci counter
+
+#make array
+dca arr 2
+#init all varibles
+mov    1 c
+mov    1 c
+mov    1 c
+#loop a
+L1:add 1 a
+cmp a b
+jls L1
+prt a
+
+# mov 4 to a
+mov  4 a
+cmp  a 4
+jeq L2
+#read d
+rdi d
+
+
+#loop  so that c=d a=d
+L2:add 1 c
+prt "entering loop"
+mov  0 a
+L3:add  1 a
+cmp a d
+jls L3
+cmp c d
+jls L2
+prt a
+prt c
+
+# get values of the two conditions
+dci  con1
+dci  con2
+rdi con1
+rdi con2
+
+# if cont  1 is not 0 incriment a counter
+cmp con1 0
+jmr L4
+L4: add 1 counter
+cmp counter 1
+jls  L6
+jmr L6
+jeq L5
+L5:mov a  $arr+0
+prt $arr+0
+L6: end
+
+#comp condition 2
+cmp con2 0
+jeq L7
+jls L8
+jmr L8
+cmp counter 2
+jls L9
+
+L9:end
+L8: add 1 counter
+cmp counter 2
+jeq L10
+L10:mov c  $arr+1
+prt $arr+1
+prt $arr+0
+end

@@ -20,6 +20,14 @@ void ArrayVariable::create(int s) {
     }
 }
 
+int ArrayVariable::getSize(){
+    return this->size;
+}
+
+int ArrayVariable::setSize(int newSize){
+    this->size = newSize;
+}
+
 void ArrayVariable::setAt(int loc, int val) {
     IntegerVariable *cur = (IntegerVariable *) arr[loc];
     cur->setVal(val);
@@ -27,4 +35,17 @@ void ArrayVariable::setAt(int loc, int val) {
 
 Variable* ArrayVariable::getAt(int pos) {
     return(arr[pos]);
+}
+
+void ArrayVariable::print(std::string& formattedString){
+    for(int i = 0; i < size; i++) {
+        if(this->arr[i] != nullptr){
+            formattedString.append(this->getNameValue());
+            formattedString.append("[");
+            formattedString.append(std::to_string(i));
+            formattedString.append("]: ");
+            arr[i]->print(formattedString);
+            formattedString.append("\n");
+        }
+    }
 }
