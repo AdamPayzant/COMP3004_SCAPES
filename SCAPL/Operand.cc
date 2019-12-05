@@ -1,68 +1,73 @@
+#include "Operand.h"
 #include "ArrAccess.h"
-#include "Program.h"
+#include <iostream>
 
-ArrAccess::ArrAccess(ArrayVariable *a, std::string acc, Program *m) {
-    arr = a;
-    access = acc;
-    master = m;
-    subtype = "ArrAccess";
+Operand::Operand(Identifier *i) {
+    id = i;
 }
 
-ArrAccess::~ArrAccess() {
-
-}
-
-int ArrAccess::getVal() {
-    if(getVar()!=nullptr){
-        getVar()->getVal();
-    }
-    else{
-        return -1;
+Operand::~Operand() {
+    // id is not deleted here because it shares a pointer with Program
+    std::string name = id->getSubtype();
+    if(name.compare("ArrAccess") == 0 || name.compare("Literal") == 0) {
+        delete(id);
     }
 }
 
-std::string ArrAccess::getOut() {
-    return(std::to_string(getVar()->getVal()));
+void Operand::getID(Identifier** i) {
+    *i = id;
 }
 
-void ArrAccess::setVal(int v) {
-    if(getVar()!=nullptr){
-        getVar()->setVal(v);
-    }
+Identifier* Operand::getIDPtr() {
+    return id;
 }
 
-ArrayVariable* ArrAccess::getParent(){
-    return arr;
+void Operand::setID(Identifier* i) {
+    i = id;
 }
 
-std::string ArrAccess::getAccess(){
-    return access;
-}
-
-IntegerVariable * ArrAccess::getVar() {
-    Literal *lv;
-    ArrAccess *av;
-    IntegerVariable *iv;
-
-    lv = nullptr;
-    av = nullptr;
-    iv = nullptr;
-
-
-    for (int i=0; i<access.size(); ++i) {
-        if(access[i]<48 || access[i]>57){
-            return nullptr;
+int Operand::getVal() {
+    std::cout<<"val: this operand is a "<<id->getSubtype()<<std::endl;
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            return ((IntegerVariable*) id)->getVal();
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            return ((ArrAccess*) id)->getVal();
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            return ((Literal *) id)->getVal();
         }
     }
-    if(std::stoi(access) >= this->arr->getSize()) return nullptr;
-    return (IntegerVariable*)this->arr->getAt(std::stoi(access));
+    return -1;
 }
 
-void ArrAccess::print(std::string& formattedString){
-    if(getVar()==nullptr){
-        formattedString.append("NULL");
+std::string Operand::getOut() {
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            return std::to_string(((IntegerVariable*) id)->getVal());
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            return std::to_string(((ArrAccess*) id)->getVal());
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            return std::to_string(((Literal *) id)->getVal());
+        }
     }
-    else{
-        formattedString.append(getOut());
+    return "";
+}
+
+void Operand::setVal(int v) {
+    if(id != nullptr){
+        if(id->getSubtype().compare("IntegerVariable") == 0){
+            ((IntegerVariable*) id)->setVal(v);
+        }
+        else if(id->getSubtype().compare("ArrAccess") == 0){
+            ((ArrAccess*) id)->setVal(v);
+        }
+        else if(id->getSubtype().compare("Literal") == 0){
+            ((Literal *) id)->setVal(v);
+        }
     }
+    return;
 }
