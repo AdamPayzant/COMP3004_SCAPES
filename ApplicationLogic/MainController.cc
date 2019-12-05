@@ -109,6 +109,10 @@ void MainController::runCompiledProgram()
         this->mainWindow->setFeedbackText(tempString);
         return;
     }
+    else{
+        string tempString = "State restoration successful. Attempting execution:\n";
+        this->mainWindow->setFeedbackText(tempString);
+    }
     this->program->execute();
 }
 
