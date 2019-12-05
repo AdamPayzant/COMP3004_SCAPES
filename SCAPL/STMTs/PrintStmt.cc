@@ -83,6 +83,7 @@ void PrintStmt::compile(std::string &line) {
                         return;
                     }
                 }
+                nextArg = nextArg.substr(1,nextArg.size()-2);
                 Literal* tempPtr = new Literal(nextArg);
                 o1 = new Operand(tempPtr);
                 stringFound = true;
