@@ -142,6 +142,6 @@ void PrintStmt::run() {
             ((Variable*) o1->getIDPtr())->print(formattedString);
         }
         formattedString.append("\n");
-        this->master->addPrint(formattedString);
+        this->master->pushToWindow(formattedString);
     }
 }
