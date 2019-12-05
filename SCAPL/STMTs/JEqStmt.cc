@@ -50,14 +50,6 @@ void JEqStmt::compile(std::string &line) {
     }
 }
 
-/*
-void JEqStmt::compile(std::string &line) {
-    // Syntax: jeq <target label>
-    std::string target = line.substr(3, line.size() - 4);
-    o1 = new Operand(master->getID(target));
-}
-*/
-
 void JEqStmt::run() {
     if(master->getCFlag() == 0) {
         master->changeStmt((Label *) o1->getIDPtr());

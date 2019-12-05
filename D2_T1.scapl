@@ -1,32 +1,47 @@
-# File: D2_T1.SCAPL
+# File: D2_T1.scapl
 # Version 1.0
 # Author: //TODO: Team Name
 # Date: 05/12/2019
 
-# Program 1, meant to showcase the execution of all of the different instructions
-# while also implementing a simple loop
+# This program takes an integer n from the user and compares
+# its double (2n) to its square (n^2). Based on the result of
+# this comparison, it is possible to deduce whether
 
-
+# variable declarations and initializations
 dci n
 prt "input int value for n"
 rdi n
+prt "n ="
+prt n
 dca arr 2
+prt "$arr+0 will store 2n"
+prt "$arr+1 will store n^2"
 mov 0 $arr+0
 mov 0 $arr+1
 
-L1: add 1 $arr+0
+# loop to square n in $arr+1 and increment $arr+0 to n
+jmp in
+loop: prt "increment $arr+0"
+add 1 $arr+0
 add n $arr+1
+in: prt "does $arr+0 = n?"
 cmp n $arr+0
-prt n
+prt "$arr+n ="
 prt $arr+0
-jeq L2
-jmp L1
+prt "n ="
+prt n
+jeq out
+jmp loop
 
-L2: add n $arr+0
+# double n by adding to $arr+0
+out: add n $arr+0
+
+# compare results
 cmp $arr+0 $arr+1
+prt "results:"
 jmr L3
 jls L4
-prt "n^2 = 2n --> n=2"
+prt "n^2 = 2n --> n=2 OR n=0"
 jmp L5
 L3: prt "n^2 < 2n --> n=1"
 jmp L5

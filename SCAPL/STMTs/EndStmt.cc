@@ -10,9 +10,11 @@ EndStmt::EndStmt(Program *m)
     subtype = "EndStmt";
 }
 
+
 EndStmt::~EndStmt() {
     // No Pointers to delete
 }
+
 
 void EndStmt::compile(std::string &line) {
     std::string errorText;
@@ -31,6 +33,7 @@ void EndStmt::compile(std::string &line) {
         return;
     }
 }
+
 
 void EndStmt::run() {
     master->end();

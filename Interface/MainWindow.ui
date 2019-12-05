@@ -60,16 +60,8 @@
     <addaction name="menuButtonCompileOption"/>
     <addaction name="menuButtonRunOption"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="menuButtonFuncDescOption"/>
-    <addaction name="menuButtonAboutOption"/>
-   </widget>
    <addaction name="menuButtonFile"/>
    <addaction name="menuProgram"/>
-   <addaction name="menuHelp"/>
   </widget>
   <action name="menuButtonNewOption">
    <property name="text">
