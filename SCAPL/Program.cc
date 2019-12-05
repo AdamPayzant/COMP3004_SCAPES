@@ -59,7 +59,7 @@ void Program::compile() {
                     this->setCompileValidityStatus(false);
                     errorText.clear();
                     errorText.append("Compilation Error: Invalid label on line ");
-                    errorText.append(to_string(j));
+                    errorText.append(to_string(j+1));
                     this->setCompileError(errorText);
                     inputFile.close();
                     return;
@@ -116,7 +116,7 @@ void Program::compile() {
                                 this->setCompileValidityStatus(false);
                                 errorText.clear();
                                 errorText.append("Line ");
-                                errorText.append(to_string(j));
+                                errorText.append(to_string(j+1));
                                 errorText.append(" is empty after its label.");
                                 this->setCompileError(errorText);
                                 inputFile.close();
@@ -134,7 +134,7 @@ void Program::compile() {
                         this->setCompileValidityStatus(false);
                         errorText.clear();
                         errorText.append("Line ");
-                        errorText.append(to_string(j));
+                        errorText.append(to_string(j+1));
                         errorText.append(" detected as too small to be a valid statement.");
                         this->setCompileError(errorText);
                         inputFile.close();
@@ -155,7 +155,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -169,7 +170,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -183,7 +185,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -197,7 +200,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -211,7 +215,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -225,7 +230,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -239,7 +245,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -253,7 +260,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -267,7 +275,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -281,7 +290,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -295,7 +305,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -309,7 +320,8 @@ void Program::compile() {
                         if(!compileValidityStatus){
                             errorText = compileError;
                             errorText.append("\nError occurred on line ");
-                            errorText.append(to_string(j));
+                            errorText.append(to_string(j+1));
+                            this->setCompileError(errorText);
                             inputFile.close();
                             return;
                         }
@@ -318,7 +330,7 @@ void Program::compile() {
                         this->setCompileValidityStatus(false);
                         errorText.clear();
                         errorText.append("Unknown instruction on line ");
-                        errorText.append(to_string(j));
+                        errorText.append(to_string(j+1));
                         errorText.append(".");
                         this->setCompileError(errorText);
                         inputFile.close();
@@ -336,168 +348,6 @@ void Program::compile() {
         this->setCompileError(errorText);
         return;
     }
-    
-    
-    
-    /*
-    std::ifstream file(filename + ".scapl");
-
-    // Adds all of the labels to ids
-    for(std::string line ; getline(file, line); ) {
-        if(line.size() != 0) { 
-            if(line[0] != '#') {
-                for(int i = 1; i < line.size(); i++) {
-                    if(line.at(i) == ' ') {
-                        if(line.at(i-1) == ':') {
-                            ids->push_back(new Label(line.substr(0, i-1)));
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // Just a big 'ole map to track statements with their switch options
-    std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
-
-    for(std::string line ; getline(file, line); ) {
-        // Had issues loading in blank lines, this should work around it
-        if(line.size() != 0) { 
-            if(line[0] != '#') {
-                // I'd rather change this to a map of lambas, but scoping, so now we just get a map and switch statments
-                int type = stats[line.substr(0,3)];
-                switch (type)
-                {
-                case 1:
-                    stmts->push_back(new DeclIntStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 2:
-                    stmts->push_back(new DeclArrStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 3:
-                    stmts->push_back(new ReadStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 4:
-                    stmts->push_back(new PrintStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 5:
-                    stmts->push_back(new MovStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 6:
-                    stmts->push_back(new AddStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 7:
-                    stmts->push_back(new CompStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 8:
-                    stmts->push_back(new JLessStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 9:
-                    stmts->push_back(new JMoreStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 10:
-                    stmts->push_back(new JEqStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 11:
-                    stmts->push_back(new JumpStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                case 12:
-                    stmts->push_back(new EndStmt(this));
-                    stmts->at(stmts->size()-1)->compile(line);
-                    break;
-                default:
-                    for(int i = 1; i < line.size(); i++) {
-                        if(line.at(i) == ' ') {
-                            if(line.at(i-1) == ':') {
-                                // I hate that I copy and pasted this
-                                int t2 = stats[line.substr(i+1,3)];
-                                std::string st = line.substr(i, line.size() - i);
-                                switch (t2)
-                                {
-                                case 1:
-                                    stmts->push_back(new DeclIntStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 2:
-                                    stmts->push_back(new DeclArrStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 3:
-                                    stmts->push_back(new ReadStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 4:
-                                    stmts->push_back(new PrintStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 5:
-                                    stmts->push_back(new MovStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 6:
-                                    stmts->push_back(new AddStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 7:
-                                    stmts->push_back(new CompStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 8:
-                                    stmts->push_back(new JLessStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(line);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 9:
-                                    stmts->push_back(new JMoreStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 10:
-                                    stmts->push_back(new JEqStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 11:
-                                    stmts->push_back(new JumpStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                case 12:
-                                    stmts->push_back(new EndStmt(this));
-                                    stmts->at(stmts->size()-1)->compile(st);
-                                    stmts->at(stmts->size()-1)->setLabel(getId(line.substr(0, i-1)));
-                                    break;
-                                default:
-                                    // Error case
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-    }
-    */
 }
 
 void Program::execute() {
