@@ -48,7 +48,7 @@ void ReadStmt::compile(std::string &line) {
             this->master->setCompileError(errorText);
             return;
         }
-        accessName = line.substr(j+1);
+        accessName = nextArg.substr(j+1);
 
         for(i = 0; i < ids->size() ; ++i){
             if(ids->at(i) != nullptr && !ids->at(i)->getNameValue().empty() && ids->at(i)->getNameValue().compare(arrayName) == 0){
