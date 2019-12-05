@@ -90,9 +90,9 @@ void MainController::compileSourceCode()
     this->program = nullptr;
     */
     this->program = new Program(mainWindow->getProgramFilename());
-    //this->program->compile();
+    this->program->compile();
 
-
+    /*
     std::string variable_name = "L1";
     this->program->getIds()->push_back(new Label(variable_name));
     variable_name = "L2";
@@ -187,6 +187,7 @@ void MainController::compileSourceCode()
 
 
     this->persistenceManager->setDBCProgram(this->program);
+    */
     this->persistenceManager->persistProgramObjects(this->program->getIds(), this->program->getStmts(), mainWindow->getProgramFilename());
 }
 
