@@ -124,7 +124,6 @@ void MainWindow::on_menuButtonCloseOption_triggered()
 void MainWindow::on_menuButtonCompileOption_triggered()
 {
     mainController->clientRequestHandler("compile");
-    ui->feedbackWindow->setText("Compilation Attempted.");
 }
 
 void MainWindow::on_menuButtonRunOption_triggered()
