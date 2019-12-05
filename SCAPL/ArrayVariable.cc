@@ -40,7 +40,12 @@ Variable* ArrayVariable::getAt(int pos) {
 void ArrayVariable::print(std::string& formattedString){
     for(int i = 0; i < size; i++) {
         if(this->arr[i] != nullptr){
+            formattedString.append(this->getNameValue());
+            formattedString.append("[");
+            formattedString.append(std::to_string(i));
+            formattedString.append("]: ");
             arr[i]->print(formattedString);
+            formattedString.append("\n");
         }
     }
 }
