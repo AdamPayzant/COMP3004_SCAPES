@@ -18,6 +18,7 @@ class ArrayVariable: public Variable {
         Variable* getAt(int);
         int getSize();
         int setSize(int newSize);
+        virtual void print(std::string&);
     private:
         Variable** arr;
         int size;
