@@ -83,7 +83,6 @@ void Program::compile() {
             ++j;
         }
         inputFile.close();
-
         // Just a big 'ole map to track statements with their switch options
         std::map<std::string, int> stats = {{"dci", 1}, {"dca", 2}, {"rdi", 3},{"prt",4}, {"mov", 5}, {"add", 6}, {"cmp", 7}, {"jls", 8}, {"jmr", 9}, {"jeq", 10}, {"jmp", 11}, {"end", 12}};
 
@@ -98,9 +97,8 @@ void Program::compile() {
         j=0;
         for(std::string line ; getline(inputFile, line); ) {
             // Had issues loading in blank lines, this should work around it
-            if(line.size() != 0) {
+            if(line.size() > 1) {
                 if(line[0] != '#') {
-                    this->removeLeadingWhitespace(line);
                     labelFound = false;
                     tempString = "##_NOTVALID_##";
                     for(i = 0; i < line.size(); ++i) {
@@ -131,7 +129,8 @@ void Program::compile() {
                     }
 
                     this->removeLeadingWhitespace(line);
-                    if(line.size() < 5){
+                    std::string end = "end";
+                    if(line.size() < 5 && (line.substr(0,3).compare(end) != 0)){
                         this->setCompileValidityStatus(false);
                         errorText.clear();
                         errorText.append("Line ");
@@ -591,4 +590,8 @@ int Program::removeNextArg(std::string& currentLine)
         return i;
     }
     return -3;
+}
+
+void Program::setCompileError(std::string& err){
+
 }

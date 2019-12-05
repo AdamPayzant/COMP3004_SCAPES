@@ -108,6 +108,8 @@ class Program {
 
         std::string& getUserInput();
 
+        void setCompileError(std::string&);
+
         void setCompileValidityStatus(bool);
 
         int removeLeadingWhitespace(std::string&);
