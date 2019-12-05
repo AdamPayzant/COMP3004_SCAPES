@@ -351,18 +351,16 @@ void Program::compile() {
 }
 
 void Program::execute() {
-    Statement *curStmt = stmts->at(0);
+    Statement* curStmt = stmts->at(0);
     stmtPos = 0;
     while(true) {
-    std::cout<<"this is stmt#"<<stmtPos<<endl;
+        std::cout<<"this is stmt#"<<stmtPos<<endl;
+        stmtPos++;
+        curStmt->run();
         if(stmtPos >= stmts->size()) {
             break;
         }
-        else {
-            stmtPos++;
-            curStmt->run();
-            curStmt = stmts->at(stmtPos);
-        }
+        curStmt = stmts->at(stmtPos);
     }
 }
 
@@ -370,8 +368,16 @@ void Program::print() {
 
 }
 
+/*
 void Program::addPrint(std::string o) {
     output.push_back(o);
+}
+*/
+
+void Program::pushToWindow(std::string& formattedText){
+    if(!formattedText.empty()){
+        this->controller->appendToFeedbackText(formattedText);
+    }
 }
 
 Identifier* Program::getID(std::string target) {
@@ -546,93 +552,3 @@ int Program::removeNextArg(std::string& currentLine)
     return -3;
 }
 
-
-/*
-int Program::parseNextArg(std::string& currentLine, std::string& nextArg)
-{
-    if(currentLine.empty() || currentLine[0] == '\0'){
-        return -1;
-    }
-    if(currentLine[0] == ' ')
-    {
-        return -2;
-    }
-
-    int i;
-    if(currentLine[0] == '\"'){
-        for(i=0;i < currentLine.size();++i)
-        {
-            if(currentLine[i] == '\"'){
-                if(i+1 == currentLine.size()){
-                    nextArg = currentLine;
-                    return i+1;
-                }
-                else{
-                    nextArg = currentLine.substr(0, i+1);
-                    return i+1;
-                }
-            }
-        }
-        if(i == currentLine.size()){
-            return -4;
-        }
-    }
-
-    for(i=0;i < currentLine.size();++i)
-    {
-        if(currentLine[i] == ' ' || currentLine[i] == '\0'){
-            nextArg = currentLine.substr(0, i);
-            return i;
-        }
-    }
-    if(i == currentLine.size()){
-        nextArg = currentLine;
-        return i;
-    }
-    return -3;
-}
-
-int Program::removeNextArg(std::string& currentLine)
-{
-    if(currentLine.empty() || currentLine[0] == '\0'){
-        return -1;
-    }
-    if(currentLine[0] == ' ')
-    {
-        return -2;
-    }
-
-    int i;
-    if(currentLine[0] == '\"'){
-        for(i=0;i < currentLine.size();++i)
-        {
-            if(currentLine[i] == '\"'){
-                if(i+1 == currentLine.size()){
-                    currentLine.clear();
-                    return i+1;
-                }
-                else{
-                    currentLine = currentLine.substr(i+1);
-                    return i+1;
-                }
-            }
-        }
-        if(i == currentLine.size()){
-            return -4;
-        }
-    }
-
-    for(i=0;i < currentLine.size();++i)
-    {
-        if(currentLine[i] == ' ' || currentLine[i] == '\0'){
-            currentLine = currentLine.substr(i);
-            return i;
-        }
-    }
-    if(i == currentLine.size()){
-        currentLine.clear();
-        return i;
-    }
-    return -3;
-}
-*/
