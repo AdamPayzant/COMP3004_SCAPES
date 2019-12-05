@@ -14,7 +14,7 @@ DeclIntStmt::~DeclIntStmt() {
 }
 
 void DeclIntStmt::compile(std::string &line) {
-    line = line.substr(4, line.size()-4);
+    line = line.substr(4);
     std::string nextArg = "##_NOTVALID_##";
     std::string errorText;
     this->master->removeLeadingWhitespace(line);
