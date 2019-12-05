@@ -49,13 +49,6 @@ void JLessStmt::compile(std::string &line) {
     }
 }
 
-/*
-void JLessStmt::compile(std::string &line) {
-    // Syntax: jls <target label>
-    std::string target = line.substr(3, line.size() - 4);
-    o1 = new Operand(master->getID(target));
-}
-*/
 
 void JLessStmt::run() {
     if(master->getCFlag() == -1) {
