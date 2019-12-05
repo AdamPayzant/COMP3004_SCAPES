@@ -1,140 +1,68 @@
-#include "Operand.h"
 #include "ArrAccess.h"
-#include <iostream>
+#include "Program.h"
 
-Operand::Operand(Identifier *i) {
-    id = i;
+ArrAccess::ArrAccess(ArrayVariable *a, std::string acc, Program *m) {
+    arr = a;
+    access = acc;
+    master = m;
+    subtype = "ArrAccess";
 }
 
-Operand::~Operand() {
-    // id is not deleted here because it shares a pointer with Program
-    std::string name = id->getSubtype();
-    if(name.compare("ArrAccess") == 0 || name.compare("Literal") == 0) {
-        delete(id);
+ArrAccess::~ArrAccess() {
+
+}
+
+int ArrAccess::getVal() {
+    if(getVar()!=nullptr){
+        getVar()->getVal();
+    }
+    else{
+        return -1;
     }
 }
 
-void Operand::getID(Identifier** i) {
-    *i = id;
+std::string ArrAccess::getOut() {
+    return(std::to_string(getVar()->getVal()));
 }
 
-Identifier* Operand::getIDPtr() {
-    return id;
-}
-
-void Operand::setID(Identifier* i) {
-    i = id;
-}
-
-int Operand::getVal() {
-    std::cout<<"val: this operand is a "<<id->getSubtype()<<std::endl;
-    if(id != nullptr){
-        if(id->getSubtype().compare("IntegerVariable") == 0){
-            return ((IntegerVariable*) id)->getVal();
-        }
-        else if(id->getSubtype().compare("ArrAccess") == 0){
-            return ((ArrAccess*) id)->getVal();
-        }
-        else if(id->getSubtype().compare("Literal") == 0){
-            return ((Literal *) id)->getVal();
-        }
-    }
-    return -1;
-}
-
-std::string Operand::getOut() {
-    if(id != nullptr){
-        if(id->getSubtype().compare("IntegerVariable") == 0){
-            return std::to_string(((IntegerVariable*) id)->getVal());
-        }
-        else if(id->getSubtype().compare("ArrAccess") == 0){
-            return std::to_string(((ArrAccess*) id)->getVal());
-        }
-        else if(id->getSubtype().compare("Literal") == 0){
-            return std::to_string(((Literal *) id)->getVal());
-        }
-    }
-    return "";
-}
-
-void Operand::setVal(int v) {
-    if(id != nullptr){
-        if(id->getSubtype().compare("IntegerVariable") == 0){
-            ((IntegerVariable*) id)->setVal(v);
-        }
-        else if(id->getSubtype().compare("ArrAccess") == 0){
-            ((ArrAccess*) id)->setVal(v);
-        }
-        else if(id->getSubtype().compare("Literal") == 0){
-            ((Literal *) id)->setVal(v);
-        }
-    }
-    return;
-}
-
-/*
-int Operand::getVal() {
-    std::cout<<"val: this operand is a "<<id->getSubtype()<<std::endl;
-    if (id->getSubtype() == "Literal") {
-        //cast to Literal
-        Literal *temp = (Literal *) id;
-        return(temp->getVal());
-    } else if (id->getSubtype() == "Variable") {
-        //cast to IntegerVariable
-        if (((Variable *) id)->getSubtype() == "IntegerVariable") {
-            IntegerVariable *temp = (IntegerVariable *) id;
-            return(temp->getVal());
-        } else {
-            //error case
-        }
-    } else if (id->getSubtype() == "ArrAccess") {
-        //cast to ArrAccess
-        ArrAccess *temp = (ArrAccess *) id;
-        return(temp->getVal());
-    } else {
-        //error case
+void ArrAccess::setVal(int v) {
+    if(getVar()!=nullptr){
+        getVar()->setVal(v);
     }
 }
 
-std::string Operand::getOut() {
-  std::cout<<"out: this operand is a "<<id->getSubtype()<<std::endl;
-  if (id->getSubtype() == "Literal") {
-      //cast to Literal
-      Literal *temp = (Literal *) id;
-      return(temp->getOut());
-  } else if (id->getSubtype() == "Variable") {
-      //cast to IntegerVariable
-      if (((Variable *) id)->getSubtype() == "IntegerVariable") {
-          IntegerVariable *temp = (IntegerVariable *) id;
-          return(temp->getOut());
-      } else {
-          //error case
-      }
-  } else if (id->getSubtype() == "ArrAccess") {
-      //cast to ArrAccess
-      ArrAccess *temp = (ArrAccess *) id;
-      return(temp->getOut());
-  } else {
-      //error case
-  }
+ArrayVariable* ArrAccess::getParent(){
+    return arr;
 }
 
-void Operand::setVal(int v) {
-    std::cout<<"set: this operand is a "<<id->getSubtype()<<std::endl;
-    if (id->getSubtype() == "Variable") {
-        //cast to IntegerVariable
-        if (((Variable *) id)->getSubtype() == "IntegerVariable") {
-            IntegerVariable *temp = (IntegerVariable *) id;
-            temp->setVal(v);
-        } else {
-            //error case
+std::string ArrAccess::getAccess(){
+    return access;
+}
+
+IntegerVariable * ArrAccess::getVar() {
+    Literal *lv;
+    ArrAccess *av;
+    IntegerVariable *iv;
+
+    lv = nullptr;
+    av = nullptr;
+    iv = nullptr;
+
+
+    for (int i=0; i<access.size(); ++i) {
+        if(access[i]<48 || access[i]>57){
+            return nullptr;
         }
-    } else if (id->getSubtype() == "ArrAccess") {
-        //cast to ArrAccess
-        ArrAccess *temp = (ArrAccess *) id;
-        temp->setVal(v);
-    } else {
-        //error case
+    }
+    if(std::stoi(access) >= this->arr->getSize()) return nullptr;
+    return (IntegerVariable*)this->arr->getAt(std::stoi(access));
+}
+
+void ArrAccess::print(std::string& formattedString){
+    if(getVar()==nullptr){
+        formattedString.append("NULL");
+    }
+    else{
+        formattedString.append(getOut());
     }
 }
-*/
