@@ -6,6 +6,7 @@
 #include "IntegerVariable.h"
 #include "ArrayVariable.h"
 #include "Value.h"
+#include "ArrAccess.h"
 
 /**
  * Program: School of Computer Science Assembly Programming Environment System
