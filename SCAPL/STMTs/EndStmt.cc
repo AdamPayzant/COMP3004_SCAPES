@@ -14,8 +14,22 @@ EndStmt::~EndStmt() {
     // No Pointers to delete
 }
 
-void EndStmt::compile(std::string &name) {
-    // Doesn't have anything in the line to consider
+void EndStmt::compile(std::string &line) {
+    std::string errorText;
+    if(line.size() == 3){
+        return;
+    }
+    else{
+        line = line.substr(4);
+        this->master->removeLeadingWhitespace(line);
+        if(line.size()>0){
+            this->master->setCompileValidityStatus(false);
+            errorText = "Instruction provided too many operands";
+            this->master->setCompileError(errorText);
+            return;
+        }
+        return;
+    }
 }
 
 void EndStmt::run() {
