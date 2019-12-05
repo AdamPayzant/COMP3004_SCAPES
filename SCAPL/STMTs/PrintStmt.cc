@@ -138,6 +138,9 @@ void PrintStmt::run() {
         if(o1->getIDPtr()->getSubtype().compare("Literal")==0){
             formattedString = ((Literal *) o1->getIDPtr())->getOut();
         }
+        else if(o1->getIDPtr()->getSubtype().compare("ArrAccess")==0){
+            ((ArrAccess *) o1->getIDPtr())->print(formattedString);
+        }
         else{
             ((Variable*) o1->getIDPtr())->print(formattedString);
         }
