@@ -9,7 +9,7 @@
 # jmp to code
 jmp L1 
 # declare an int and array and gives them values 
-L1: dci a 1
+L1: dci a
 dca b 1
 mov a 1
 rdi $b+1
