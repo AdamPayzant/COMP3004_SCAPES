@@ -46,6 +46,13 @@
  * COMP2404.
  * Class design based on course notes and course work from Fall 2018 offering
  * of COMP2404.
+ * Exception operations based on descriptions and examples presented on specific pages
+ * found on cplusplus.com[1]
+ * All rights and credit remain with referenced definitions and samples from original authors.
+ * 
+ * [1] cplusplus.com.(2019).std::exception.[online]
+ *      Available at: http://www.cplusplus.com/reference/exception/exception/
+ *      [Accessed 02 Dec. 2019].
  *
  **/
 class MainController;
@@ -84,11 +91,6 @@ class Program {
         void execute();
 
         /**
-         * Function used to print for testing purposes in D2
-         **/
-        void print();
-
-        /**
          * Getter function that returns a pointer to the vector of Identifiers of the program
          **/
         std::vector<Identifier*>* getIds();
@@ -117,10 +119,6 @@ class Program {
          * Takes a label, searches for the statement linked with it, then sets stmtPos to the found statement
          **/
         void changeStmt(Label *);
-
-        /*
-        void addPrint(std::string);
-        */
     
         /**
          * Takes a string and adds it to the output

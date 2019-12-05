@@ -125,44 +125,8 @@ bool DatabaseConductor::restoreProgramObjects(Program* program, std::vector<Iden
   this->program = program;
 
   int i;
-  /*
-  if(this->identifier_vector != nullptr){
-      for(i=0; i < this->identifier_vector->size(); i++){
-          delete this->identifier_vector->at(i);
-      }
-      this->identifier_vector->clear();
-  }
-  if(identifier_vector != nullptr){
-      for(i=0; i< identifier_vector->size(); i++){
-          delete identifier_vector->at(i);
-      }
-      identifier_vector->clear();
-  }
-  else{
-      return false;
-  }
-  */
 
   this->identifier_vector = identifier_vector;
-
-  /*
-  if(this->statement_vector != nullptr){
-      for(i=0; i< this->statement_vector->size(); i++){
-          delete this->statement_vector->at(i);
-      }
-      this->statement_vector->clear();
-  }
-
-  if(statement_vector != nullptr){
-      for(i=0; i< statement_vector->size(); i++){
-          delete statement_vector->at(i);
-      }
-      statement_vector->clear();
-  }
-  else{
-      return false;
-  }
-  */
 
   this->statement_vector = statement_vector;
 
@@ -179,39 +143,6 @@ bool DatabaseConductor::restoreProgramObjects(Program* program, std::vector<Iden
   }
   if(!this->restoreOperands()){
       return false;
-  }
-
-  if(this->statement_vector != nullptr){
-      for(i=0; i< this->statement_vector->size(); i++){
-          if(this->statement_vector->at(i) != nullptr){
-              //delete tempString;
-              //sprintf(tempString, "Statement number %d with type: %s", i, this->statement_vector->at(i)->getName().c_str());
-              //sprintf(tempString, "Statement number %d", i);
-              //cout << tempString << endl;
-              cout << "Statement number " << i << " with type: " << this->statement_vector->at(i)->getName().c_str() << endl;
-              if(this->statement_vector->at(i)->getOperand1() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr()->getSubtype().compare("Literal")!=0 && this->statement_vector->at(i)->getOperand1()->getIDPtr()->getSubtype().compare("ArrAccess")!=0){
-                  cout << "Operand 1, with name: " << this->statement_vector->at(i)->getOperand1()->getIDPtr()->getNameValue() << endl;
-              }
-              else if(this->statement_vector->at(i)->getOperand1() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr()->getSubtype().compare("Literal")==0){
-                  cout << "Operand 1, with value: " << ((Literal*) this->statement_vector->at(i)->getOperand1()->getIDPtr())->getOut() << endl;
-              }
-              else if(this->statement_vector->at(i)->getOperand1() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand1()->getIDPtr()->getSubtype().compare("ArrAccess")==0){
-                  cout << "Operand 1, with value: " << ((ArrAccess*) this->statement_vector->at(i)->getOperand1()->getIDPtr())->getAccess() << endl;
-              }
-              if(this->statement_vector->at(i)->getOperand2() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr()->getSubtype().compare("Literal")!=0 && this->statement_vector->at(i)->getOperand2()->getIDPtr()->getSubtype().compare("ArrAccess")!=0){
-                  cout << "Operand 2, with name: " << this->statement_vector->at(i)->getOperand2()->getIDPtr()->getNameValue() << endl;
-              }
-              else if(this->statement_vector->at(i)->getOperand2() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr()->getSubtype().compare("Literal")==0){
-                  cout << "Operand 2, with value: " << ((Literal*) this->statement_vector->at(i)->getOperand2()->getIDPtr())->getOut() << endl;
-              }
-              else if(this->statement_vector->at(i)->getOperand2() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr() != nullptr && this->statement_vector->at(i)->getOperand2()->getIDPtr()->getSubtype().compare("ArrAccess")==0){
-                  cout << "Operand 2, with value: " << ((ArrAccess*) this->statement_vector->at(i)->getOperand2()->getIDPtr())->getAccess() << endl;
-              }
-              if(this->statement_vector->at(i)->getLabel() != nullptr){
-                  cout << "Label, with name: " << this->statement_vector->at(i)->getLabel()->getNameValue() << endl;
-              }
-          }
-      }
   }
 
   this->connector->disconnect();
@@ -274,7 +205,6 @@ bool DatabaseConductor::persistIdentifiers()
             identifierSubtype = "4";
         }
         sprintf(sqlstmt, "INSERT INTO IDENTIFIER VALUES('%s', %s, %s);", identifierName, identifierSubtype.data(), identifierValue);
-        cout << sqlstmt << endl;
         sqlcli.exec(sqlstmt);
     }
     return true;
@@ -361,7 +291,6 @@ bool DatabaseConductor::persistStatements()
         }
 
         sprintf(sqlstmt, "INSERT INTO STATEMENT VALUES(%d, %s, '%s');", i, statementSubtype.data(), identifierName);
-        cout << sqlstmt << endl;
         sqlcli.exec(sqlstmt);
     }
     return true;
@@ -396,14 +325,12 @@ bool DatabaseConductor::persistOperands()
                         snprintf(identifierName, 63, "%s%d_%d", "_LITERAL_", i, 1);
                         sprintf(identifierValue, "%s", ((Literal*) idPtr)->getOut().data());
                         sprintf(sqlstmt, "INSERT INTO ANON_OPERAND VALUES(%d, %d, '%s', '%s');", i, 1, identifierName, identifierValue);
-                        cout << sqlstmt << endl;
                         sqlcli.exec(sqlstmt);
                     }else if(identifierSubtype.compare("ArrAccess") == 0 && ((ArrAccess*) idPtr)->getParent() != nullptr &&
                              !((ArrAccess*) idPtr)->getAccess().empty()){
                         snprintf(identifierName, 63, "%s", ((ArrAccess*) idPtr)->getParent()->getNameValue().data());
                         snprintf(identifierValue, 63, "%s", ((ArrAccess*) idPtr)->getAccess().data());
                         sprintf(sqlstmt, "INSERT INTO ANON_OPERAND VALUES(%d, %d, '%s', '%s');", i, 1, identifierName, identifierValue);
-                        cout << sqlstmt << endl;
                         sqlcli.exec(sqlstmt);
                     }
                     else{
@@ -412,12 +339,9 @@ bool DatabaseConductor::persistOperands()
                             snprintf(identifierName, 63, "%s", tempName.data());
                             identifierName[63]='\0';
                             sprintf(sqlstmt, "INSERT INTO OPERAND VALUES(%d, %d, '%s');", i, 1, identifierName);
-                            cout << sqlstmt << endl;
                             sqlcli.exec(sqlstmt);
                         }
                     }
-                }else{
-                    cout << "Operand 1 detected as null during statement : " << idPtr << endl;
                 }
             }
 
@@ -438,14 +362,12 @@ bool DatabaseConductor::persistOperands()
                         snprintf(identifierName, 63, "%s%d_%d", "_LITERAL_", i, 2);
                         sprintf(identifierValue, "%s", ((Literal*) idPtr)->getOut().data());
                         sprintf(sqlstmt, "INSERT INTO ANON_OPERAND VALUES(%d, %d, '%s', '%s');", i, 2, identifierName, identifierValue);
-                        cout << sqlstmt << endl;
                         sqlcli.exec(sqlstmt);
                     }else if(identifierSubtype.compare("ArrAccess") == 0 && ((ArrAccess*) idPtr)->getParent() != nullptr &&
                              !((ArrAccess*) idPtr)->getAccess().empty()){
                         snprintf(identifierName, 63, "%s", ((ArrAccess*) idPtr)->getParent()->getNameValue().data());
                         snprintf(identifierValue, 63, "%s", ((ArrAccess*) idPtr)->getAccess().data());
                         sprintf(sqlstmt, "INSERT INTO ANON_OPERAND VALUES(%d, %d, '%s', '%s');", i, 2, identifierName, identifierValue);
-                        cout << sqlstmt << endl;
                         sqlcli.exec(sqlstmt);
                     }
                     else{
@@ -454,12 +376,9 @@ bool DatabaseConductor::persistOperands()
                             snprintf(identifierName, 63, "%s", tempName.data());
                             identifierName[63]='\0';
                             sprintf(sqlstmt, "INSERT INTO OPERAND VALUES(%d, %d, '%s');", i, 2, identifierName);
-                            cout << sqlstmt << endl;
                             sqlcli.exec(sqlstmt);
                         }
                     }
-                }else{
-                    cout << "Operand 2 detected as null during statement : " << i << endl;
                 }
             }
 
