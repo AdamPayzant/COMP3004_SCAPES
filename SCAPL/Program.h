@@ -58,6 +58,13 @@ class Program {
          **/
         Program(std::string &);
 
+        /**
+         * Constructor
+         * Parameters:
+         * - Filename of the source file to be compiled or restored.
+         * - Pointer to the Main Controller in charge of the management of the state of the Program.
+         *    Pointer used to elevate a required operation to the Main Controller.
+         **/
         Program(std::string &, MainController*);
   
         /**
