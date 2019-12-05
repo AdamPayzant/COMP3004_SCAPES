@@ -33,7 +33,7 @@ L3:add  1 a
 cmp a d
 jls l3
 cmp c d
-jls: l2
+jls l2
 prt a
 prt c
 
