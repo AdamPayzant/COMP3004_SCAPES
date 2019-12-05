@@ -48,18 +48,18 @@ cmp con1 0
 jmr l4
 l4: add 1 counter
 cmp counter 1
-jls: l6
-jmr:l6
+jls l6
+jmr l6
 jeq l5
-l5:mov a  $arr+0
+l5: mov a  $arr+0
 prt $arr+0
 l6: end
 
 #comp condition 2
 cmp con2 0
-jeq:l7
-jls:l8
-jmr:l8
+jeq l7
+jls l8
+jmr l8
 cmp counter 2
 jls l9
 l9:end
